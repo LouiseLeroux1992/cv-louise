@@ -1,0 +1,41 @@
+{
+  "common": {
+    "language": "English",
+    "switchLanguage": "Passer en français"
+  },
+  "navigation": {
+    "home": "Home",
+    "servicesDev": "Development",
+    "servicesIllustration": "Illustration",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Louise Leroux",
+    "subtitle": "Freelance Developer & Illustrator",
+    "description": "I design modern web applications and custom illustrations.",
+    "cta": {
+      "contact": "Contact me",
+      "services": "Discover my services"
+    }
+  },
+  "services": {
+    "dev": {
+      "title": "Web Development",
+      "description": "Modern web applications, showcase websites, APIs"
+    },
+    "illustration": {
+      "title": "Illustration",
+      "description": "Custom illustrations for your projects"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "madeWith": "Made with"
+  },
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "toggle": "Toggle theme"
+  }
+}
