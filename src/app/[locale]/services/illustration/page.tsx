@@ -63,7 +63,7 @@ export default function ServicesIllustration() {
       </section>
 
       {/* Services */}
-      <section className="bg-accent/10 py-16">
+      <section className="bg-pastel-petal/15 py-16">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -81,9 +81,9 @@ export default function ServicesIllustration() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-background p-6 rounded-xl border border-accent/30"
+                className="bg-background p-6 rounded-xl border border-pastel-petal/40"
               >
-                <div className="text-secondary mb-4">{service.icon}</div>
+                <div className="text-pastel-petal mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
                 <p className="text-muted-foreground">{service.description}</p>
               </motion.div>
@@ -111,7 +111,7 @@ export default function ServicesIllustration() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="aspect-square rounded-xl bg-accent/20 flex items-center justify-center cursor-pointer hover:bg-accent/30 transition-colors group"
+                className="aspect-square rounded-xl bg-pastel-petal/20 flex items-center justify-center cursor-pointer hover:bg-pastel-petal/30 transition-colors group"
               >
                 <div className="text-center">
                   <svg
@@ -120,7 +120,7 @@ export default function ServicesIllustration() {
                     viewBox="0 0 24 24"
                     strokeWidth={1}
                     stroke="currentColor"
-                    className="w-12 h-12 mx-auto text-accent/60 group-hover:text-secondary transition-colors"
+                    className="w-12 h-12 mx-auto text-pastel-petal/60 group-hover:text-pastel-petal transition-colors"
                   >
                     <path
                       strokeLinecap="round"
@@ -137,7 +137,7 @@ export default function ServicesIllustration() {
       </section>
 
       {/* Pricing hint */}
-      <section className="bg-accent/10 py-16">
+      <section className="bg-pastel-petal/15 py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -164,7 +164,7 @@ export default function ServicesIllustration() {
             <p className="text-muted-foreground mb-8">{t("ctaDescription")}</p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-secondary text-secondary-foreground hover:opacity-90 transition-all font-medium"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-pastel-petal text-jet-black hover:opacity-90 transition-all font-medium"
             >
               {t("ctaButton")}
             </Link>

@@ -81,14 +81,14 @@ export function ServicesPreview() {
                 className={`block p-8 rounded-2xl border-2 transition-all hover:scale-[1.02] hover:shadow-lg ${
                   service.color === "primary"
                     ? "bg-primary/5 border-primary/20 hover:border-primary/50"
-                    : "bg-accent/10 border-accent/30 hover:border-accent/60"
+                    : "bg-pastel-petal/20 border-pastel-petal/40 hover:border-pastel-petal/70"
                 }`}
               >
                 <div
                   className={`mb-4 ${
                     service.color === "primary"
                       ? "text-primary"
-                      : "text-secondary"
+                      : "text-pastel-petal dark:text-pastel-petal"
                   }`}
                 >
                   {service.icon}
