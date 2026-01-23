@@ -1,22 +1,21 @@
 "use client";
 
-import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { Link } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
 
 export function Header() {
   const t = useTranslations("navigation");
-  const locale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { href: `/${locale}`, label: t("home") },
-    { href: `/${locale}/services/developpement`, label: t("servicesDev") },
-    { href: `/${locale}/services/illustration`, label: t("servicesIllustration") },
-    { href: `/${locale}/a-propos`, label: t("about") },
-    { href: `/${locale}/contact`, label: t("contact") },
+    { href: "/", label: t("home") },
+    { href: "/services/developpement", label: t("servicesDev") },
+    { href: "/services/illustration", label: t("servicesIllustration") },
+    { href: "/a-propos", label: t("about") },
+    { href: "/contact", label: t("contact") },
   ];
 
   return (
@@ -25,7 +24,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
-            href={`/${locale}`}
+            href="/"
             className="text-xl font-bold text-primary hover:opacity-80 transition-opacity"
           >
             Louise Leroux
