@@ -36,6 +36,73 @@
       "description": "Custom illustrations for your projects: editorial, visual identity, digital illustrations."
     }
   },
+  "servicesIllustration": {
+    "title": "Illustration",
+    "description": "I create custom illustrations that bring your ideas to life. A unique style for visuals that reflect who you are.",
+    "servicesTitle": "Types of illustrations",
+    "services": {
+      "editorial": {
+        "title": "Editorial illustration",
+        "description": "Illustrations for magazines, books, articles and print communication materials."
+      },
+      "branding": {
+        "title": "Visual identity",
+        "description": "Illustrations for your brand: illustrated logos, mascots, graphic elements."
+      },
+      "digital": {
+        "title": "Digital illustration",
+        "description": "Illustrations for the web: social media, websites, applications."
+      }
+    },
+    "galleryTitle": "Portfolio",
+    "pricingTitle": "Pricing",
+    "pricingDescription": "Each project is unique. Pricing depends on complexity, format and usage rights. Contact me for a personalized quote.",
+    "ctaTitle": "Want an illustration?",
+    "ctaDescription": "Describe your project and I'll send you a tailored proposal.",
+    "ctaButton": "Order an illustration"
+  },
+  "servicesDev": {
+    "title": "Web Development",
+    "description": "I create modern, high-performance, custom web applications. From showcase sites to complex applications, I support you in achieving your digital projects.",
+    "servicesTitle": "What I offer",
+    "services": {
+      "webapp": {
+        "title": "Web Applications",
+        "description": "Complete web applications with React/Next.js, modern user interfaces and interactive experiences."
+      },
+      "showcase": {
+        "title": "Showcase Websites",
+        "description": "Elegant, optimized websites to present your business and attract new customers."
+      },
+      "api": {
+        "title": "APIs & Backend",
+        "description": "Development of robust APIs and custom backend solutions for your business needs."
+      }
+    },
+    "techTitle": "Technologies",
+    "processTitle": "My workflow",
+    "process": {
+      "discovery": {
+        "title": "Discovery",
+        "description": "Understanding your needs, goals and constraints to define the project scope."
+      },
+      "design": {
+        "title": "Design",
+        "description": "Defining the technical architecture and creating mockups if necessary."
+      },
+      "development": {
+        "title": "Development",
+        "description": "Iterative development with regular checkpoints to validate progress."
+      },
+      "delivery": {
+        "title": "Delivery",
+        "description": "Production deployment, documentation and post-delivery support."
+      }
+    },
+    "ctaTitle": "Ready to start your project?",
+    "ctaDescription": "Contact me to discuss your needs and get a personalized quote.",
+    "ctaButton": "Request a quote"
+  },
   "footer": {
     "rights": "All rights reserved",
     "madeWith": "Made with"

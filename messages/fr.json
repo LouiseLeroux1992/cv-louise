@@ -36,6 +36,73 @@
       "description": "Illustrations personnalisées pour vos projets : éditoriales, identité visuelle, illustrations digitales."
     }
   },
+  "servicesIllustration": {
+    "title": "Illustration",
+    "description": "Je crée des illustrations personnalisées qui donnent vie à vos idées. Un style unique pour des visuels qui vous ressemblent.",
+    "servicesTitle": "Types d'illustrations",
+    "services": {
+      "editorial": {
+        "title": "Illustration éditoriale",
+        "description": "Illustrations pour magazines, livres, articles et supports de communication print."
+      },
+      "branding": {
+        "title": "Identité visuelle",
+        "description": "Illustrations pour votre marque : logos illustrés, mascottes, éléments graphiques."
+      },
+      "digital": {
+        "title": "Illustration digitale",
+        "description": "Illustrations pour le web : réseaux sociaux, sites internet, applications."
+      }
+    },
+    "galleryTitle": "Portfolio",
+    "pricingTitle": "Tarifs",
+    "pricingDescription": "Chaque projet est unique. Les tarifs dépendent de la complexité, du format et des droits d'utilisation. Contactez-moi pour un devis personnalisé.",
+    "ctaTitle": "Envie d'une illustration ?",
+    "ctaDescription": "Décrivez-moi votre projet et je vous enverrai une proposition adaptée.",
+    "ctaButton": "Commander une illustration"
+  },
+  "servicesDev": {
+    "title": "Développement Web",
+    "description": "Je crée des applications web modernes, performantes et sur mesure. Du site vitrine à l'application complexe, je vous accompagne dans la réalisation de vos projets digitaux.",
+    "servicesTitle": "Ce que je propose",
+    "services": {
+      "webapp": {
+        "title": "Applications Web",
+        "description": "Applications web complètes avec React/Next.js, interfaces utilisateur modernes et expériences interactives."
+      },
+      "showcase": {
+        "title": "Sites Vitrines",
+        "description": "Sites web élégants et optimisés pour présenter votre activité et attirer de nouveaux clients."
+      },
+      "api": {
+        "title": "APIs & Backend",
+        "description": "Développement d'APIs robustes et de solutions backend sur mesure pour vos besoins métier."
+      }
+    },
+    "techTitle": "Technologies",
+    "processTitle": "Ma méthode de travail",
+    "process": {
+      "discovery": {
+        "title": "Découverte",
+        "description": "Compréhension de vos besoins, objectifs et contraintes pour définir le périmètre du projet."
+      },
+      "design": {
+        "title": "Conception",
+        "description": "Définition de l'architecture technique et création des maquettes si nécessaire."
+      },
+      "development": {
+        "title": "Développement",
+        "description": "Développement itératif avec des points réguliers pour valider l'avancement."
+      },
+      "delivery": {
+        "title": "Livraison",
+        "description": "Mise en production, documentation et accompagnement post-livraison."
+      }
+    },
+    "ctaTitle": "Prêt à démarrer votre projet ?",
+    "ctaDescription": "Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé.",
+    "ctaButton": "Demander un devis"
+  },
   "footer": {
     "rights": "Tous droits réservés",
     "madeWith": "Fait avec"
