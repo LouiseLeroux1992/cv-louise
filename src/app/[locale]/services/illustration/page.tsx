@@ -83,7 +83,7 @@ export default function ServicesIllustration() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-background p-6 rounded-xl border border-pastel-petal/40"
               >
-                <div className="text-pastel-petal mb-4">{service.icon}</div>
+                <div className="w-14 h-14 rounded-lg bg-pastel-petal/30 flex items-center justify-center text-pastel-petal mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
                 <p className="text-muted-foreground">{service.description}</p>
               </motion.div>
