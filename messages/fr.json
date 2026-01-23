@@ -13,20 +13,27 @@
   "home": {
     "title": "Louise Leroux",
     "subtitle": "Développeuse Freelance & Illustratrice",
-    "description": "Je conçois des applications web modernes et des illustrations sur mesure.",
+    "description": "Je conçois des applications web modernes et des illustrations sur mesure pour donner vie à vos projets.",
     "cta": {
       "contact": "Me contacter",
       "services": "Découvrir mes services"
-    }
+    },
+    "servicesTitle": "Mes services",
+    "learnMore": "En savoir plus",
+    "featuredTitle": "Réalisations récentes",
+    "featuredDescription": "Découvrez une sélection de mes derniers projets en développement web et illustration.",
+    "viewAllWork": "Voir toutes les réalisations",
+    "ctaTitle": "Un projet en tête ?",
+    "ctaDescription": "Discutons de votre projet et voyons comment je peux vous aider à le concrétiser."
   },
   "services": {
     "dev": {
       "title": "Développement Web",
-      "description": "Applications web modernes, sites vitrines, APIs"
+      "description": "Applications web modernes, sites vitrines, APIs et solutions sur mesure avec les dernières technologies."
     },
     "illustration": {
       "title": "Illustration",
-      "description": "Illustrations personnalisées pour vos projets"
+      "description": "Illustrations personnalisées pour vos projets : éditoriales, identité visuelle, illustrations digitales."
     }
   },
   "footer": {

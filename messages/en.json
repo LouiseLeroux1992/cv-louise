@@ -13,20 +13,27 @@
   "home": {
     "title": "Louise Leroux",
     "subtitle": "Freelance Developer & Illustrator",
-    "description": "I design modern web applications and custom illustrations.",
+    "description": "I design modern web applications and custom illustrations to bring your projects to life.",
     "cta": {
       "contact": "Contact me",
       "services": "Discover my services"
-    }
+    },
+    "servicesTitle": "My services",
+    "learnMore": "Learn more",
+    "featuredTitle": "Recent work",
+    "featuredDescription": "Discover a selection of my latest projects in web development and illustration.",
+    "viewAllWork": "View all work",
+    "ctaTitle": "Have a project in mind?",
+    "ctaDescription": "Let's discuss your project and see how I can help you bring it to life."
   },
   "services": {
     "dev": {
       "title": "Web Development",
-      "description": "Modern web applications, showcase websites, APIs"
+      "description": "Modern web applications, showcase websites, APIs and custom solutions with the latest technologies."
     },
     "illustration": {
       "title": "Illustration",
-      "description": "Custom illustrations for your projects"
+      "description": "Custom illustrations for your projects: editorial, visual identity, digital illustrations."
     }
   },
   "footer": {
