@@ -103,6 +103,44 @@
     "ctaDescription": "Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé.",
     "ctaButton": "Demander un devis"
   },
+  "about": {
+    "title": "À propos",
+    "description": "Développeuse passionnée et illustratrice, je combine créativité technique et artistique pour donner vie à des projets uniques.",
+    "whoAmI": "Qui suis-je ?",
+    "bio": "Passionnée par le développement web et l'illustration, j'ai choisi de combiner ces deux univers pour offrir des services complets et créatifs. Avec plusieurs années d'expérience en développement full stack et une pratique régulière de l'illustration, je mets mes compétences au service de projets variés, du site vitrine à l'application complexe, en passant par l'identité visuelle illustrée.",
+    "experienceTitle": "Expériences",
+    "educationTitle": "Formations",
+    "skillsTitle": "Compétences",
+    "downloadTitle": "Télécharger mon CV",
+    "downloadDescription": "Pour plus de détails sur mon parcours, téléchargez mon CV au format PDF.",
+    "downloadButton": "Télécharger le CV"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Vous avez un projet en tête ? N'hésitez pas à me contacter pour en discuter.",
+    "formTitle": "Envoyez-moi un message",
+    "successTitle": "Message envoyé !",
+    "successMessage": "Merci pour votre message. Je vous répondrai dans les plus brefs délais.",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "subjects": {
+        "dev": "Projet de développement",
+        "illustration": "Projet d'illustration",
+        "other": "Autre"
+      },
+      "message": "Message",
+      "send": "Envoyer",
+      "sending": "Envoi en cours..."
+    },
+    "infoTitle": "Informations de contact",
+    "info": {
+      "email": "Email",
+      "location": "Localisation"
+    },
+    "socialTitle": "Réseaux sociaux"
+  },
   "footer": {
     "rights": "Tous droits réservés",
     "madeWith": "Fait avec"

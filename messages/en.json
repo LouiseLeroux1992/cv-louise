@@ -103,6 +103,44 @@
     "ctaDescription": "Contact me to discuss your needs and get a personalized quote.",
     "ctaButton": "Request a quote"
   },
+  "about": {
+    "title": "About",
+    "description": "Passionate developer and illustrator, I combine technical and artistic creativity to bring unique projects to life.",
+    "whoAmI": "Who am I?",
+    "bio": "Passionate about web development and illustration, I chose to combine these two worlds to offer complete and creative services. With several years of full stack development experience and regular illustration practice, I put my skills at the service of various projects, from showcase websites to complex applications, including illustrated visual identity.",
+    "experienceTitle": "Experience",
+    "educationTitle": "Education",
+    "skillsTitle": "Skills",
+    "downloadTitle": "Download my CV",
+    "downloadDescription": "For more details about my background, download my CV in PDF format.",
+    "downloadButton": "Download CV"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Have a project in mind? Feel free to reach out to discuss it.",
+    "formTitle": "Send me a message",
+    "successTitle": "Message sent!",
+    "successMessage": "Thank you for your message. I'll get back to you as soon as possible.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "subjects": {
+        "dev": "Development project",
+        "illustration": "Illustration project",
+        "other": "Other"
+      },
+      "message": "Message",
+      "send": "Send",
+      "sending": "Sending..."
+    },
+    "infoTitle": "Contact information",
+    "info": {
+      "email": "Email",
+      "location": "Location"
+    },
+    "socialTitle": "Social networks"
+  },
   "footer": {
     "rights": "All rights reserved",
     "madeWith": "Made with"
