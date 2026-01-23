@@ -16,9 +16,45 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Louise Leroux | Développeuse Freelance & Illustratrice",
+  title: {
+    default: "Louise Leroux | Développeuse Freelance & Illustratrice",
+    template: "%s | Louise Leroux",
+  },
   description:
-    "Portfolio de Louise Leroux - Services de développement web et illustration",
+    "Développeuse web freelance et illustratrice. Je crée des applications web modernes et des illustrations sur mesure pour donner vie à vos projets.",
+  keywords: [
+    "développeuse freelance",
+    "développeur web",
+    "illustratrice",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "illustration digitale",
+    "France",
+  ],
+  authors: [{ name: "Louise Leroux" }],
+  creator: "Louise Leroux",
+  metadataBase: new URL("https://lerouxlouise.fr"),
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    alternateLocale: "en_US",
+    url: "https://lerouxlouise.fr",
+    siteName: "Louise Leroux",
+    title: "Louise Leroux | Développeuse Freelance & Illustratrice",
+    description:
+      "Développeuse web freelance et illustratrice. Je crée des applications web modernes et des illustrations sur mesure.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Louise Leroux | Développeuse Freelance & Illustratrice",
+    description:
+      "Développeuse web freelance et illustratrice. Je crée des applications web modernes et des illustrations sur mesure.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 type Props = {
