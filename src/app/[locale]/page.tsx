@@ -1,40 +1,52 @@
 import { useTranslations } from "next-intl";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
+import Link from "next/link";
 
 export default function Home() {
   const t = useTranslations();
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8">
-      <div className="absolute top-4 right-4 flex items-center gap-2">
-        <LocaleSwitcher />
-        <ThemeToggle />
-      </div>
+    <div className="flex flex-col items-center justify-center py-20 px-4">
+      <div className="max-w-3xl text-center space-y-8">
+        <h1 className="text-5xl font-bold">{t("home.title")}</h1>
+        <p className="text-2xl text-primary">{t("home.subtitle")}</p>
+        <p className="text-lg text-muted-foreground">{t("home.description")}</p>
 
-      <div className="max-w-2xl text-center space-y-8">
-        <h1 className="text-4xl font-bold">{t("home.title")}</h1>
-        <p className="text-xl text-muted-foreground">{t("home.subtitle")}</p>
-        <p className="text-lg">{t("home.description")}</p>
+        {/* Services Cards */}
+        <div className="grid md:grid-cols-2 gap-6 mt-12">
+          <div className="p-6 rounded-xl bg-primary/10 border border-primary/20 hover:border-primary/40 transition-colors">
+            <h2 className="text-xl font-semibold mb-2">
+              {t("services.dev.title")}
+            </h2>
+            <p className="text-muted-foreground">
+              {t("services.dev.description")}
+            </p>
+          </div>
+          <div className="p-6 rounded-xl bg-accent/30 border border-accent/40 hover:border-accent/60 transition-colors">
+            <h2 className="text-xl font-semibold mb-2">
+              {t("services.illustration.title")}
+            </h2>
+            <p className="text-muted-foreground">
+              {t("services.illustration.description")}
+            </p>
+          </div>
+        </div>
 
+        {/* CTA Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mt-8">
-          <div className="p-4 rounded-lg bg-primary text-primary-foreground">
-            {t("services.dev.title")}
-          </div>
-          <div className="p-4 rounded-lg bg-secondary text-secondary-foreground">
-            {t("services.illustration.title")}
-          </div>
-        </div>
-
-        <div className="flex justify-center gap-4 mt-8">
-          <button className="px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
+          <Link
+            href="#contact"
+            className="px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity font-medium"
+          >
             {t("home.cta.contact")}
-          </button>
-          <button className="px-6 py-3 rounded-lg border border-border hover:bg-muted transition-colors">
+          </Link>
+          <Link
+            href="#services"
+            className="px-6 py-3 rounded-lg border border-border hover:bg-muted transition-colors font-medium"
+          >
             {t("home.cta.services")}
-          </button>
+          </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
