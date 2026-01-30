@@ -31,6 +31,6 @@ export const experiences: Experience[] = [
     role: "Illustratrice & Dessinatrice",
     period: "Depuis plusieurs années",
     description:
-      "Illustration et bande-dessinée : aquarelle et dessin numérique. Réalisations : livre jeunesse (18 pages, aquarelle), BDs pédagogiques en laboratoire médical, BDs humoristiques sur Instagram (@louise.maviepassionnante).",
+      "Illustration et bande-dessinée : aquarelle et dessin numérique.\n• Livre jeunesse (18 pages, aquarelle)\n• BDs pédagogiques en laboratoire médical\n• BDs humoristiques sur Instagram (@louise.maviepassionnante)",
   },
 ];
