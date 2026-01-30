@@ -14,7 +14,7 @@ export const experiences: Experience[] = [
     role: "Développeuse Fullstack",
     period: "Mars 2023 - Présent",
     description:
-      "Conception et maintenance de multiples outils (SaaS, app mobile, outils internes) au sein d'une équipe de 6 développeurs. Projet phare : Pilote, refonte d'un logiciel legacy en architecture microservices.",
+      "Conception et maintenance de multiples outils (SaaS, app mobile, outils internes) au sein d'une équipe de 6 développeurs.\nProjet phare : Pilote, refonte d'un logiciel legacy en architecture microservices.",
     technologies: ["Rust", "TypeScript", "Next.js", "GraphQL", "Docker", "Kubernetes", "GCP"],
   },
   {
@@ -23,7 +23,7 @@ export const experiences: Experience[] = [
     role: "Infirmière",
     period: "2015 - 2022",
     description:
-      "7 ans d'exercice en soins de suite, neurologie, psychiatrie et laboratoire d'analyses médicales. Compétences transférables : rigueur organisationnelle, gestion des priorités, prise de décision sous pression, collaboration pluridisciplinaire.",
+      "7 ans d'exercice en soins de suite, neurologie, psychiatrie et laboratoire d'analyses médicales.\nCompétences transférables : rigueur organisationnelle, gestion des priorités, prise de décision sous pression, collaboration pluridisciplinaire.",
   },
   {
     id: "3",

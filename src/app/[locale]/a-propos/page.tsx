@@ -76,7 +76,7 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-semibold">{exp.role}</h3>
                 <p className="text-muted-foreground mb-2">{exp.company}</p>
-                <p className="text-sm text-muted-foreground">{exp.description}</p>
+                <p className="text-sm text-muted-foreground whitespace-pre-line">{exp.description}</p>
                 {exp.technologies && (
                   <div className="flex flex-wrap gap-2 mt-3">
                     {exp.technologies.map((tech) => (
