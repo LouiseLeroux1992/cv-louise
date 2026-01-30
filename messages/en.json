@@ -13,7 +13,7 @@
   "home": {
     "title": "Louise Leroux",
     "subtitle": "Fullstack Developer & Illustrator",
-    "description": "Specialized in microservices architecture (Rust, GraphQL, Next.js). I also create watercolor and digital illustrations.",
+    "description": "Fullstack developer specialized in Rust and TypeScript. In my spare time, I practice watercolor and digital illustration.",
     "cta": {
       "contact": "Contact me",
       "services": "Discover my services"
@@ -49,7 +49,7 @@
         "title": "Visual identity",
         "description": "Illustrations for your brand: illustrated logos, mascots, graphic elements."
       },
-      "digital": {
+      "numerique": {
         "title": "Digital illustration",
         "description": "Illustrations for the web: social media, websites, applications."
       }

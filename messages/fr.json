@@ -13,7 +13,7 @@
   "home": {
     "title": "Louise Leroux",
     "subtitle": "Développeuse Fullstack & Illustratrice",
-    "description": "Spécialisée en architecture microservices (Rust, GraphQL, Next.js). Je crée également des illustrations à l'aquarelle et en digital.",
+    "description": "Développeuse fullstack spécialisée en Rust et TypeScript. En parallèle, je pratique l'illustration à l'aquarelle et dessin numérique.",
     "cta": {
       "contact": "Me contacter",
       "services": "Découvrir mes services"
@@ -33,7 +33,7 @@
     },
     "illustration": {
       "title": "Illustration",
-      "description": "Illustrations personnalisées pour vos projets : éditoriales, identité visuelle, illustrations digitales."
+      "description": "Illustrations personnalisées pour vos projets : éditoriales, identité visuelle, illustrations numériques."
     }
   },
   "servicesIllustration": {
@@ -49,8 +49,8 @@
         "title": "Identité visuelle",
         "description": "Illustrations pour votre marque : logos illustrés, mascottes, éléments graphiques."
       },
-      "digital": {
-        "title": "Illustration digitale",
+      "numerique": {
+        "title": "Illustration numérique",
         "description": "Illustrations pour le web : réseaux sociaux, sites internet, applications."
       }
     },
@@ -63,7 +63,7 @@
   },
   "servicesDev": {
     "title": "Développement Web",
-    "description": "Je crée des applications web modernes, performantes et sur mesure. Du site vitrine à l'application complexe, je vous accompagne dans la réalisation de vos projets digitaux.",
+    "description": "Je crée des applications web modernes, performantes et sur mesure. Du site vitrine à l'application complexe, je vous accompagne dans la réalisation de vos projets numériques.",
     "servicesTitle": "Ce que je propose",
     "services": {
       "webapp": {

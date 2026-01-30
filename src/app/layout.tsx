@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "Next.js",
     "React",
     "TypeScript",
-    "illustration digitale",
+    "illustration numérique",
     "France",
   ],
   authors: [{ name: "Louise Leroux" }],
