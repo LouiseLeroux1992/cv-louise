@@ -13,7 +13,7 @@
   "home": {
     "title": "Louise Leroux",
     "subtitle": "Développeuse Fullstack & Illustratrice",
-    "description": "Développeuse fullstack spécialisée en Rust et TypeScript. En parallèle, je pratique l'illustration à l'aquarelle et dessin numérique.",
+    "description": "Code : applications web & mobile • sites vitrines • automatisations • Webflow (Rust, TypeScript)\nIllustration : aquarelle • dessin numérique • projets sur sélection",
     "cta": {
       "contact": "Me contacter",
       "services": "Découvrir mes services"
@@ -29,11 +29,11 @@
   "services": {
     "dev": {
       "title": "Développement Web",
-      "description": "Applications web modernes, sites vitrines, APIs et solutions sur mesure avec les dernières technologies."
+      "description": "Apps web & mobile • sites vitrines • automatisations"
     },
     "illustration": {
       "title": "Illustration",
-      "description": "Illustrations personnalisées pour vos projets : éditoriales, identité visuelle, illustrations numériques."
+      "description": "Aquarelle • dessin numérique • projets sur sélection"
     }
   },
   "servicesIllustration": {

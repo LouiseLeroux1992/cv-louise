@@ -13,7 +13,7 @@
   "home": {
     "title": "Louise Leroux",
     "subtitle": "Fullstack Developer & Illustrator",
-    "description": "Fullstack developer specialized in Rust and TypeScript. In my spare time, I practice watercolor and digital illustration.",
+    "description": "Code: web & mobile apps • showcase websites • automations • Webflow (Rust, TypeScript)\nIllustration: watercolor • digital drawing • projects by selection",
     "cta": {
       "contact": "Contact me",
       "services": "Discover my services"
@@ -29,11 +29,11 @@
   "services": {
     "dev": {
       "title": "Web Development",
-      "description": "Modern web applications, showcase websites, APIs and custom solutions with the latest technologies."
+      "description": "Web & mobile apps • showcase websites • automations"
     },
     "illustration": {
       "title": "Illustration",
-      "description": "Custom illustrations for your projects: editorial, visual identity, digital illustrations."
+      "description": "Watercolor • digital drawing • projects by selection"
     }
   },
   "servicesIllustration": {
