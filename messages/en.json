@@ -38,27 +38,25 @@
   },
   "servicesIllustration": {
     "title": "Illustration",
-    "description": "I create custom illustrations that bring your ideas to life. A unique style for visuals that reflect who you are.",
-    "servicesTitle": "Types of illustrations",
+    "description": "Illustration is first and foremost a passion. I mainly draw in watercolor and digital. I select projects that inspire me (comics, illustrated books, personalized cards) so I can fully invest myself in their creation.",
+    "servicesTitle": "Types of projects",
     "services": {
-      "editorial": {
-        "title": "Editorial illustration",
-        "description": "Illustrations for magazines, books, articles and print communication materials."
+      "bd": {
+        "title": "Comics",
+        "description": "Humorous, educational comics"
       },
-      "branding": {
-        "title": "Visual identity",
-        "description": "Illustrations for your brand: illustrated logos, mascots, graphic elements."
+      "livre": {
+        "title": "Illustrated books",
+        "description": "Children's illustrations, covers"
       },
-      "numerique": {
-        "title": "Digital illustration",
-        "description": "Illustrations for the web: social media, websites, applications."
+      "ponctuelles": {
+        "title": "One-off commissions",
+        "description": "Cards, personalized illustrations"
       }
     },
     "galleryTitle": "Portfolio",
-    "pricingTitle": "Pricing",
-    "pricingDescription": "Each project is unique. Pricing depends on complexity, format and usage rights. Contact me for a personalized quote.",
-    "ctaTitle": "Want an illustration?",
-    "ctaDescription": "Describe your project and I'll send you a tailored proposal.",
+    "ctaTitle": "A project that might interest me?",
+    "ctaDescription": "Contact me, we can discuss your idea together.\nEach creation is unique: pricing adapts to complexity and time invested.",
     "ctaButton": "Order an illustration"
   },
   "servicesDev": {
@@ -117,7 +115,7 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Have a project in mind? Feel free to reach out to discuss it.",
+    "description": "Have a project in mind? Contact me to discuss it.",
     "formTitle": "Send me a message",
     "successTitle": "Message sent!",
     "successMessage": "Thank you for your message. I'll get back to you as soon as possible.",

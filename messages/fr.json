@@ -38,27 +38,25 @@
   },
   "servicesIllustration": {
     "title": "Illustration",
-    "description": "Je crée des illustrations personnalisées qui donnent vie à vos idées. Un style unique pour des visuels qui vous ressemblent.",
-    "servicesTitle": "Types d'illustrations",
+    "description": "L'illustration est avant tout une passion. Je dessine principalement à l'aquarelle et en numérique. Je sélectionne les projets qui m'inspirent (bandes dessinées, livres illustrés, cartes personnalisées) afin de m'investir pleinement dans leur réalisation.",
+    "servicesTitle": "Types de projets",
     "services": {
-      "editorial": {
-        "title": "Illustration éditoriale",
-        "description": "Illustrations pour magazines, livres, articles et supports de communication print."
+      "bd": {
+        "title": "Bande dessinée",
+        "description": "BDs humoristiques, pédagogiques"
       },
-      "branding": {
-        "title": "Identité visuelle",
-        "description": "Illustrations pour votre marque : logos illustrés, mascottes, éléments graphiques."
+      "livre": {
+        "title": "Livre illustré",
+        "description": "Illustrations jeunesse, couvertures"
       },
-      "numerique": {
-        "title": "Illustration numérique",
-        "description": "Illustrations pour le web : réseaux sociaux, sites internet, applications."
+      "ponctuelles": {
+        "title": "Commandes ponctuelles",
+        "description": "Cartes, illustrations personnalisées"
       }
     },
     "galleryTitle": "Portfolio",
-    "pricingTitle": "Tarifs",
-    "pricingDescription": "Chaque projet est unique. Les tarifs dépendent de la complexité, du format et des droits d'utilisation. Contactez-moi pour un devis personnalisé.",
-    "ctaTitle": "Envie d'une illustration ?",
-    "ctaDescription": "Décrivez-moi votre projet et je vous enverrai une proposition adaptée.",
+    "ctaTitle": "Un projet qui pourrait m'intéresser ?",
+    "ctaDescription": "Contactez-moi, nous pourrons discuter ensemble de votre idée.\nChaque réalisation est unique : le tarif s'adapte à la complexité et au temps investi.",
     "ctaButton": "Commander une illustration"
   },
   "servicesDev": {
@@ -117,7 +115,7 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Vous avez un projet en tête ? N'hésitez pas à me contacter pour en discuter.",
+    "description": "Un projet en tête ? Contactez-moi pour en discuter.",
     "formTitle": "Envoyez-moi un message",
     "successTitle": "Message envoyé !",
     "successMessage": "Merci pour votre message. Je vous répondrai dans les plus brefs délais.",
