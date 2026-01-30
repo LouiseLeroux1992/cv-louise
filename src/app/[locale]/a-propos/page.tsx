@@ -122,7 +122,7 @@ export default function About() {
                 <h3 className="text-xl font-semibold">{edu.degree}</h3>
                 <p className="text-muted-foreground">{edu.school}</p>
                 {edu.description && (
-                  <p className="text-sm text-muted-foreground mt-2">
+                  <p className="text-sm text-muted-foreground mt-2 whitespace-pre-line">
                     {edu.description}
                   </p>
                 )}

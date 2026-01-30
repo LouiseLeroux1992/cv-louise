@@ -12,7 +12,7 @@ export const education: Education[] = [
     school: "CNAM",
     degree: "Cours du soir en informatique",
     period: "2025",
-    description: "Deux UE : Gestion de bases de données à large échelle et Optimisation en Informatique. En parallèle de l'activité professionnelle.",
+    description: "Cours du soir en parallèle de l'activité professionnelle.\n• Gestion de bases de données à large échelle\n• Optimisation en Informatique",
   },
   {
     id: "2",
