@@ -4,26 +4,25 @@ export type SkillCategory = {
   skills: string[];
 };
 
-// À remplacer par tes vraies compétences
 export const skillCategories: SkillCategory[] = [
   {
     id: "frontend",
     name: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML/CSS"],
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native"],
   },
   {
     id: "backend",
     name: "Backend",
-    skills: ["Node.js", "Rust", "PostgreSQL", "GraphQL", "REST APIs"],
+    skills: ["Rust", "GraphQL", "Node.js", "PHP", "PostgreSQL"],
   },
   {
-    id: "tools",
-    name: "Outils",
-    skills: ["Git", "VS Code", "Figma", "Docker", "Vercel"],
+    id: "infrastructure",
+    name: "Infrastructure",
+    skills: ["Docker", "Kubernetes", "GCP", "RabbitMQ", "Git/GitHub"],
   },
   {
     id: "illustration",
     name: "Illustration",
-    skills: ["Procreate", "Adobe Illustrator", "Photoshop", "Illustration digitale"],
+    skills: ["Aquarelle", "Dessin numérique", "Procreate", "Bande-dessinée"],
   },
 ];

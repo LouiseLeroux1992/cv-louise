@@ -12,8 +12,8 @@
   },
   "home": {
     "title": "Louise Leroux",
-    "subtitle": "Développeuse Freelance & Illustratrice",
-    "description": "Je conçois des applications web modernes et des illustrations sur mesure pour donner vie à vos projets.",
+    "subtitle": "Développeuse Fullstack & Illustratrice",
+    "description": "Spécialisée en architecture microservices (Rust, GraphQL, Next.js). Je crée également des illustrations à l'aquarelle et en digital.",
     "cta": {
       "contact": "Me contacter",
       "services": "Découvrir mes services"
@@ -105,9 +105,9 @@
   },
   "about": {
     "title": "À propos",
-    "description": "Développeuse passionnée et illustratrice, je combine créativité technique et artistique pour donner vie à des projets uniques.",
+    "description": "Développeuse fullstack et illustratrice, je combine rigueur technique et créativité artistique.",
     "whoAmI": "Qui suis-je ?",
-    "bio": "Passionnée par le développement web et l'illustration, j'ai choisi de combiner ces deux univers pour offrir des services complets et créatifs. Avec plusieurs années d'expérience en développement full stack et une pratique régulière de l'illustration, je mets mes compétences au service de projets variés, du site vitrine à l'application complexe, en passant par l'identité visuelle illustrée.",
+    "bio": "Développeuse fullstack depuis 3 ans, spécialisée en architecture microservices (Rust, GraphQL, Next.js). Issue d'une reconversion infirmière → dev en 2022, j'ai développé une approche rigoureuse et collaborative du développement logiciel. Attirée par les problématiques techniques complexes et l'amélioration continue. Passionnée également par l'illustration et la bande-dessinée, je pratique l'aquarelle et le dessin numérique depuis plusieurs années.",
     "experienceTitle": "Expériences",
     "educationTitle": "Formations",
     "skillsTitle": "Compétences",

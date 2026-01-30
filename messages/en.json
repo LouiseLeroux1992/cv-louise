@@ -12,8 +12,8 @@
   },
   "home": {
     "title": "Louise Leroux",
-    "subtitle": "Freelance Developer & Illustrator",
-    "description": "I design modern web applications and custom illustrations to bring your projects to life.",
+    "subtitle": "Fullstack Developer & Illustrator",
+    "description": "Specialized in microservices architecture (Rust, GraphQL, Next.js). I also create watercolor and digital illustrations.",
     "cta": {
       "contact": "Contact me",
       "services": "Discover my services"
@@ -105,9 +105,9 @@
   },
   "about": {
     "title": "About",
-    "description": "Passionate developer and illustrator, I combine technical and artistic creativity to bring unique projects to life.",
+    "description": "Fullstack developer and illustrator, I combine technical rigor and artistic creativity.",
     "whoAmI": "Who am I?",
-    "bio": "Passionate about web development and illustration, I chose to combine these two worlds to offer complete and creative services. With several years of full stack development experience and regular illustration practice, I put my skills at the service of various projects, from showcase websites to complex applications, including illustrated visual identity.",
+    "bio": "Fullstack developer for 3 years, specialized in microservices architecture (Rust, GraphQL, Next.js). Coming from a nurse → dev career change in 2022, I developed a rigorous and collaborative approach to software development. Drawn to complex technical challenges and continuous improvement. Also passionate about illustration and comics, I've been practicing watercolor and digital drawing for several years.",
     "experienceTitle": "Experience",
     "educationTitle": "Education",
     "skillsTitle": "Skills",
