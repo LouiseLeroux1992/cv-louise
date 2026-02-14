@@ -80,17 +80,11 @@ export function ServicesPreview() {
                 href={service.href}
                 className={`block p-8 rounded-2xl border-2 transition-all hover:scale-[1.02] hover:shadow-lg ${
                   service.color === "primary"
-                    ? "bg-primary/5 border-primary/20 hover:border-primary/50"
+                    ? "bg-accent/5 border-accent/20 hover:border-accent/50"
                     : "bg-accent/20 border-accent/40 hover:border-accent/70"
                 }`}
               >
-                <div
-                  className={`mb-4 ${
-                    service.color === "primary" ? "text-primary" : "text-accent"
-                  }`}
-                >
-                  {service.icon}
-                </div>
+                <div className="mb-4 text-accent">{service.icon}</div>
                 <h3 className="text-2xl font-semibold mb-3">{service.title}</h3>
                 <p className="text-muted-foreground">{service.description}</p>
                 <div className="mt-4 flex items-center gap-2 text-sm font-medium">

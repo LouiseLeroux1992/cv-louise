@@ -81,7 +81,10 @@ export default function Contact() {
                   </div>
                 )}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium mb-2"
+                  >
                     {t("form.name")}
                   </label>
                   <input
@@ -97,7 +100,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium mb-2"
+                  >
                     {t("form.email")}
                   </label>
                   <input
@@ -113,7 +119,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium mb-2"
+                  >
                     {t("form.subject")}
                   </label>
                   <select
@@ -125,13 +134,18 @@ export default function Contact() {
                     className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
                   >
                     <option value="dev">{t("form.subjects.dev")}</option>
-                    <option value="illustration">{t("form.subjects.illustration")}</option>
+                    <option value="illustration">
+                      {t("form.subjects.illustration")}
+                    </option>
                     <option value="other">{t("form.subjects.other")}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium mb-2"
+                  >
                     {t("form.message")}
                   </label>
                   <textarea
@@ -149,7 +163,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-4 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-6 py-4 rounded-lg bg-accent text-accent-foreground hover:opacity-90 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? t("form.sending") : t("form.send")}
                 </button>

@@ -25,7 +25,7 @@ export function ContactCTA() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-all hover:scale-105 font-medium text-lg"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-accent text-accent-foreground hover:opacity-90 transition-all hover:scale-105 font-medium text-lg"
           >
             {t("cta.contact")}
             <svg

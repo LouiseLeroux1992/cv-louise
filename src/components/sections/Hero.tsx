@@ -95,19 +95,11 @@ export function Hero() {
                   href={service.href}
                   className={`block p-6 rounded-xl border-2 transition-all hover:scale-[1.02] hover:shadow-lg text-left ${
                     service.color === "primary"
-                      ? "bg-primary/5 border-primary/20 hover:border-primary/50"
+                      ? "bg-accent/5 border-accent/20 hover:border-accent/50"
                       : "bg-accent/20 border-accent/40 hover:border-accent/70"
                   }`}
                 >
-                  <div
-                    className={`mb-3 ${
-                      service.color === "primary"
-                        ? "text-primary"
-                        : "text-accent"
-                    }`}
-                  >
-                    {service.icon}
-                  </div>
+                  <div className="mb-3 text-accent">{service.icon}</div>
                   <h3 className="text-xl font-semibold mb-2">
                     {service.title}
                   </h3>
@@ -143,7 +135,7 @@ export function Hero() {
           >
             <Link
               href="/contact"
-              className="px-8 py-4 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-all hover:scale-105 font-medium text-lg inline-flex items-center gap-2"
+              className="px-8 py-4 rounded-lg bg-accent text-accent-foreground hover:opacity-90 transition-all hover:scale-105 font-medium text-lg inline-flex items-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

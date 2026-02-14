@@ -76,7 +76,9 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-semibold">{exp.role}</h3>
                 <p className="text-muted-foreground mb-2">{exp.company}</p>
-                <p className="text-sm text-muted-foreground whitespace-pre-line">{exp.description}</p>
+                <p className="text-sm text-muted-foreground whitespace-pre-line">
+                  {exp.description}
+                </p>
                 {exp.technologies && (
                   <div className="flex flex-wrap gap-2 mt-3">
                     {exp.technologies.map((tech) => (
@@ -181,11 +183,13 @@ export default function About() {
             className="max-w-2xl mx-auto text-center"
           >
             <h2 className="text-3xl font-bold mb-4">{t("downloadTitle")}</h2>
-            <p className="text-muted-foreground mb-8">{t("downloadDescription")}</p>
+            <p className="text-muted-foreground mb-8">
+              {t("downloadDescription")}
+            </p>
             <a
               href="/cv-louise-leroux.pdf"
               download
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-all font-medium"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-accent text-accent-foreground hover:opacity-90 transition-all font-medium"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

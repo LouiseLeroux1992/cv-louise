@@ -3,11 +3,10 @@
 import { useEffect, useState, useRef } from "react";
 
 type PaletteId =
-  | "blush-garden"
+  | "peach-garden"
   | "vintage-charm"
-  | "sunrise-glow"
-  | "sunny-beach-day"
-  | "coral-reef";
+  | "olive-garden"
+  | "beach-day";
 
 interface PaletteOption {
   id: PaletteId;
@@ -16,28 +15,44 @@ interface PaletteOption {
 }
 
 const PALETTES: PaletteOption[] = [
-  { id: "blush-garden", label: "Blush Garden", colors: ["#658eb6", "#eec4d0", "#505e3b"] },
-  { id: "vintage-charm", label: "Vintage Charm", colors: ["#c44900", "#efd6ac", "#432534"] },
-  { id: "sunrise-glow", label: "Sunrise Glow", colors: ["#619b8a", "#fe7f2d", "#fcca46"] },
-  { id: "sunny-beach-day", label: "Sunny Beach Day", colors: ["#15616d", "#ff7d00", "#ffecd1"] },
-  { id: "coral-reef", label: "Coral Reef", colors: ["#c8553d", "#f28f3b", "#ffd5c2"] },
+  {
+    id: "peach-garden",
+    label: "Peach Garden",
+    colors: ["#658eb6", "#d98870", "#505e3b"],
+  },
+  {
+    id: "vintage-charm",
+    label: "Vintage Charm",
+    colors: ["#c44900", "#465c5b", "#432534"],
+  },
+  {
+    id: "olive-garden",
+    label: "Olive Garden",
+    colors: ["#6a7141", "#c09f79", "#8d3814"],
+  },
+  {
+    id: "beach-day",
+    label: "Beach Day",
+    colors: ["#15616d", "#ff7d00", "#78290f"],
+  },
 ];
 
-const PALETTE_CLASSES = PALETTES.filter((p) => p.id !== "blush-garden").map(
-  (p) => `palette-${p.id}`
+const PALETTE_CLASSES = PALETTES.filter((p) => p.id !== "peach-garden").map(
+  (p) => `palette-${p.id}`,
 );
 
 function applyPalette(id: PaletteId) {
   const html = document.documentElement;
   PALETTE_CLASSES.forEach((cls) => html.classList.remove(cls));
-  if (id !== "blush-garden") {
+  if (id !== "peach-garden") {
     html.classList.add(`palette-${id}`);
   }
 }
 
 export function PaletteSelector() {
   const [mounted, setMounted] = useState(false);
-  const [currentPalette, setCurrentPalette] = useState<PaletteId>("blush-garden");
+  const [currentPalette, setCurrentPalette] =
+    useState<PaletteId>("peach-garden");
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 

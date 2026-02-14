@@ -5,7 +5,7 @@
  * Modifie ce fichier pour changer les couleurs, fonts, spacing, etc.
  *
  * SYSTÈME DE PALETTES
- * - Palette par défaut : "Blush Garden" (pas de classe nécessaire)
+ * - Palette par défaut : "Peach Garden" (pas de classe nécessaire)
  * - Palettes alternatives : ajouter la classe sur <html>
  *   ex: <html class="palette-vintage-charm">
  * - Compatible avec le dark mode (class="palette-vintage-charm dark")
@@ -13,11 +13,11 @@
 
 :root {
     /* ==========================================
-   * COULEURS DE BASE - Palette "Blush Garden" (défaut)
+   * COULEURS DE BASE - Palette "Peach Garden" (défaut)
    * ========================================== */
     --color-1: #252d3b; /* jet-black */
     --color-2: #658eb6; /* dusty-denim */
-    --color-3: #eec4d0; /* pastel-petal */
+    --color-3: #d98870; /* burnt-peach */
     --color-4: #f8f0e9; /* linen */
     --color-5: #505e3b; /* olive-leaf */
 
@@ -147,68 +147,67 @@
 
 /* ==========================================
  * PALETTE "Vintage Charm"
- * Ink Black, Dark Slate Grey, Wheat, Burnt Orange, Midnight Violet
+ * Ink Black, Granite, Old Lace, Burnt Orange, Midnight Violet
  * ========================================== */
 .palette-vintage-charm {
     --color-1: #04151f; /* ink-black */
-    --color-2: #183a37; /* dark-slate-grey */
-    --color-3: #efd6ac; /* wheat */
-    --color-4: #efd6ac; /* wheat (fond clair) */
-    --color-5: #c44900; /* burnt-orange */
+    --color-2: #465c5b; /* granite */
+    --color-3: #c44900; /* burnt-orange */
+    --color-4: #fdf2de; /* old-lace */
+    --color-5: #432534; /* midnight-violet */
 
-    /* Tokens sémantiques - mode clair */
-    --background: var(--color-3);
+    --background: var(--color-4);
     --foreground: var(--color-1);
-    --primary: var(--color-5);
-    --primary-foreground: var(--color-3);
+    --primary: var(--color-3);
+    --primary-foreground: var(--color-4);
     --secondary: var(--color-2);
-    --secondary-foreground: var(--color-3);
-    --accent: #432534; /* midnight-violet */
-    --accent-foreground: var(--color-3);
-    --muted: #e0c89a;
+    --secondary-foreground: var(--color-4);
+    --accent: var(--color-5);
+    --accent-foreground: var(--color-4);
+    --muted: #ede3cc;
     --muted-foreground: var(--color-2);
-    --border: #c9b48e;
+    --border: #d9cfb8;
 }
 
 .palette-vintage-charm.dark {
     --background: var(--color-1);
-    --foreground: var(--color-3);
-    --primary: var(--color-5);
-    --primary-foreground: var(--color-1);
-    --secondary: var(--color-3);
-    --secondary-foreground: var(--color-1);
-    --accent: #432534; /* midnight-violet */
-    --accent-foreground: var(--color-3);
+    --foreground: var(--color-4);
+    --primary: var(--color-2);
+    --primary-foreground: var(--color-4);
+    --secondary: var(--color-5);
+    --secondary-foreground: var(--color-4);
+    --accent: var(--color-3);
+    --accent-foreground: var(--color-4);
     --muted: #0a2a2e;
     --muted-foreground: #b0a88a;
     --border: #1e4a46;
 }
 
 /* ==========================================
- * PALETTE "Sunrise Glow"
- * Charcoal Blue, Pumpkin Spice, Golden Pollen, Muted Olive, Seagrass
+ * PALETTE "Olive Garden"
+ * Charcoal Brown, Dusty Olive, Camel, Ivory, Rust Brown
  * ========================================== */
-.palette-sunrise-glow {
-    --color-1: #233d4d; /* charcoal-blue */
-    --color-2: #619b8a; /* seagrass */
-    --color-3: #fe7f2d; /* pumpkin-spice */
-    --color-4: #fcca46; /* golden-pollen */
-    --color-5: #a1c181; /* muted-olive */
+.palette-olive-garden {
+    --color-1: #232a15; /* charcoal-brown */
+    --color-2: #6a7141; /* dusty-olive */
+    --color-3: #c09f79; /* camel */
+    --color-4: #f9f7e7; /* ivory */
+    --color-5: #8d3814; /* rust-brown */
 
     --background: var(--color-4);
     --foreground: var(--color-1);
     --primary: var(--color-2);
-    --primary-foreground: var(--color-1);
-    --secondary: var(--color-5);
+    --primary-foreground: var(--color-4);
+    --secondary: var(--color-3);
     --secondary-foreground: var(--color-1);
-    --accent: var(--color-3);
-    --accent-foreground: var(--color-1);
-    --muted: #f0be3a;
+    --accent: var(--color-5);
+    --accent-foreground: var(--color-4);
+    --muted: #eae8d6;
     --muted-foreground: var(--color-1);
-    --border: #e0b030;
+    --border: #d5d3c0;
 }
 
-.palette-sunrise-glow.dark {
+.palette-olive-garden.dark {
     --background: var(--color-1);
     --foreground: var(--color-4);
     --primary: var(--color-2);
@@ -217,16 +216,16 @@
     --secondary-foreground: var(--color-1);
     --accent: var(--color-3);
     --accent-foreground: var(--color-1);
-    --muted: #1a2e3a;
-    --muted-foreground: #b8a860;
-    --border: #2e4f5f;
+    --muted: #1a2010;
+    --muted-foreground: #a0987a;
+    --border: #3a4025;
 }
 
 /* ==========================================
- * PALETTE "Sunny Beach Day"
+ * PALETTE "Beach Day"
  * Ink Black, Stormy Teal, Papaya Whip, Vivid Tangerine, Brandy
  * ========================================== */
-.palette-sunny-beach-day {
+.palette-beach-day {
     --color-1: #001524; /* ink-black */
     --color-2: #15616d; /* stormy-teal */
     --color-3: #ff7d00; /* vivid-tangerine */
@@ -246,7 +245,7 @@
     --border: #d9c9a8;
 }
 
-.palette-sunny-beach-day.dark {
+.palette-beach-day.dark {
     --background: var(--color-1);
     --foreground: var(--color-4);
     --primary: var(--color-2);
@@ -258,42 +257,4 @@
     --muted: #0a2030;
     --muted-foreground: #c0b090;
     --border: #153040;
-}
-
-/* ==========================================
- * PALETTE "Coral Reef"
- * Dark Cyan, White, Peach Fuzz, Tiger Orange, Rosy Copper
- * ========================================== */
-.palette-coral-reef {
-    --color-1: #588b8b; /* dark-cyan */
-    --color-2: #c8553d; /* rosy-copper */
-    --color-3: #f28f3b; /* tiger-orange */
-    --color-4: #ffd5c2; /* peach-fuzz */
-    --color-5: #588b8b; /* dark-cyan */
-
-    --background: var(--color-4);
-    --foreground: var(--color-1);
-    --primary: var(--color-2);
-    --primary-foreground: #ffffff;
-    --secondary: var(--color-5);
-    --secondary-foreground: #ffffff;
-    --accent: var(--color-3);
-    --accent-foreground: #ffffff;
-    --muted: #f0c8b0;
-    --muted-foreground: var(--color-1);
-    --border: #e0b8a0;
-}
-
-.palette-coral-reef.dark {
-    --background: #2a4a4a; /* dark-cyan assombri */
-    --foreground: var(--color-4);
-    --primary: var(--color-2);
-    --primary-foreground: var(--color-4);
-    --secondary: var(--color-4);
-    --secondary-foreground: #2a4a4a;
-    --accent: var(--color-3);
-    --accent-foreground: #2a4a4a;
-    --muted: #3a5a5a;
-    --muted-foreground: #c0b8b0;
-    --border: #4a6a6a;
 }
