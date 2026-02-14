@@ -3,140 +3,297 @@
  * ==========================================
  * Ce fichier centralise toutes les variables de design.
  * Modifie ce fichier pour changer les couleurs, fonts, spacing, etc.
+ *
+ * SYSTÈME DE PALETTES
+ * - Palette par défaut : "Blush Garden" (pas de classe nécessaire)
+ * - Palettes alternatives : ajouter la classe sur <html>
+ *   ex: <html class="palette-vintage-charm">
+ * - Compatible avec le dark mode (class="palette-vintage-charm dark")
  */
 
 :root {
-  /* ==========================================
-   * COULEURS - Palette personnalisée
+    /* ==========================================
+   * COULEURS DE BASE - Palette "Blush Garden" (défaut)
    * ========================================== */
+    --color-1: #252d3b; /* jet-black */
+    --color-2: #658eb6; /* dusty-denim */
+    --color-3: #eec4d0; /* pastel-petal */
+    --color-4: #f8f0e9; /* linen */
+    --color-5: #505e3b; /* olive-leaf */
 
-  /* Couleurs de base */
-  --jet-black: #252d3b;
-  --dusty-denim: #658eb6;
-  --pastel-petal: #eec4d0;
-  --linen: #f8f0e9;
-  --olive-leaf: #505e3b;
+    /* Couleurs neutres */
+    --white: #ffffff;
+    --black: #000000;
 
-  /* Couleurs neutres */
-  --white: #ffffff;
-  --black: #000000;
-
-  /* ==========================================
-   * MODE CLAIR
+    /* ==========================================
+   * MODE CLAIR - Tokens sémantiques
    * ========================================== */
-  --background: var(--linen);
-  --foreground: var(--jet-black);
-  --primary: var(--dusty-denim);
-  --primary-foreground: var(--linen);
-  --secondary: var(--olive-leaf);
-  --secondary-foreground: var(--linen);
-  --accent: var(--pastel-petal);
-  --accent-foreground: var(--jet-black);
-  --muted: #e8e0d9;
-  --muted-foreground: var(--olive-leaf);
-  --border: #d0c8c1;
+    --background: var(--color-4);
+    --foreground: var(--color-1);
+    --primary: var(--color-2);
+    --primary-foreground: var(--color-4);
+    --secondary: var(--color-5);
+    --secondary-foreground: var(--color-4);
+    --accent: var(--color-3);
+    --accent-foreground: var(--color-1);
+    --muted: #e8e0d9;
+    --muted-foreground: var(--color-5);
+    --border: #d0c8c1;
 
-  /* ==========================================
+    /* ==========================================
    * TYPOGRAPHIE
    * ========================================== */
 
-  /* Fonts */
-  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+    /* Fonts */
+    --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+    --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Font sizes */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-base: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem; /* 36px */
-  --font-size-5xl: 3rem; /* 48px */
+    /* Font sizes */
+    --font-size-xs: 0.75rem; /* 12px */
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-base: 1rem; /* 16px */
+    --font-size-lg: 1.125rem; /* 18px */
+    --font-size-xl: 1.25rem; /* 20px */
+    --font-size-2xl: 1.5rem; /* 24px */
+    --font-size-3xl: 1.875rem; /* 30px */
+    --font-size-4xl: 2.25rem; /* 36px */
+    --font-size-5xl: 3rem; /* 48px */
 
-  /* Font weights */
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+    /* Font weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
 
-  /* Line heights */
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
+    /* Line heights */
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
 
-  /* ==========================================
+    /* ==========================================
    * SPACING
    * ========================================== */
-  --spacing-xs: 0.25rem; /* 4px */
-  --spacing-sm: 0.5rem; /* 8px */
-  --spacing-md: 1rem; /* 16px */
-  --spacing-lg: 1.5rem; /* 24px */
-  --spacing-xl: 2rem; /* 32px */
-  --spacing-2xl: 3rem; /* 48px */
-  --spacing-3xl: 4rem; /* 64px */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem; /* 8px */
+    --spacing-md: 1rem; /* 16px */
+    --spacing-lg: 1.5rem; /* 24px */
+    --spacing-xl: 2rem; /* 32px */
+    --spacing-2xl: 3rem; /* 48px */
+    --spacing-3xl: 4rem; /* 64px */
 
-  /* ==========================================
+    /* ==========================================
    * LAYOUT
    * ========================================== */
-  --container-max-width: 1200px;
-  --header-height: 4rem; /* 64px */
+    --container-max-width: 1200px;
+    --header-height: 4rem; /* 64px */
 
-  /* ==========================================
+    /* ==========================================
    * BORDER RADIUS
    * ========================================== */
-  --radius-sm: 0.25rem; /* 4px */
-  --radius-md: 0.5rem; /* 8px */
-  --radius-lg: 0.75rem; /* 12px */
-  --radius-xl: 1rem; /* 16px */
-  --radius-full: 9999px;
+    --radius-sm: 0.25rem; /* 4px */
+    --radius-md: 0.5rem; /* 8px */
+    --radius-lg: 0.75rem; /* 12px */
+    --radius-xl: 1rem; /* 16px */
+    --radius-full: 9999px;
 
-  /* ==========================================
+    /* ==========================================
    * SHADOWS
    * ========================================== */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
 
-  /* ==========================================
+    /* ==========================================
    * TRANSITIONS
    * ========================================== */
-  --transition-fast: 150ms ease;
-  --transition-normal: 200ms ease;
-  --transition-slow: 300ms ease;
+    --transition-fast: 150ms ease;
+    --transition-normal: 200ms ease;
+    --transition-slow: 300ms ease;
 
-  /* ==========================================
+    /* ==========================================
    * Z-INDEX
    * ========================================== */
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-fixed: 300;
-  --z-modal-backdrop: 400;
-  --z-modal: 500;
-  --z-tooltip: 600;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-tooltip: 600;
 }
 
 /* ==========================================
  * MODE SOMBRE
  * ========================================== */
 .dark {
-  --background: var(--jet-black);
-  --foreground: var(--linen);
-  --primary: var(--dusty-denim);
-  --primary-foreground: var(--jet-black);
-  --secondary: var(--pastel-petal);
-  --secondary-foreground: var(--jet-black);
-  --accent: var(--olive-leaf);
-  --accent-foreground: var(--linen);
-  --muted: #3a4556;
-  --muted-foreground: #b0a8a1;
-  --border: #4a5568;
+    --background: var(--color-1);
+    --foreground: var(--color-4);
+    --primary: var(--color-2);
+    --primary-foreground: var(--color-1);
+    --secondary: var(--color-3);
+    --secondary-foreground: var(--color-1);
+    --accent: var(--color-5);
+    --accent-foreground: var(--color-4);
+    --muted: #3a4556;
+    --muted-foreground: #b0a8a1;
+    --border: #4a5568;
 
-  /* Shadows ajustées pour le mode sombre */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
+    /* Shadows ajustées pour le mode sombre */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================
+ * PALETTE "Vintage Charm"
+ * Ink Black, Dark Slate Grey, Wheat, Burnt Orange, Midnight Violet
+ * ========================================== */
+.palette-vintage-charm {
+    --color-1: #04151f; /* ink-black */
+    --color-2: #183a37; /* dark-slate-grey */
+    --color-3: #efd6ac; /* wheat */
+    --color-4: #efd6ac; /* wheat (fond clair) */
+    --color-5: #c44900; /* burnt-orange */
+
+    /* Tokens sémantiques - mode clair */
+    --background: var(--color-3);
+    --foreground: var(--color-1);
+    --primary: var(--color-5);
+    --primary-foreground: var(--color-3);
+    --secondary: var(--color-2);
+    --secondary-foreground: var(--color-3);
+    --accent: #432534; /* midnight-violet */
+    --accent-foreground: var(--color-3);
+    --muted: #e0c89a;
+    --muted-foreground: var(--color-2);
+    --border: #c9b48e;
+}
+
+.palette-vintage-charm.dark {
+    --background: var(--color-1);
+    --foreground: var(--color-3);
+    --primary: var(--color-5);
+    --primary-foreground: var(--color-1);
+    --secondary: var(--color-3);
+    --secondary-foreground: var(--color-1);
+    --accent: #432534; /* midnight-violet */
+    --accent-foreground: var(--color-3);
+    --muted: #0a2a2e;
+    --muted-foreground: #b0a88a;
+    --border: #1e4a46;
+}
+
+/* ==========================================
+ * PALETTE "Sunrise Glow"
+ * Charcoal Blue, Pumpkin Spice, Golden Pollen, Muted Olive, Seagrass
+ * ========================================== */
+.palette-sunrise-glow {
+    --color-1: #233d4d; /* charcoal-blue */
+    --color-2: #619b8a; /* seagrass */
+    --color-3: #fe7f2d; /* pumpkin-spice */
+    --color-4: #fcca46; /* golden-pollen */
+    --color-5: #a1c181; /* muted-olive */
+
+    --background: var(--color-4);
+    --foreground: var(--color-1);
+    --primary: var(--color-2);
+    --primary-foreground: var(--color-1);
+    --secondary: var(--color-5);
+    --secondary-foreground: var(--color-1);
+    --accent: var(--color-3);
+    --accent-foreground: var(--color-1);
+    --muted: #f0be3a;
+    --muted-foreground: var(--color-1);
+    --border: #e0b030;
+}
+
+.palette-sunrise-glow.dark {
+    --background: var(--color-1);
+    --foreground: var(--color-4);
+    --primary: var(--color-2);
+    --primary-foreground: var(--color-1);
+    --secondary: var(--color-4);
+    --secondary-foreground: var(--color-1);
+    --accent: var(--color-3);
+    --accent-foreground: var(--color-1);
+    --muted: #1a2e3a;
+    --muted-foreground: #b8a860;
+    --border: #2e4f5f;
+}
+
+/* ==========================================
+ * PALETTE "Sunny Beach Day"
+ * Ink Black, Stormy Teal, Papaya Whip, Vivid Tangerine, Brandy
+ * ========================================== */
+.palette-sunny-beach-day {
+    --color-1: #001524; /* ink-black */
+    --color-2: #15616d; /* stormy-teal */
+    --color-3: #ff7d00; /* vivid-tangerine */
+    --color-4: #ffecd1; /* papaya-whip */
+    --color-5: #78290f; /* brandy */
+
+    --background: var(--color-4);
+    --foreground: var(--color-1);
+    --primary: var(--color-2);
+    --primary-foreground: var(--color-4);
+    --secondary: var(--color-5);
+    --secondary-foreground: var(--color-4);
+    --accent: var(--color-3);
+    --accent-foreground: var(--color-1);
+    --muted: #f0dfc0;
+    --muted-foreground: var(--color-5);
+    --border: #d9c9a8;
+}
+
+.palette-sunny-beach-day.dark {
+    --background: var(--color-1);
+    --foreground: var(--color-4);
+    --primary: var(--color-2);
+    --primary-foreground: var(--color-1);
+    --secondary: var(--color-4);
+    --secondary-foreground: var(--color-1);
+    --accent: var(--color-3);
+    --accent-foreground: var(--color-1);
+    --muted: #0a2030;
+    --muted-foreground: #c0b090;
+    --border: #153040;
+}
+
+/* ==========================================
+ * PALETTE "Coral Reef"
+ * Dark Cyan, White, Peach Fuzz, Tiger Orange, Rosy Copper
+ * ========================================== */
+.palette-coral-reef {
+    --color-1: #588b8b; /* dark-cyan */
+    --color-2: #c8553d; /* rosy-copper */
+    --color-3: #f28f3b; /* tiger-orange */
+    --color-4: #ffd5c2; /* peach-fuzz */
+    --color-5: #588b8b; /* dark-cyan */
+
+    --background: var(--color-4);
+    --foreground: var(--color-1);
+    --primary: var(--color-2);
+    --primary-foreground: #ffffff;
+    --secondary: var(--color-5);
+    --secondary-foreground: #ffffff;
+    --accent: var(--color-3);
+    --accent-foreground: #ffffff;
+    --muted: #f0c8b0;
+    --muted-foreground: var(--color-1);
+    --border: #e0b8a0;
+}
+
+.palette-coral-reef.dark {
+    --background: #2a4a4a; /* dark-cyan assombri */
+    --foreground: var(--color-4);
+    --primary: var(--color-2);
+    --primary-foreground: var(--color-4);
+    --secondary: var(--color-4);
+    --secondary-foreground: #2a4a4a;
+    --accent: var(--color-3);
+    --accent-foreground: #2a4a4a;
+    --muted: #3a5a5a;
+    --muted-foreground: #c0b8b0;
+    --border: #4a6a6a;
 }

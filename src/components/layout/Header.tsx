@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LocaleSwitcher } from "@/components/ui/LocaleSwitcher";
+import { PaletteSelector } from "@/components/ui/PaletteSelector";
 
 export function Header() {
   const t = useTranslations("navigation");
@@ -45,6 +46,7 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-2">
+            <PaletteSelector />
             <LocaleSwitcher />
             <ThemeToggle />
           </div>
@@ -105,6 +107,7 @@ export function Header() {
               ))}
             </nav>
             <div className="flex items-center gap-2 mt-4 pt-4 border-t border-border">
+              <PaletteSelector />
               <LocaleSwitcher />
               <ThemeToggle />
             </div>

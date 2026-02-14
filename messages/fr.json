@@ -1,7 +1,8 @@
 {
   "common": {
     "language": "Français",
-    "switchLanguage": "Switch to English"
+    "switchLanguage": "Switch to English",
+    "selectPalette": "Choisir une palette de couleurs"
   },
   "navigation": {
     "home": "Accueil",

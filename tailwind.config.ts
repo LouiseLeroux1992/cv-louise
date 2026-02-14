@@ -10,13 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Couleurs personnalisées
-        "jet-black": "#252d3b",
-        "dusty-denim": "#658eb6",
-        "pastel-petal": "#eec4d0",
-        "linen": "#f8f0e9",
-        "olive-leaf": "#505e3b",
-        // Couleurs sémantiques
+        // Couleurs sémantiques (pilotées par les palettes dans theme.css)
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--primary)",

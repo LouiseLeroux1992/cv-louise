@@ -96,20 +96,24 @@ export function Hero() {
                   className={`block p-6 rounded-xl border-2 transition-all hover:scale-[1.02] hover:shadow-lg text-left ${
                     service.color === "primary"
                       ? "bg-primary/5 border-primary/20 hover:border-primary/50"
-                      : "bg-pastel-petal/20 border-pastel-petal/40 hover:border-pastel-petal/70"
+                      : "bg-accent/20 border-accent/40 hover:border-accent/70"
                   }`}
                 >
                   <div
                     className={`mb-3 ${
                       service.color === "primary"
                         ? "text-primary"
-                        : "text-pastel-petal dark:text-pastel-petal"
+                        : "text-accent"
                     }`}
                   >
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground text-sm">{service.description}</p>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {service.description}
+                  </p>
                   <div className="mt-3 flex items-center gap-2 text-sm font-medium">
                     {t("home.learnMore")}
                     <svg
