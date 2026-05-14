@@ -1,59 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
-import { Placeholder } from "@/components/ui/Placeholder";
 
-const STRIPS = [
-  { no: "01", date: "12 · 04 · 2026", fr: "Le standup de 23 min", en: "The 23-min standup", panels: 10,
-    desc_fr: "Personne ne sait pourquoi ça dépasse jamais 15.", desc_en: "No one knows why it never stays under 15." },
-  { no: "02", date: "29 · 03 · 2026", fr: "Mon chat débogue", en: "My cat debugs", panels: 10,
-    desc_fr: "Il s'assoit sur le clavier, le bug disparaît.", desc_en: "He sits on the keyboard. The bug goes away." },
-  { no: "03", date: "07 · 03 · 2026", fr: "Open space, hiver", en: "Open space, winter", panels: 10,
-    desc_fr: "Petit traité du chauffage en open space.", desc_en: "A brief treatise on open-space heating." },
-  { no: "04", date: "18 · 02 · 2026", fr: "Le tableau Kanban", en: "The Kanban board", panels: 10,
-    desc_fr: "À gauche : tout. À droite : rien.", desc_en: "Left: everything. Right: nothing." },
-  { no: "05", date: "03 · 02 · 2026", fr: "Vendredi 17h57", en: "Friday 5:57 pm", panels: 10,
-    desc_fr: "Le déploiement, le RER, et la providence.", desc_en: "The deploy, the RER, and divine providence." },
-  { no: "06", date: "15 · 01 · 2026", fr: "Réunion de cadrage", en: "Kickoff meeting", panels: 10,
-    desc_fr: "Toutes les bonnes idées sont nées en cinq minutes.", desc_en: "All good ideas were born in five minutes." },
-  { no: "07", date: "04 · 01 · 2026", fr: "Le café d'équipe", en: "The team coffee", panels: 10,
-    desc_fr: "Trois personnes, quatre opinions sur la machine.", desc_en: "Three people, four opinions about the machine." },
-  { no: "08", date: "12 · 12 · 2025", fr: "Code review du lundi", en: "Monday code review", panels: 10,
-    desc_fr: "Le commentaire de 17 lignes pour une virgule.", desc_en: "A 17-line comment for one comma." },
-  { no: "09", date: "21 · 11 · 2025", fr: "Démo, prod cassée", en: "Demo, prod down", panels: 10,
-    desc_fr: "On dit que c'est volontaire, on respire fort.", desc_en: "We say it's intentional. We breathe deeply." },
-  { no: "10", date: "30 · 10 · 2025", fr: "Rétro de sprint", en: "Sprint retro", panels: 10,
-    desc_fr: "Ce qui s'est bien passé : le post-it jaune.", desc_en: "What went well: the yellow post-it." },
+type Strip = {
+  no: string;
+  slug: string;
+  fr: string;
+  en: string;
+  panels: number;
+  ext: string;
+  desc_fr: string;
+  desc_en: string;
+};
+
+// Ordered from most recent to oldest
+const STRIPS: Strip[] = [
+  { no: "11", slug: "voyage-au-japon", fr: "Voyage au Japon", en: "Trip to Japan", panels: 10, ext: "png",
+    desc_fr: "Dix cases sur le Japon, le jet lag, et les konbini.", desc_en: "Ten panels on Japan, jet lag, and konbini." },
+  { no: "10", slug: "mon-nouveau-metier", fr: "Mon nouveau métier", en: "My new job", panels: 10, ext: "jpg",
+    desc_fr: "Quand on passe de la blouse blanche au terminal.", desc_en: "When you trade the white coat for a terminal." },
+  { no: "09", slug: "la-vie-a-paris", fr: "La vie à Paris", en: "Life in Paris", panels: 10, ext: "jpg",
+    desc_fr: "Métro, boulot, apéro, et un peu de RER.", desc_en: "Metro, work, drinks, and a bit of RER." },
+  { no: "08", slug: "reconversion", fr: "Reconversion", en: "Career change", panels: 10, ext: "webp",
+    desc_fr: "Du soin au code, en passant par le doute.", desc_en: "From care to code, via doubt." },
+  { no: "07", slug: "les-effectifs", fr: "Les effectifs", en: "The staffing", panels: 9, ext: "webp",
+    desc_fr: "Quand il manque toujours quelqu'un.", desc_en: "When someone's always missing." },
+  { no: "06", slug: "demenagement-3", fr: "Déménagement express : 3/3", en: "Moving out express: 3/3", panels: 8, ext: "jpg",
+    desc_fr: "Le troisième. On commence à être rodés.", desc_en: "The third one. We're getting good at this." },
+  { no: "05", slug: "demenagement-2", fr: "Déménagement express : 2/3", en: "Moving out express: 2/3", panels: 8, ext: "jpg",
+    desc_fr: "La suite. Toujours des cartons.", desc_en: "The sequel. Still boxes everywhere." },
+  { no: "04", slug: "demenagement-1", fr: "Déménagement express : 1/3", en: "Moving out express: 1/3", panels: 6, ext: "jpg",
+    desc_fr: "Le début d'une longue série.", desc_en: "The start of a long series." },
+  { no: "03", slug: "le-reveil", fr: "Le réveil", en: "The alarm", panels: 6, ext: "jpg",
+    desc_fr: "6h30. Le réveil sonne. Et après ?", desc_en: "6:30 AM. The alarm goes off. Then what?" },
+  { no: "02", slug: "les-apparences", fr: "Les apparences", en: "Appearances", panels: 6, ext: "jpg",
+    desc_fr: "Ce qu'on montre, ce qu'on cache.", desc_en: "What we show, what we hide." },
+  { no: "01", slug: "infirmiere-en-labo", fr: "Infirmière en laboratoire", en: "Nurse in the laboratory", panels: 10, ext: "jpg",
+    desc_fr: "Mme Dupont ? Allons-y !", desc_en: "Mrs. Dupont? Let's go!" },
 ];
 
-const PANEL_CAPTIONS_FR = [
-  "— Bon, on commence ?",
-  "— Quelqu'un attend David.",
-  "— Je peux faire le mien d'abord ?",
-  "(silence de 14 secondes)",
-  "— Donc, hier, j'ai commencé…",
-  "(David arrive)",
-  "— On reprend depuis le début ?",
-  "— Bref, je continue.",
-  "(le standup dure depuis 21 min)",
-  "— À demain.",
-];
-
-const PANEL_TONES: Array<"fog" | "sage" | "cream" | "primary"> = [
-  "fog", "sage", "cream", "primary", "fog", "sage", "cream", "primary", "fog", "sage",
-];
+function panelSrc(strip: Strip, panel: number): string {
+  return `/bd/${strip.slug}/${panel}.${strip.ext}`;
+}
 
 export default function BDPage() {
-  const [selected, setSelected] = useState(0);
+  const [reading, setReading] = useState<number | null>(null);
+
+  const closeReader = useCallback(() => setReading(null), []);
 
   return (
     <>
       <BDHero />
-      <BDFeatured strip={STRIPS[selected]} />
-      <BDArchive selected={selected} onSelect={setSelected} />
+      <BDArchive onSelect={setReading} />
       <BDInsta />
+      {reading !== null && (
+        <BDReader
+          strip={STRIPS[reading]}
+          onClose={closeReader}
+          onPrev={reading > 0 ? () => setReading(reading - 1) : null}
+          onNext={reading < STRIPS.length - 1 ? () => setReading(reading + 1) : null}
+        />
+      )}
     </>
   );
 }
@@ -91,88 +101,203 @@ function BDHero() {
         </p>
       </div>
 
-      {/* Stats stamp */}
-      <div className="border-[1.5px] md:border-2 border-ink p-4 md:p-6 bg-cream flex flex-col md:flex-col gap-2 self-start text-ink">
-        <div className="font-display text-[36px] md:text-[80px] leading-[0.88] text-dark">10</div>
-        <div className="font-mono text-[10px] tracking-[0.16em] uppercase mt-[-4px]">
-          {t("stripsPublished")}
-        </div>
-        <Rule weight={1.5} />
-        <div className="font-display text-[36px] md:text-[80px] leading-[0.88] text-dark">100</div>
-        <div className="font-mono text-[10px] tracking-[0.16em] uppercase mt-[-4px]">
-          {t("panelsDrawn")}
-        </div>
-        <Rule weight={1.5} />
-        <div className="font-mono text-[11px] tracking-[0.12em] mt-2">
-          @louise.maviepassionnante
+      {/* Stats stamp + profile pic */}
+      <div className="flex flex-col gap-4 self-start">
+        <Image
+          src="/bd/profilepic.jpg"
+          alt="Ma Vie Passionnante"
+          width={280}
+          height={280}
+          className="w-full h-auto border-2 border-ink"
+          style={{ aspectRatio: "1/1", objectFit: "cover" }}
+        />
+        <div className="border-[1.5px] md:border-2 border-ink p-4 md:p-5 bg-cream flex flex-col gap-2 text-ink">
+          <div className="flex items-baseline gap-3">
+            <span className="font-display text-[36px] md:text-[48px] leading-[0.88] text-dark">{STRIPS.length}</span>
+            <span className="font-mono text-[10px] tracking-[0.16em] uppercase">{t("stripsPublished")}</span>
+          </div>
+          <Rule weight={1.5} />
+          <div className="font-mono text-[11px] tracking-[0.12em] mt-1">
+            @louise.maviepassionnante
+          </div>
         </div>
       </div>
     </header>
   );
 }
 
-type Strip = typeof STRIPS[number];
+function BDReader({ strip, onClose, onPrev, onNext }: {
+  strip: Strip;
+  onClose: () => void;
+  onPrev: (() => void) | null;
+  onNext: (() => void) | null;
+}) {
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
+  const prevSlugRef = React.useRef(strip.slug);
 
-function BDFeatured({ strip }: { strip: Strip }) {
-  const t = useTranslations("bd");
+  const scrollToTop = useCallback(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, []);
+
+  const handleNav = useCallback((fn: (() => void) | null) => {
+    if (fn) {
+      setLoading(true);
+      scrollToTop();
+      fn();
+    }
+  }, [scrollToTop]);
+
+  const handlePrev = useCallback(() => handleNav(onPrev), [handleNav, onPrev]);
+  const handleNext = useCallback(() => handleNav(onNext), [handleNav, onNext]);
+
+  useEffect(() => {
+    if (prevSlugRef.current !== strip.slug) {
+      prevSlugRef.current = strip.slug;
+      const timer = setTimeout(() => setLoading(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [strip.slug]);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [onClose]);
 
   return (
-    <section className="px-5 md:px-8 pt-8 md:pt-12 pb-10 md:pb-14 bg-fog border-b border-ink">
-      {/* Header */}
-      <header className="flex flex-col md:grid md:grid-cols-[1fr_auto] gap-4 md:gap-6 md:items-end mb-6 md:mb-8 pb-4 md:pb-[18px] border-b border-ink">
-        <div className="flex flex-col gap-2.5">
-          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-            {t("featuredKicker")}
-          </span>
-          <h2 className="m-0 flex items-baseline gap-[22px] font-serif italic font-medium text-[clamp(36px,5vw,72px)] leading-[0.95] tracking-[-0.02em] text-ink">
-            <span className="font-display not-italic text-[clamp(20px,2.5vw,38px)] text-dark tracking-[0.04em]">
+    <div className="fixed inset-0 z-50 flex flex-col bg-paper">
+      {/* Sticky header */}
+      <div className="sticky top-0 z-[52] flex items-center justify-between px-5 md:px-8 py-3 md:py-4 border-b border-ink bg-paper">
+        {/* Left: prev arrow + strip info */}
+        <div className="flex items-center gap-2 md:gap-4">
+          {onPrev ? (
+            <button
+              className="bg-transparent border border-ink text-ink w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-fog transition-colors text-base md:text-lg font-sans"
+              onClick={handlePrev}
+              title="Strip précédent"
+            >
+              ←
+            </button>
+          ) : (
+            <div className="w-9 h-9 md:w-10 md:h-10" />
+          )}
+          <div className="flex items-center gap-2 md:gap-4">
+            <span className="font-display text-ink text-base md:text-xl tracking-[0.04em] uppercase">
               Nº {strip.no}
             </span>
-            <span>{strip.fr}</span>
-          </h2>
-          <p className="font-serif italic text-lg text-mute m-0">
-            {strip.desc_fr}
-          </p>
-        </div>
-        <div className="flex gap-7 pb-1.5">
-          <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute flex flex-col gap-1">
-            <span className="text-ink">{t("published")}</span>
-            <span>{strip.date}</span>
+            <span className="font-serif italic text-dark text-sm md:text-lg">
+              {strip.fr}
+            </span>
+            <span className="hidden md:inline font-mono text-[10px] tracking-[0.14em] uppercase text-mute">
+              {strip.panels} cases
+            </span>
           </div>
-          <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute flex flex-col gap-1">
-            <span className="text-ink">{t("panels")}</span>
-            <span>{strip.panels} / {strip.panels}</span>
-          </div>
+          {onNext ? (
+            <button
+              className="bg-transparent border border-ink text-ink w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-fog transition-colors text-base md:text-lg font-sans"
+              onClick={handleNext}
+              title="Strip suivant"
+            >
+              →
+            </button>
+          ) : (
+            <div className="w-9 h-9 md:w-10 md:h-10" />
+          )}
         </div>
-      </header>
 
-      {/* Panel reader grid */}
-      <div className="bg-paper border border-ink p-4 md:p-8">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="relative flex flex-col gap-2">
-              <div className="absolute top-[-10px] left-[-10px] bg-ink text-cream font-mono text-[11px] tracking-[0.12em] px-[7px] py-1 z-[2]">
-                {String(i + 1).padStart(2, "0")}
+        {/* Right: close */}
+        <button
+          className="bg-ink text-cream border-none w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-dark transition-colors text-lg"
+          onClick={onClose}
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* Scrollable webtoon column */}
+      <div ref={scrollRef} className="flex-1 overflow-y-auto">
+        {loading ? (
+          <div className="max-w-[600px] mx-auto px-4 md:px-0 py-6 md:py-10 flex flex-col gap-6">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div
+                key={i}
+                className="w-full bg-fog animate-pulse"
+                style={{ aspectRatio: "1/1" }}
+              >
+                <div className="h-full flex items-center justify-center">
+                  <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute/50">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
               </div>
-              <Placeholder
-                label={`Case ${i + 1}`}
-                kicker={`${strip.no} · ${String(i + 1).padStart(2, "0")}`}
-                ratio="1/1"
-                tone={PANEL_TONES[i]}
-                className="border-[1.5px] border-ink"
+            ))}
+          </div>
+        ) : (
+        <div className="max-w-[600px] mx-auto px-4 md:px-0 py-6 md:py-10 flex flex-col gap-6">
+          {Array.from({ length: strip.panels }).map((_, i) => (
+            <div key={i} className="relative">
+              <Image
+                src={panelSrc(strip, i + 1)}
+                alt={`${strip.fr} — case ${i + 1}`}
+                width={1200}
+                height={1200}
+                className="w-full h-auto"
               />
-              <div className="font-serif italic text-[13px] text-ink leading-[1.35] min-h-[36px]">
-                {PANEL_CAPTIONS_FR[i]}
-              </div>
             </div>
           ))}
         </div>
+        )}
+
+        {/* End of strip */}
+        {!loading && <div className="max-w-[600px] mx-auto px-4 md:px-0 pb-10 flex flex-col items-center gap-6">
+          <div className="w-full border-t border-ink pt-6 flex flex-col items-center gap-2">
+            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">FIN</span>
+            <span className="font-serif italic text-lg text-dark">{strip.fr}</span>
+          </div>
+
+          {/* Nav between strips */}
+          <div className="w-full flex items-center justify-between gap-4">
+            {onPrev ? (
+              <button
+                className="flex items-center gap-2 bg-transparent border border-ink text-ink px-4 py-2.5 font-mono text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:bg-fog transition-colors"
+                onClick={handlePrev}
+              >
+                <span className="font-sans text-lg">←</span>
+                <span className="hidden md:inline">Strip précédent</span>
+              </button>
+            ) : <div />}
+            <button
+              className="bg-ink text-cream border-none px-5 py-2.5 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
+              onClick={onClose}
+            >
+              Archives
+            </button>
+            {onNext ? (
+              <button
+                className="flex items-center gap-2 bg-transparent border border-ink text-ink px-4 py-2.5 font-mono text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:bg-fog transition-colors"
+                onClick={handleNext}
+              >
+                <span className="hidden md:inline">Strip suivant</span>
+                <span className="font-sans text-lg">→</span>
+              </button>
+            ) : <div />}
+          </div>
+        </div>}
       </div>
-    </section>
+    </div>
   );
 }
 
-function BDArchive({ selected, onSelect }: { selected: number; onSelect: (i: number) => void }) {
+function BDArchive({ onSelect }: { onSelect: (i: number) => void }) {
   const t = useTranslations("bd");
 
   return (
@@ -186,32 +311,30 @@ function BDArchive({ selected, onSelect }: { selected: number; onSelect: (i: num
           <em className="italic font-normal">{t("archiveTitle2")}</em>
         </h2>
       </header>
-      <ol className="list-none p-0 m-0 grid grid-cols-2 md:grid-cols-5 gap-x-4 md:gap-x-6 gap-y-5 md:gap-y-7">
+      <ol className="list-none p-0 m-0 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-4 md:gap-x-6 gap-y-5 md:gap-y-7">
         {STRIPS.map((s, i) => (
           <li key={s.no}>
             <button
-              className={`bg-transparent border-none p-0 text-left cursor-pointer flex flex-col gap-2 text-ink transition-transform hover:translate-y-[-3px] w-full`}
+              className="bg-transparent border-none p-0 text-left cursor-pointer flex flex-col gap-2 text-ink transition-transform hover:translate-y-[-3px] w-full group"
               onClick={() => onSelect(i)}
             >
               <div className="relative">
-                <Placeholder
-                  label={s.fr}
-                  kicker={s.no}
-                  ratio="1/1"
-                  tone={PANEL_TONES[i]}
-                  className={`border-[1.5px] border-ink ${i === selected ? "shadow-[4px_4px_0_var(--c-primary)]" : ""}`}
+                <Image
+                  src={panelSrc(s, 1)}
+                  alt={s.fr}
+                  width={300}
+                  height={300}
+                  className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
+                  style={{ aspectRatio: "1/1", objectFit: "cover" }}
                 />
-                {i === selected && (
-                  <span className="absolute top-2.5 right-2.5 bg-primary text-ink font-mono text-[10px] tracking-[0.16em] uppercase px-2 py-1 border border-ink">
-                    {t("reading")}
-                  </span>
-                )}
+                <span className="absolute bottom-0 left-0 right-0 bg-ink/70 text-cream font-mono text-[10px] tracking-[0.12em] uppercase px-2 py-1.5 text-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  Lire →
+                </span>
               </div>
               <div className="flex gap-2.5 items-baseline font-mono text-[10px] tracking-[0.16em] uppercase mt-1">
                 <span className="text-dark font-bold">{s.no}</span>
-                <span className="text-mute">{s.date}</span>
               </div>
-              <div className="font-serif italic text-[22px] leading-[1.1] text-ink">
+              <div className="font-serif italic text-lg md:text-[22px] leading-[1.1] text-ink">
                 {s.fr}
               </div>
               <div className="font-serif text-sm leading-[1.4] text-mute">
