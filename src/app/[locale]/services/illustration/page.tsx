@@ -272,6 +272,12 @@ function AtelierThomas({ onOpen }: { onOpen: () => void }) {
           </button>
         ))}
       </div>
+      <button
+        className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
+        onClick={onOpen}
+      >
+        Voir tout →
+      </button>
     </section>
   );
 }
@@ -310,6 +316,12 @@ function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
           </button>
         ))}
       </div>
+      <button
+        className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
+        onClick={onOpen}
+      >
+        Lire les planches →
+      </button>
     </section>
   );
 }
@@ -343,6 +355,12 @@ function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
           </button>
         ))}
       </div>
+      <button
+        className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
+        onClick={onOpen}
+      >
+        Voir tout →
+      </button>
     </section>
   );
 }
