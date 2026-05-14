@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import { WebtoonReader } from "@/components/ui/WebtoonReader";
 
 const PROJECTS = [
   { no: "01", key: "bd" },
@@ -43,34 +44,51 @@ const PROJECT_CONFIG: Record<ProjectKey, { path: string; title: string; count: n
 export default function ServicesIllustration() {
   const [viewer, setViewer] = useState<GalleryState>(null);
 
-  const openViewer = useCallback((project: ProjectKey, index: number) => {
-    setViewer({ project, index });
+  const openViewer = useCallback((project: ProjectKey) => {
+    setViewer({ project, index: 0 });
   }, []);
 
   const closeViewer = useCallback(() => setViewer(null), []);
 
-  const maxIndex = viewer ? PROJECT_CONFIG[viewer.project].count : 0;
+  const projectKeys: ProjectKey[] = ["livre", "taytay", "thomas", "caledobio", "animaux"];
+
+  const currentProjectIndex = viewer ? projectKeys.indexOf(viewer.project) : -1;
+  const prevProject = currentProjectIndex > 0 ? projectKeys[currentProjectIndex - 1] : null;
+  const nextProject = currentProjectIndex < projectKeys.length - 1 ? projectKeys[currentProjectIndex + 1] : null;
+
+  function getImages(project: ProjectKey): string[] {
+    const config = PROJECT_CONFIG[project];
+    return Array.from({ length: config.count }, (_, i) => `/illustrations/${config.path}/${i}.webp`);
+  }
+
+  function getAlts(project: ProjectKey): string[] {
+    if (project === "taytay") {
+      return TAYTAY_NAMES;
+    }
+    const config = PROJECT_CONFIG[project];
+    return Array.from({ length: config.count }, (_, i) => `${config.title} — ${i + 1}`);
+  }
 
   return (
     <>
       <AtelierHeader />
       <AtelierServices />
-      <AtelierLivre onOpenViewer={(i) => openViewer("livre", i)} />
-      <AtelierTaytay onOpenViewer={(i) => openViewer("taytay", i)} />
-      <AtelierThomas onOpenViewer={(i) => openViewer("thomas", i)} />
-      <AtelierCaledobio onOpenViewer={(i) => openViewer("caledobio", i)} />
-      <AtelierAnimaux onOpenViewer={(i) => openViewer("animaux", i)} />
+      <AtelierLivre onOpen={() => openViewer("livre")} />
+      <AtelierTaytay onOpen={() => openViewer("taytay")} />
+      <AtelierThomas onOpen={() => openViewer("thomas")} />
+      <AtelierCaledobio onOpen={() => openViewer("caledobio")} />
+      <AtelierAnimaux onOpen={() => openViewer("animaux")} />
       <AtelierCTA />
       {viewer && (
-        <IllustrationViewer
-          project={viewer.project}
-          index={viewer.index}
+        <WebtoonReader
           title={PROJECT_CONFIG[viewer.project].title}
-          label={viewer.project === "taytay" ? TAYTAY_NAMES[viewer.index] : undefined}
-          maxIndex={maxIndex}
+          images={getImages(viewer.project)}
+          imageAlts={getAlts(viewer.project)}
           onClose={closeViewer}
-          onPrev={viewer.index > 0 ? () => setViewer({ ...viewer, index: viewer.index - 1 }) : null}
-          onNext={viewer.index < maxIndex - 1 ? () => setViewer({ ...viewer, index: viewer.index + 1 }) : null}
+          onPrev={prevProject ? () => setViewer({ project: prevProject, index: 0 }) : null}
+          onNext={nextProject ? () => setViewer({ project: nextProject, index: 0 }) : null}
+          prevLabel={prevProject ? PROJECT_CONFIG[prevProject].title : undefined}
+          nextLabel={nextProject ? PROJECT_CONFIG[nextProject].title : undefined}
         />
       )}
     </>
@@ -137,7 +155,7 @@ function AtelierServices() {
   );
 }
 
-function AtelierLivre({ onOpenViewer }: { onOpenViewer: (index: number) => void }) {
+function AtelierLivre({ onOpen }: { onOpen: () => void }) {
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
@@ -156,7 +174,7 @@ function AtelierLivre({ onOpenViewer }: { onOpenViewer: (index: number) => void 
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group relative"
-            onClick={() => onOpenViewer(i)}
+            onClick={onOpen}
           >
             <Image
               src={`/illustrations/livre-jeunesse/${i}.webp`}
@@ -166,17 +184,20 @@ function AtelierLivre({ onOpenViewer }: { onOpenViewer: (index: number) => void 
               className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
               style={{ aspectRatio: "1/1", objectFit: "cover" }}
             />
-            <span className="absolute bottom-0 left-0 right-0 bg-ink/70 text-cream font-mono text-[10px] tracking-[0.12em] uppercase px-2 py-1.5 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-              {String(i + 1).padStart(2, "0")} / {LIVRE_PAGES}
-            </span>
           </button>
         ))}
       </div>
+      <button
+        className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
+        onClick={onOpen}
+      >
+        Feuilleter →
+      </button>
     </section>
   );
 }
 
-function AtelierTaytay({ onOpenViewer }: { onOpenViewer: (index: number) => void }) {
+function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-cream border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
@@ -195,7 +216,7 @@ function AtelierTaytay({ onOpenViewer }: { onOpenViewer: (index: number) => void
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group relative flex flex-col gap-2"
-            onClick={() => onOpenViewer(i)}
+            onClick={onOpen}
           >
             <Image
               src={`/illustrations/taytay/${i}.webp`}
@@ -209,11 +230,17 @@ function AtelierTaytay({ onOpenViewer }: { onOpenViewer: (index: number) => void
           </button>
         ))}
       </div>
+      <button
+        className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
+        onClick={onOpen}
+      >
+        Voir tout →
+      </button>
     </section>
   );
 }
 
-function AtelierThomas({ onOpenViewer }: { onOpenViewer: (index: number) => void }) {
+function AtelierThomas({ onOpen }: { onOpen: () => void }) {
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
@@ -232,7 +259,7 @@ function AtelierThomas({ onOpenViewer }: { onOpenViewer: (index: number) => void
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group"
-            onClick={() => onOpenViewer(i)}
+            onClick={onOpen}
           >
             <Image
               src={`/illustrations/thomas/${i}.webp`}
@@ -249,7 +276,7 @@ function AtelierThomas({ onOpenViewer }: { onOpenViewer: (index: number) => void
   );
 }
 
-function AtelierCaledobio({ onOpenViewer }: { onOpenViewer: (index: number) => void }) {
+function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
@@ -268,7 +295,7 @@ function AtelierCaledobio({ onOpenViewer }: { onOpenViewer: (index: number) => v
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group relative"
-            onClick={() => onOpenViewer(i)}
+            onClick={onOpen}
           >
             <Image
               src={`/illustrations/caledobio/${i}.webp`}
@@ -287,7 +314,7 @@ function AtelierCaledobio({ onOpenViewer }: { onOpenViewer: (index: number) => v
   );
 }
 
-function AtelierAnimaux({ onOpenViewer }: { onOpenViewer: (index: number) => void }) {
+function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-fog border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
@@ -303,7 +330,7 @@ function AtelierAnimaux({ onOpenViewer }: { onOpenViewer: (index: number) => voi
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group"
-            onClick={() => onOpenViewer(i)}
+            onClick={onOpen}
           >
             <Image
               src={`/illustrations/animaux/${i}.webp`}
@@ -317,126 +344,6 @@ function AtelierAnimaux({ onOpenViewer }: { onOpenViewer: (index: number) => voi
         ))}
       </div>
     </section>
-  );
-}
-
-function IllustrationViewer({ project, index, title, label, maxIndex, onClose, onPrev, onNext }: {
-  project: ProjectKey;
-  index: number;
-  title: string;
-  label?: string;
-  maxIndex: number;
-  onClose: () => void;
-  onPrev: (() => void) | null;
-  onNext: (() => void) | null;
-}) {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-      if (e.key === "ArrowLeft" && onPrev) {
-        onPrev();
-      }
-      if (e.key === "ArrowRight" && onNext) {
-        onNext();
-      }
-    };
-    document.addEventListener("keydown", handleKey);
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("keydown", handleKey);
-    };
-  }, [onClose, onPrev, onNext]);
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex flex-col"
-      onClick={onClose}
-    >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-ink/85" />
-
-      {/* Top bar */}
-      <div
-        className="relative z-[52] flex items-center justify-between px-5 md:px-8 py-3 md:py-4 border-b border-cream/20"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center gap-3 md:gap-5">
-          {onPrev ? (
-            <button
-              className="bg-transparent border border-cream/40 text-cream w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-cream/10 transition-colors text-base md:text-lg font-sans"
-              onClick={onPrev}
-            >
-              ←
-            </button>
-          ) : <div className="w-9 h-9 md:w-10 md:h-10" />}
-          <div className="flex items-center gap-3">
-            <span className="font-display text-cream text-base md:text-lg tracking-[0.04em] uppercase">
-              {title}
-            </span>
-            {label && (
-              <span className="hidden md:inline font-serif italic text-cream/70 text-base">
-                {label}
-              </span>
-            )}
-            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-cream/60">
-              {String(index + 1).padStart(2, "0")} / {String(maxIndex).padStart(2, "0")}
-            </span>
-          </div>
-          {onNext ? (
-            <button
-              className="bg-transparent border border-cream/40 text-cream w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-cream/10 transition-colors text-base md:text-lg font-sans"
-              onClick={onNext}
-            >
-              →
-            </button>
-          ) : <div className="w-9 h-9 md:w-10 md:h-10" />}
-        </div>
-        <button
-          className="bg-cream text-ink border-none w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-primary transition-colors text-lg"
-          onClick={onClose}
-        >
-          ✕
-        </button>
-      </div>
-
-      {/* Image */}
-      <div
-        className="relative z-[51] flex-1 flex items-center justify-center p-4 md:p-12"
-      >
-        {/* Prev arrow */}
-        {onPrev && (
-          <button
-            className="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-cream text-ink border-none flex items-center justify-center cursor-pointer hover:bg-primary transition-colors text-2xl md:text-3xl font-sans"
-            onClick={(e) => { e.stopPropagation(); onPrev(); }}
-          >
-            ←
-          </button>
-        )}
-
-        {/* Next arrow */}
-        {onNext && (
-          <button
-            className="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-cream text-ink border-none flex items-center justify-center cursor-pointer hover:bg-primary transition-colors text-2xl md:text-3xl font-sans"
-            onClick={(e) => { e.stopPropagation(); onNext(); }}
-          >
-            →
-          </button>
-        )}
-
-        <div onClick={(e) => e.stopPropagation()}>
-          <Image
-            src={`/illustrations/${PROJECT_CONFIG[project].path}/${index}.webp`}
-            alt={label || `Illustration ${index + 1}`}
-            width={1200}
-            height={1200}
-            className="max-w-[85vw] md:max-w-[70vw] max-h-[80vh] w-auto h-auto object-contain"
-          />
-        </div>
-      </div>
-    </div>
   );
 }
 

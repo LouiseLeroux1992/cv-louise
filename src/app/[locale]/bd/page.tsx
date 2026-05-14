@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
+import { WebtoonReader } from "@/components/ui/WebtoonReader";
 
 type Strip = {
   no: string;
@@ -82,11 +83,15 @@ export default function BDPage() {
       <BDArchive onSelect={openStrip} />
       <BDInsta />
       {reading !== null && (
-        <BDReader
-          strip={STRIPS[reading]}
+        <WebtoonReader
+          title={`Nº ${STRIPS[reading].no}`}
+          subtitle={STRIPS[reading].fr}
+          images={Array.from({ length: STRIPS[reading].panels }, (_, i) => panelSrc(STRIPS[reading], i + 1))}
           onClose={closeReader}
           onPrev={reading > 0 ? () => openStrip(reading - 1) : null}
           onNext={reading < STRIPS.length - 1 ? () => openStrip(reading + 1) : null}
+          prevLabel="Strip précédent"
+          nextLabel="Strip suivant"
         />
       )}
     </>
@@ -148,177 +153,6 @@ function BDHero() {
         </div>
       </div>
     </header>
-  );
-}
-
-function BDReader({ strip, onClose, onPrev, onNext }: {
-  strip: Strip;
-  onClose: () => void;
-  onPrev: (() => void) | null;
-  onNext: (() => void) | null;
-}) {
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(false);
-  const prevSlugRef = React.useRef(strip.slug);
-
-  const scrollToTop = useCallback(() => {
-    scrollRef.current?.scrollTo({ top: 0 });
-  }, []);
-
-  const handleNav = useCallback((fn: (() => void) | null) => {
-    if (fn) {
-      setLoading(true);
-      scrollToTop();
-      fn();
-    }
-  }, [scrollToTop]);
-
-  const handlePrev = useCallback(() => handleNav(onPrev), [handleNav, onPrev]);
-  const handleNext = useCallback(() => handleNav(onNext), [handleNav, onNext]);
-
-  useEffect(() => {
-    if (prevSlugRef.current !== strip.slug) {
-      prevSlugRef.current = strip.slug;
-      const timer = setTimeout(() => setLoading(false), 300);
-      return () => clearTimeout(timer);
-    }
-  }, [strip.slug]);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-    document.addEventListener("keydown", handleKey);
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("keydown", handleKey);
-    };
-  }, [onClose]);
-
-  return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-paper">
-      {/* Sticky header */}
-      <div className="sticky top-0 z-[52] flex items-center justify-between px-5 md:px-8 py-3 md:py-4 border-b border-ink bg-paper">
-        {/* Left: prev arrow + strip info */}
-        <div className="flex items-center gap-2 md:gap-4">
-          {onPrev ? (
-            <button
-              className="bg-transparent border border-ink text-ink w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-fog transition-colors text-base md:text-lg font-sans"
-              onClick={handlePrev}
-              title="Strip précédent"
-            >
-              ←
-            </button>
-          ) : (
-            <div className="w-9 h-9 md:w-10 md:h-10" />
-          )}
-          <div className="flex items-center gap-2 md:gap-4">
-            <span className="font-display text-ink text-base md:text-xl tracking-[0.04em] uppercase">
-              Nº {strip.no}
-            </span>
-            <span className="font-serif italic text-dark text-sm md:text-lg">
-              {strip.fr}
-            </span>
-            <span className="hidden md:inline font-mono text-[10px] tracking-[0.14em] uppercase text-mute">
-              {strip.panels} cases
-            </span>
-          </div>
-          {onNext ? (
-            <button
-              className="bg-transparent border border-ink text-ink w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-fog transition-colors text-base md:text-lg font-sans"
-              onClick={handleNext}
-              title="Strip suivant"
-            >
-              →
-            </button>
-          ) : (
-            <div className="w-9 h-9 md:w-10 md:h-10" />
-          )}
-        </div>
-
-        {/* Right: close */}
-        <button
-          className="bg-ink text-cream border-none w-9 h-9 md:w-10 md:h-10 flex items-center justify-center cursor-pointer hover:bg-dark transition-colors text-lg"
-          onClick={onClose}
-        >
-          ✕
-        </button>
-      </div>
-
-      {/* Scrollable webtoon column */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto">
-        {loading ? (
-          <div className="max-w-[600px] mx-auto px-4 md:px-0 py-6 md:py-10 flex flex-col gap-6">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-full bg-fog animate-pulse"
-                style={{ aspectRatio: "1/1" }}
-              >
-                <div className="h-full flex items-center justify-center">
-                  <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute/50">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-        <div className="max-w-[600px] mx-auto px-4 md:px-0 py-6 md:py-10 flex flex-col gap-6">
-          {Array.from({ length: strip.panels }).map((_, i) => (
-            <div key={i} className="relative">
-              <Image
-                src={panelSrc(strip, i + 1)}
-                alt={`${strip.fr} — case ${i + 1}`}
-                width={1200}
-                height={1200}
-                className="w-full h-auto"
-              />
-            </div>
-          ))}
-        </div>
-        )}
-
-        {/* End of strip */}
-        {!loading && <div className="max-w-[600px] mx-auto px-4 md:px-0 pb-10 flex flex-col items-center gap-6">
-          <div className="w-full border-t border-ink pt-6 flex flex-col items-center gap-2">
-            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">FIN</span>
-            <span className="font-serif italic text-lg text-dark">{strip.fr}</span>
-          </div>
-
-          {/* Nav between strips */}
-          <div className="w-full flex items-center justify-between gap-4">
-            {onPrev ? (
-              <button
-                className="flex items-center gap-2 bg-transparent border border-ink text-ink px-4 py-2.5 font-mono text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:bg-fog transition-colors"
-                onClick={handlePrev}
-              >
-                <span className="font-sans text-lg">←</span>
-                <span className="hidden md:inline">Strip précédent</span>
-              </button>
-            ) : <div />}
-            <button
-              className="bg-ink text-cream border-none px-5 py-2.5 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
-              onClick={onClose}
-            >
-              Archives
-            </button>
-            {onNext ? (
-              <button
-                className="flex items-center gap-2 bg-transparent border border-ink text-ink px-4 py-2.5 font-mono text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:bg-fog transition-colors"
-                onClick={handleNext}
-              >
-                <span className="hidden md:inline">Strip suivant</span>
-                <span className="font-sans text-lg">→</span>
-              </button>
-            ) : <div />}
-          </div>
-        </div>}
-      </div>
-    </div>
   );
 }
 
