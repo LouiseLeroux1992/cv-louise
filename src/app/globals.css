@@ -6,31 +6,28 @@
 
 @layer base {
   * {
-    @apply border-border;
+    box-sizing: border-box;
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: var(--c-paper);
+    color: var(--c-ink);
     font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
-  /* Scrollbar personnalisée */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  a {
+    color: inherit;
   }
 
-  ::-webkit-scrollbar-track {
-    background: var(--muted);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--muted-foreground);
-    border-radius: var(--radius-full);
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--foreground);
+  button {
+    font-family: inherit;
+    cursor: pointer;
   }
 }
 
@@ -39,8 +36,24 @@
     text-wrap: balance;
   }
 
-  /* Container */
   .container {
     max-width: var(--container-max-width);
   }
+}
+
+/* Font family overrides — ensure next/font/google variables resolve correctly */
+.font-display {
+  font-family: var(--font-anton), "Anton", Impact, sans-serif !important;
+}
+
+.font-serif {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif !important;
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace !important;
+}
+
+.font-sans {
+  font-family: var(--font-dm-sans), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }

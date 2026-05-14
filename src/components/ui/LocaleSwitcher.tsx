@@ -1,11 +1,10 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
-import { locales, localeNames, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
 
 export function LocaleSwitcher() {
-  const t = useTranslations("common");
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -14,15 +13,25 @@ export function LocaleSwitcher() {
     router.replace(pathname, { locale: newLocale });
   };
 
-  const otherLocale = locales.find((l) => l !== locale) as Locale;
-
   return (
-    <button
-      onClick={() => switchLocale(otherLocale)}
-      className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors text-sm font-medium"
-      aria-label={t("switchLanguage")}
-    >
-      {localeNames[otherLocale]}
-    </button>
+    <span className="flex items-center gap-1.5">
+      <button
+        className={`bg-transparent border-none font-mono text-[10px] tracking-[0.18em] uppercase px-1.5 py-1 ${
+          locale === "fr" ? "text-ink bg-primary" : "text-mute"
+        } hover:text-ink`}
+        onClick={() => switchLocale("fr")}
+      >
+        FR
+      </button>
+      <span className="opacity-40">/</span>
+      <button
+        className={`bg-transparent border-none font-mono text-[10px] tracking-[0.18em] uppercase px-1.5 py-1 ${
+          locale === "en" ? "text-ink bg-primary" : "text-mute"
+        } hover:text-ink`}
+        onClick={() => switchLocale("en")}
+      >
+        EN
+      </button>
+    </span>
   );
 }

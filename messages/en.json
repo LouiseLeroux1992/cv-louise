@@ -1,31 +1,123 @@
 {
   "common": {
     "language": "English",
-    "switchLanguage": "Passer en français",
-    "selectPalette": "Select a color palette"
+    "switchLanguage": "Passer en français"
   },
-  "navigation": {
-    "home": "Home",
-    "servicesDev": "Development",
-    "servicesIllustration": "Illustration",
-    "about": "About",
-    "contact": "Contact"
+  "masthead": {
+    "date": "MAY 2026",
+    "frequency": "QUARTERLY",
+    "subtitle": "A PERSONAL MAGAZINE"
   },
-  "home": {
-    "title": "Louise Leroux",
-    "subtitle": "Fullstack Developer & Illustrator",
-    "description": "Code: web & mobile apps • showcase websites • automations • Webflow (Rust, TypeScript)\nIllustration: watercolor • digital drawing • projects by selection",
-    "cta": {
-      "contact": "Contact me",
-      "services": "Discover my services"
+  "nav": {
+    "magazine": "The Magazine",
+    "cover": "Cover",
+    "about": "Editor's Letter",
+    "code": "Code",
+    "atelier": "Studio",
+    "bd": "My Riveting Life",
+    "contact": "Correspondence"
+  },
+  "pageFooter": {
+    "issue": "ISSUE 023 · MAY 2026",
+    "printRun": "Print run: one copy"
+  },
+  "cover": {
+    "issue": "Issue",
+    "season": "Spring 2026",
+    "role1": "Fullstack Developer",
+    "role2": "& Illustrator",
+    "location": "Paris region, FR",
+    "inside": "Inside",
+    "lede": "A personal magazine: six rubrics, ten years of code, ten comic strips, and a certain fondness for hydrangea blue.",
+    "quoteKicker": "Editor's note — excerpt",
+    "quote": "I spend my days writing functions and my evenings drawing the people who write them.",
+    "quoteEmphasis": "What follows is the result.",
+    "quoteSig": "— LOUISE · MARCH 2026",
+    "tocTitle": "Contents",
+    "tocSub": "5 rubrics · 1 issue",
+    "featKicker": "FEATURED · COMICS · P. 48",
+    "featTitle": "My",
+    "featTitle2": "Riveting Life",
+    "featCta": "Read all ten strips",
+    "toc": {
+      "about": {
+        "kicker": "ABOUT",
+        "title": "Editor's Letter",
+        "page": "24",
+        "tease": "A letter from the editor: ten years split between terminals and sketchbooks."
+      },
+      "code": {
+        "kicker": "DEVELOPMENT",
+        "title": "Code",
+        "page": "36",
+        "tease": "TypeScript, Rust, and the quiet art of not breaking production."
+      },
+      "atelier": {
+        "kicker": "ILLUSTRATION",
+        "title": "Studio",
+        "page": "62",
+        "tease": "Children's books, Instagram series, commissions — the messy desk."
+      },
+      "bd": {
+        "kicker": "COMICS",
+        "title": "My Riveting Life",
+        "page": "48",
+        "tease": "Ten strips, ten anecdotes, and a cat who never lands the punchline."
+      },
+      "contact": {
+        "kicker": "CONTACT",
+        "title": "Correspondence",
+        "page": "80",
+        "tease": "To write, to hire, or simply to say hello."
+      }
     },
-    "servicesTitle": "My services",
-    "learnMore": "Learn more",
-    "featuredTitle": "Recent work",
-    "featuredDescription": "Discover a selection of my latest projects in web development and illustration.",
-    "viewAllWork": "View all work",
-    "ctaTitle": "Have a project in mind?",
-    "ctaDescription": "Let's discuss your project and see how I can help you bring it to life."
+    "portrait": "Portrait — Louise, by S. Bonnard"
+  },
+  "about": {
+    "title": "About",
+    "description": "Fullstack developer and illustrator, I combine technical rigor and artistic creativity.",
+    "rubricKicker": "Rubric 02 · Editor's Letter",
+    "headerTitle1": "A letter",
+    "headerTitle2": "from the editor",
+    "byline": "By",
+    "dateline": "March 2026, from her desk",
+    "readTime": "Read · 4 minutes",
+    "portraitLabel": "Louise, in her studio",
+    "portraitCaption": "Studio, March 2026 · 35 mm",
+    "letterKicker": "Editor's note · March 2026",
+    "pullQuote1": "I work",
+    "pullQuote2": "between two screens: a terminal and a sketchbook.",
+    "bodyP1": "For ten years I've been building web products — first at agencies, then at a scale-up, and now as a freelancer. I love the modern stack (TypeScript, React, Node, a little Rust on weekends), but what holds me in place is architecture: the boundaries between services, the contract between client and server, the slow rot of a system no one ever designed.",
+    "bodyP2": "The other half of my life fits on an A4 sheet and a Pigma 03 pen. I've been drawing since childhood; I've been publishing since 2019 on Instagram, under @louise.maviepassionnante. Ten autobiographical strips, ten tech-life anecdotes, drawn in simple lines, sometimes unfair — often at my own expense.",
+    "bodyP3": "This site is a personal magazine. I built it like a spring issue: six rubrics, a cover, a contents page, a letters section. It's more honest than the usual portfolio, and it looks more like me. The two halves live side by side without elbowing each other.",
+    "bodyP4": "You'll find: what I can do (Code), what I love doing (Studio), what I publish on Sunday evenings (Comics), and how to reach me (Correspondence). The rest — the coffee, the cat, line 13 of the métro — comes up occasionally, but in special issues.",
+    "asideTitle": "Quick facts",
+    "aside": {
+      "born": "Born in",
+      "bornVal": "Rouen · 1992",
+      "based": "Based in",
+      "basedVal": "Île-de-France",
+      "status": "Status",
+      "statusVal": "Freelance, open",
+      "languages": "Languages",
+      "languagesVal": "FR · EN · DE",
+      "drink": "Drink",
+      "drinkVal": "Black coffee, two"
+    },
+    "timelineKicker": "Itinerary · 2014 — 2026",
+    "timelineTitle1": "Ten years,",
+    "timelineTitle2": "roughly chronological",
+    "skillsKicker": "Toolbox — 2026",
+    "skillsTitle1": "What I can",
+    "skillsTitle2": "do",
+    "cvKicker": "Document · PDF",
+    "cvTitle1": "For those who",
+    "cvTitle2": "prefer",
+    "cvTitle3": "the A4 format.",
+    "cvBtn": "Download résumé",
+    "cvMeta": "louise-leroux-cv-2026.pdf · Updated March 2026",
+    "nextPage": "Continued — P. 36 · Code",
+    "downloadButton": "Download CV"
   },
   "services": {
     "dev": {
@@ -102,18 +194,6 @@
     "ctaDescription": "Contact me to discuss your needs and get a personalized quote.",
     "ctaButton": "Request a quote"
   },
-  "about": {
-    "title": "About",
-    "description": "Fullstack developer and illustrator, I combine technical rigor and artistic creativity.",
-    "whoAmI": "Who am I?",
-    "bio": "Fullstack developer for 3 years, specialized in microservices architecture (Rust, GraphQL, Next.js). Coming from a nurse → dev career change in 2022, I developed a rigorous and collaborative approach to software development. Drawn to complex technical challenges and continuous improvement. Also passionate about illustration and comics, I've been practicing watercolor and digital drawing for several years.",
-    "experienceTitle": "Experience",
-    "educationTitle": "Education",
-    "skillsTitle": "Skills",
-    "downloadTitle": "Download my CV",
-    "downloadDescription": "For more details about my background, download my CV in PDF format.",
-    "downloadButton": "Download CV"
-  },
   "contact": {
     "title": "Contact",
     "description": "Have a project in mind? Contact me to discuss it.",
@@ -144,9 +224,28 @@
     "rights": "All rights reserved",
     "madeWith": "Made with"
   },
-  "theme": {
-    "light": "Light mode",
-    "dark": "Dark mode",
-    "toggle": "Toggle theme"
+  "bd": {
+    "title": "Comics — My Riveting Life",
+    "description": "Ten autobiographical strips, ten anecdotes from technical life.",
+    "rubricKicker": "Rubric 05 · Comics",
+    "deck": "Ten autobiographical strips, ten anecdotes from technical life. Posted Sunday evenings at 9 pm, or never.",
+    "stripsPublished": "Strips published",
+    "panelsDrawn": "Panels drawn",
+    "featuredKicker": "Featured — Today's strip",
+    "published": "Published",
+    "panels": "Panels",
+    "archiveKicker": "Archive · All strips",
+    "archiveTitle1": "Ten Sunday evenings,",
+    "archiveTitle2": "ten strips.",
+    "reading": "Reading",
+    "followKicker": "For the next one",
+    "followTitle1": "One new",
+    "followTitle2": "strip a month,",
+    "followTitle3": "on Instagram.",
+    "followCta": "Open on Instagram"
+  },
+  "home": {
+    "title": "Louise Leroux",
+    "description": "Fullstack Developer & Illustrator — A Personal Magazine"
   }
 }
