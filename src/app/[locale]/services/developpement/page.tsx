@@ -4,18 +4,17 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 const TECHNOLOGIES = [
-  { name: "TypeScript", category: "lang" },
-  { name: "JavaScript", category: "lang" },
   { name: "Rust", category: "lang" },
-  { name: "Python", category: "lang" },
-  { name: "SQL", category: "lang" },
-  { name: "HTML / CSS", category: "lang" },
+  { name: "TypeScript / Next.js", category: "lang" },
+  { name: "React Native", category: "lang" },
+  { name: "GraphQL", category: "lang" },
+  { name: "PHP", category: "lang" },
 ];
 
 const TOOLS = [
-  "React", "Next.js", "Node.js", "Tailwind", "GraphQL",
-  "PostgreSQL", "Docker", "Kubernetes", "GCP", "Vite",
-  "Playwright", "RabbitMQ",
+  "Docker", "Kubernetes", "GCP", "PostgreSQL", "RabbitMQ",
+  "Tailwind", "shadcn", "Git / GitHub", "Linear", "Jira",
+  "Figma", "Claude Code",
 ];
 
 const PROCESS = [
@@ -53,9 +52,9 @@ function CodeHeader() {
         Web
       </h1>
       <div className="flex flex-wrap items-center gap-2 md:gap-3 mt-5 md:mt-7 font-mono text-[10px] md:text-[11px] tracking-[0.14em] uppercase text-mute">
-        <span>TypeScript · Rust · React · Next.js</span>
+        <span>Rust · TypeScript · Next.js · GraphQL</span>
         <span className="opacity-40">·</span>
-        <span>Architecture · Performance · Mentorat</span>
+        <span>Architecture microservices · Reconversion</span>
       </div>
       <p className="font-serif italic text-lg md:text-xl leading-[1.4] mt-6 max-w-[800px] text-dark m-0 mt-6">
         {t("description")}

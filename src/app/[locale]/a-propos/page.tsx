@@ -93,7 +93,7 @@ function AboutLetter() {
       <aside className="bg-fog p-5 md:p-6 self-start text-ink">
         <Rule>{t("asideTitle")}</Rule>
         <dl className="m-0 mt-3 grid grid-cols-[auto_1fr] gap-x-3 md:gap-x-4 gap-y-1.5 md:gap-y-2 font-mono text-[10px] md:text-[11px] tracking-[0.1em] uppercase">
-          {(["born", "based", "status", "languages", "drink"] as const).map(
+          {(["born", "based", "status", "languages", "site"] as const).map(
             (key) => (
               <div key={key} className="contents">
                 <dt className="text-mute">{t(`aside.${key}`)}</dt>
