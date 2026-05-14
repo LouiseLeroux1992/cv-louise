@@ -1,200 +1,151 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
+import { Placeholder } from "@/components/ui/Placeholder";
+
+const PROJECTS = [
+  { no: "01", key: "bd" },
+  { no: "02", key: "livre" },
+  { no: "03", key: "ponctuelles" },
+] as const;
+
+const GALLERY = [
+  { id: 1, label: "Livre jeunesse — couverture", kicker: "AQUARELLE", tone: "fog" as const },
+  { id: 2, label: "BD labo — planche 3", kicker: "NUMÉRIQUE", tone: "sage" as const },
+  { id: 3, label: "Carte personnalisée", kicker: "AQUARELLE", tone: "cream" as const },
+  { id: 4, label: "BD Instagram — strip 04", kicker: "NUMÉRIQUE", tone: "primary" as const },
+  { id: 5, label: "Illustration jeunesse — intérieur", kicker: "AQUARELLE", tone: "fog" as const },
+  { id: 6, label: "Portrait commande", kicker: "MIXTE", tone: "sage" as const },
+];
 
 export default function ServicesIllustration() {
+  return (
+    <>
+      <AtelierHeader />
+      <AtelierServices />
+      <AtelierGallery />
+      <AtelierCTA />
+    </>
+  );
+}
+
+function AtelierHeader() {
   const t = useTranslations("servicesIllustration");
 
-  const services = [
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
-          />
-        </svg>
-      ),
-      title: t("services.bd.title"),
-      description: t("services.bd.description"),
-    },
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
-          />
-        </svg>
-      ),
-      title: t("services.livre.title"),
-      description: t("services.livre.description"),
-    },
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-          />
-        </svg>
-      ),
-      title: t("services.ponctuelles.title"),
-      description: t("services.ponctuelles.description"),
-    },
-  ];
+  return (
+    <header className="px-5 md:px-8 pt-8 md:pt-12 pb-7 md:pb-9 border-b border-ink bg-paper">
+      <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+        Rubrique 04 · Atelier
+      </span>
+      <h1 className="font-display text-[clamp(64px,12vw,170px)] leading-[0.88] tracking-[-0.005em] m-0 mt-4 uppercase text-ink">
+        <em className="font-serif italic font-normal normal-case tracking-[-0.03em] text-dark">
+          L&apos;atelier
+        </em>
+        <br />
+        Illustration
+      </h1>
+      <p className="font-serif italic text-lg md:text-xl leading-[1.4] mt-6 max-w-[800px] text-dark m-0">
+        {t("description")}
+      </p>
+    </header>
+  );
+}
 
-  // Placeholder gallery - à remplacer par tes vraies illustrations
-  const gallery = [
-    { id: 1, title: "Illustration 1", category: "bd" },
-    { id: 2, title: "Illustration 2", category: "livre" },
-    { id: 3, title: "Illustration 3", category: "ponctuelles" },
-    { id: 4, title: "Illustration 4", category: "bd" },
-    { id: 5, title: "Illustration 5", category: "livre" },
-    { id: 6, title: "Illustration 6", category: "ponctuelles" },
-  ];
+function AtelierServices() {
+  const t = useTranslations("servicesIllustration");
 
   return (
-    <div className="py-12">
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">{t("title")}</h1>
-          <p className="text-xl text-muted-foreground">{t("description")}</p>
-        </motion.div>
-      </section>
-
-      {/* Services */}
-      <section className="bg-accent/15 py-16">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12"
+    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-fog border-b border-ink">
+      <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
+        <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+          Projets · P. 62
+        </span>
+        <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
+          {t("servicesTitle")}
+        </h2>
+      </header>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-ink">
+        {PROJECTS.map((p) => (
+          <div
+            key={p.key}
+            className="border-b md:border-b-0 md:border-r last:border-r-0 border-ink p-6 md:p-8 flex flex-col gap-4"
           >
-            {t("servicesTitle")}
-          </motion.h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-background p-6 rounded-xl border border-accent/40"
-              >
-                <div className="w-14 h-14 rounded-lg bg-accent/30 flex items-center justify-center text-accent mb-4">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12"
-          >
-            {t("galleryTitle")}
-          </motion.h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {gallery.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="aspect-square rounded-xl bg-accent/20 flex items-center justify-center cursor-pointer hover:bg-accent/30 transition-colors group"
-              >
-                <div className="text-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1}
-                    stroke="currentColor"
-                    className="w-12 h-12 mx-auto text-accent/60 group-hover:text-accent transition-colors"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                    />
-                  </svg>
-                  <p className="text-xs text-muted-foreground mt-2">
-                    {item.title}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-accent/15 py-16">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-bold mb-4">{t("ctaTitle")}</h2>
-            <p className="text-muted-foreground mb-8 whitespace-pre-line">
-              {t("ctaDescription")}
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-accent text-accent-foreground hover:opacity-90 transition-all font-medium"
+            <span
+              className="font-display text-[48px] md:text-[64px] text-primary leading-[0.9]"
+              style={{ WebkitTextStroke: "1px var(--c-ink)" }}
             >
-              {t("ctaButton")}
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+              {p.no}
+            </span>
+            <h3 className="font-serif italic font-medium text-2xl md:text-3xl leading-[1.05] text-ink m-0">
+              {t(`services.${p.key}.title`)}
+            </h3>
+            <p className="font-serif text-[15px] md:text-base leading-[1.5] text-mute m-0">
+              {t(`services.${p.key}.description`)}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AtelierGallery() {
+  const t = useTranslations("servicesIllustration");
+
+  return (
+    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
+      <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
+        <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+          Sélection — 2024 / 2026
+        </span>
+        <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
+          {t("galleryTitle")}
+        </h2>
+      </header>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        {GALLERY.map((item) => (
+          <div key={item.id} className="flex flex-col gap-2">
+            <Placeholder
+              label={item.label}
+              kicker={item.kicker}
+              ratio="4/5"
+              tone={item.tone}
+              className="border-[1.5px] border-ink"
+            />
+            <div className="font-mono text-[9px] md:text-[10px] tracking-[0.16em] uppercase text-mute">
+              {item.kicker} · {item.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AtelierCTA() {
+  const t = useTranslations("servicesIllustration");
+
+  return (
+    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-sage border-b border-ink flex flex-col md:grid md:grid-cols-[1fr_auto] gap-6 md:gap-12 md:items-center">
+      <div className="flex flex-col gap-3">
+        <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-dark">
+          Contact · P. 80
+        </span>
+        <h2 className="font-serif font-medium text-[clamp(32px,4vw,56px)] leading-[1] m-0 text-ink">
+          {t("ctaTitle")}
+        </h2>
+        <p className="font-serif italic text-base md:text-lg text-dark m-0 max-w-[600px] whitespace-pre-line">
+          {t("ctaDescription")}
+        </p>
+      </div>
+      <Link
+        href="/contact"
+        className="bg-ink text-cream border-none px-6 py-4 font-display text-base tracking-[0.12em] uppercase inline-flex items-center gap-3.5 no-underline transition-all hover:bg-dark hover:gap-[22px] self-start"
+      >
+        <span>{t("ctaButton")}</span>
+        <span className="font-sans">→</span>
+      </Link>
+    </section>
   );
 }
