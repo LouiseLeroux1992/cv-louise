@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
 
@@ -48,20 +49,44 @@ function panelSrc(strip: Strip, panel: number): string {
 
 export default function BDPage() {
   const [reading, setReading] = useState<number | null>(null);
+  const searchParams = useSearchParams();
 
-  const closeReader = useCallback(() => setReading(null), []);
+  const closeReader = useCallback(() => {
+    setReading(null);
+    const url = new URL(window.location.href);
+    url.searchParams.delete("read");
+    window.history.replaceState({}, "", url.pathname);
+  }, []);
+
+  const openStrip = useCallback((index: number) => {
+    setReading(index);
+    const url = new URL(window.location.href);
+    url.searchParams.set("read", STRIPS[index].slug);
+    window.history.replaceState({}, "", url.toString());
+  }, []);
+
+  // Open reader from query param ?read=slug on mount
+  useEffect(() => {
+    const slug = searchParams.get("read");
+    if (slug) {
+      const index = STRIPS.findIndex((s) => s.slug === slug);
+      if (index !== -1) {
+        setReading(index);
+      }
+    }
+  }, [searchParams]);
 
   return (
     <>
       <BDHero />
-      <BDArchive onSelect={setReading} />
+      <BDArchive onSelect={openStrip} />
       <BDInsta />
       {reading !== null && (
         <BDReader
           strip={STRIPS[reading]}
           onClose={closeReader}
-          onPrev={reading > 0 ? () => setReading(reading - 1) : null}
-          onNext={reading < STRIPS.length - 1 ? () => setReading(reading + 1) : null}
+          onPrev={reading > 0 ? () => openStrip(reading - 1) : null}
+          onNext={reading < STRIPS.length - 1 ? () => openStrip(reading + 1) : null}
         />
       )}
     </>

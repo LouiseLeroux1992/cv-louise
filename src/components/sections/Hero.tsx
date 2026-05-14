@@ -2,9 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
-import { Placeholder } from "@/components/ui/Placeholder";
+import { getSeasonLabel } from "@/lib/season";
 
 const TOC_ITEMS = ["about", "code", "atelier", "bd", "contact"] as const;
 
@@ -24,11 +25,11 @@ const TOC_NUMBERS: Record<string, string> = {
   contact: "06",
 };
 
-const COMIC_TITLES_FR = [
-  "Le standup de 23 min",
-  "Mon chat débogue",
-  "Open space, hiver",
-  "Le tableau Kanban",
+const FEATURED_STRIPS = [
+  { no: "11", slug: "voyage-au-japon", fr: "Voyage au Japon", src: "/bd/voyage-au-japon/1.png" },
+  { no: "10", slug: "mon-nouveau-metier", fr: "Mon nouveau métier", src: "/bd/mon-nouveau-metier/1.jpg" },
+  { no: "09", slug: "la-vie-a-paris", fr: "La vie à Paris", src: "/bd/la-vie-a-paris/1.jpg" },
+  { no: "08", slug: "reconversion", fr: "Reconversion", src: "/bd/reconversion/1.webp" },
 ];
 
 export function Hero() {
@@ -44,6 +45,8 @@ export function Hero() {
 
 function CoverHero() {
   const t = useTranslations("cover");
+  const locale = useLocale();
+  const season = getSeasonLabel(locale);
 
   return (
     <section className="relative overflow-hidden bg-paper">
@@ -105,7 +108,7 @@ function CoverHero() {
               023
             </div>
             <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-              {t("season")}
+              {season}
             </span>
           </div>
 
@@ -260,19 +263,25 @@ function CoverFeatured() {
         </h2>
       </header>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-        {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="flex flex-col gap-2">
-            <Placeholder
-              label={`STRIP 0${i}`}
-              kicker={`PLANCHE ${i}`}
-              ratio="1/1"
-              tone={i % 2 === 0 ? "sage" : "fog"}
+        {FEATURED_STRIPS.map((strip) => (
+          <Link
+            key={strip.no}
+            href={`/bd?read=${strip.slug}`}
+            className="flex flex-col gap-2 no-underline text-ink group"
+          >
+            <Image
+              src={strip.src}
+              alt={strip.fr}
+              width={400}
+              height={400}
+              className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
+              style={{ aspectRatio: "1/1", objectFit: "cover" }}
             />
             <div className="flex gap-2 items-baseline font-mono text-[9px] md:text-[10px] tracking-[0.16em] uppercase">
-              <span className="text-mute">0{i}</span>
-              <span>{COMIC_TITLES_FR[i - 1]}</span>
+              <span className="text-mute">{strip.no}</span>
+              <span>{strip.fr}</span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <Link
