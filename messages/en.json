@@ -28,7 +28,7 @@
     "role2": "& Illustrator",
     "location": "Paris region, FR",
     "inside": "Inside",
-    "lede": "A personal magazine: six rubrics, ten years of code, ten comic strips, and a certain fondness for hydrangea blue.",
+    "lede": "Rust, watercolors, and a career path that doesn't fit in any box.",
     "quoteKicker": "Editor's note — excerpt",
     "quote": "Code is my craft, drawing is my escape.",
     "quoteEmphasis": "This site sheds light on several of my creative lives.",
@@ -44,31 +44,31 @@
         "kicker": "ABOUT",
         "title": "Editor's Letter",
         "page": "24",
-        "tease": "A letter from the editor: ten years split between terminals and sketchbooks."
+        "tease": "From nurse to developer, via the sketchbook. My journey in a few lines."
       },
       "code": {
         "kicker": "DEVELOPMENT",
         "title": "Code",
         "page": "36",
-        "tease": "TypeScript, Rust, and the quiet art of not breaking production."
+        "tease": "Microservices architecture, Rust, Next.js — three years of fullstack development at Morning."
       },
       "atelier": {
         "kicker": "ILLUSTRATION",
         "title": "Studio",
         "page": "62",
-        "tease": "Children's books, Instagram series, commissions — the messy desk."
+        "tease": "Watercolor, digital drawing, educational comics — five projects to browse."
       },
       "bd": {
         "kicker": "COMICS",
         "title": "My Riveting Life",
         "page": "48",
-        "tease": "Ten strips, ten anecdotes, and a cat who never lands the punchline."
+        "tease": "Autobiographical and humorous comic strip, published on Instagram. Eleven strips to read online."
       },
       "contact": {
         "kicker": "CONTACT",
         "title": "Correspondence",
         "page": "80",
-        "tease": "To write, to hire, or simply to say hello."
+        "tease": "To discuss a project, a collaboration, or simply to say hello."
       }
     },
     "portrait": "Portrait — Louise, by S. Bonnard"
