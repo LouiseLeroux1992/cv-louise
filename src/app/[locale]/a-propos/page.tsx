@@ -4,8 +4,8 @@ import { useTranslations } from "next-intl";
 import { experiences } from "@/data/experiences";
 import { education } from "@/data/education";
 import { skillCategories } from "@/data/skills";
+import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
-import { Placeholder } from "@/components/ui/Placeholder";
 
 export default function About() {
   return (
@@ -47,11 +47,13 @@ function AboutHeader() {
         </div>
       </div>
       <div className="flex flex-col gap-3">
-        <Placeholder
-          label={t("portraitLabel")}
-          kicker="PORTRAIT — 01"
-          ratio="4/5"
-          tone="fog"
+        <Image
+          src="/portrait-louise.jpg"
+          alt="Louise Leroux"
+          width={720}
+          height={900}
+          className="w-full h-auto object-cover"
+          style={{ aspectRatio: "4/5", objectPosition: "center top" }}
         />
         <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute flex flex-col gap-1">
           <span className="text-ink">Cliché</span>

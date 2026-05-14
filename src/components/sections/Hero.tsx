@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
 import { Placeholder } from "@/components/ui/Placeholder";
 
@@ -46,49 +47,82 @@ function CoverHero() {
 
   return (
     <section className="relative overflow-hidden bg-paper">
-      <div className="relative px-5 md:px-8 pt-6 md:pt-10 pb-0">
-        {/* Issue number — absolute top left (desktop only) */}
-        <div className="hidden md:flex absolute left-8 top-10 flex-col items-start gap-3.5 z-[3]">
-          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-            {t("issue")}
-          </span>
-          <div className="font-display text-[clamp(60px,7vw,110px)] leading-[0.88] text-dark">
-            023
-          </div>
-          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-            {t("season")}
-          </span>
-        </div>
-
-        {/* Feature tag — top right */}
-        <div className="absolute top-6 md:top-10 right-5 md:right-8 bg-dark text-cream px-3 py-2 font-mono text-[10px] tracking-[0.16em] uppercase flex gap-2.5 items-center z-[3]">
-          <span className="text-primary">P. 24</span>
-          <span>{t("toc.about.title")}</span>
-        </div>
-
-        {/* Mobile: issue + name stacked */}
-        <div className="md:hidden flex items-center gap-3 mb-4">
+      {/* ── Mobile layout ── */}
+      <div className="md:hidden px-5 pt-6 pb-8">
+        <div className="flex items-center gap-3 mb-4">
           <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
             {t("issue")}
           </span>
           <span className="font-display text-[40px] leading-[0.88] text-dark">023</span>
         </div>
+        <h1 className="m-0">
+          <span className="font-serif italic font-normal text-[80px] leading-[0.78] tracking-[-0.035em] text-ink block">
+            Louise
+          </span>
+          <span
+            className="font-display text-[58px] leading-[0.85] text-primary uppercase block mt-[-0.06em]"
+            style={{ WebkitTextStroke: "1.2px var(--c-ink)" }}
+          >
+            LEROUX
+          </span>
+        </h1>
+        <div className="mt-4">
+          <Image
+            src="/portrait-louise.jpg"
+            alt="Louise Leroux"
+            width={720}
+            height={960}
+            className="w-full h-auto object-cover"
+            style={{ aspectRatio: "3/4", objectPosition: "center top" }}
+            priority
+          />
+        </div>
+        <div className="flex flex-col gap-2.5 mt-6 text-ink">
+          <Rule>{t("role1")}</Rule>
+          <Rule>{t("role2")}</Rule>
+          <Rule>{t("location")}</Rule>
+        </div>
+        <div className="flex flex-col gap-2.5 mt-6">
+          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+            {t("inside")}
+          </span>
+          <p className="font-serif italic text-[17px] leading-[1.5] m-0 text-dark">
+            {t("lede")}
+          </p>
+        </div>
+      </div>
 
-        {/* Name + portrait */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between">
-          <h1 className="m-0 pt-0 md:pt-6 flex-1 min-w-0">
+      {/* ── Desktop layout — CSS Grid ── */}
+      <div className="hidden md:block px-8 pt-10 pb-14">
+        <div className="grid grid-cols-[160px_1fr_28%] grid-rows-[auto_1fr_auto] gap-x-6">
+
+          {/* Issue number — col 1, row 1-2 */}
+          <div className="col-start-1 row-start-1 row-span-2 flex flex-col items-start gap-3.5 pt-1.5 z-[3]">
+            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+              {t("issue")}
+            </span>
+            <div className="font-display text-[clamp(60px,7vw,110px)] leading-[0.88] text-dark">
+              023
+            </div>
+            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+              {t("season")}
+            </span>
+          </div>
+
+          {/* Name — col 2, row 1, overlaps into col 3 */}
+          <h1 className="col-start-2 col-span-2 row-start-1 m-0 pt-4 z-[2] pointer-events-none">
             <span
-              className="font-serif italic font-normal leading-[0.82] tracking-[-0.035em] text-ink block"
-              style={{ fontSize: "clamp(72px, 16vw, 220px)", paddingLeft: "0", }}
+              className="font-serif italic font-normal leading-[0.78] tracking-[-0.035em] text-ink block"
+              style={{ fontSize: "clamp(120px, 18vw, 280px)" }}
             >
               Louise
             </span>
             <span
               className="font-display leading-[0.85] tracking-[0.005em] text-primary uppercase block"
               style={{
-                fontSize: "clamp(52px, 12vw, 160px)",
+                fontSize: "clamp(80px, 13vw, 200px)",
                 marginTop: "-0.06em",
-                paddingLeft: "8%",
+                paddingLeft: "18%",
                 WebkitTextStroke: "1.2px var(--c-ink)",
               }}
             >
@@ -96,32 +130,40 @@ function CoverHero() {
             </span>
           </h1>
 
-          {/* Portrait */}
-          <div className="w-full md:w-[25%] md:min-w-[200px] md:max-w-[360px] md:flex-shrink-0 mt-4 md:mt-[60px] mx-4 md:mx-0">
-            <Placeholder
-              label={t("portrait")}
-              kicker="01"
-              ratio="3/4"
-              tone="fog"
+          {/* Portrait — col 3, row 1 */}
+          <div className="col-start-3 row-start-1 mt-[60px] z-[1] relative">
+            <Image
+              src="/portrait-louise.jpg"
+              alt="Louise Leroux"
+              width={720}
+              height={960}
+              className="w-full h-auto object-cover"
+              style={{ aspectRatio: "3/4", objectPosition: "center top" }}
+              priority
             />
+            {/* P. 24 ÉDITO — overlapping top-right of portrait */}
+            <div className="absolute top-[-12px] right-[-8px] bg-dark text-cream px-3 py-2 font-mono text-[10px] tracking-[0.16em] uppercase flex gap-2.5 items-center z-[3]">
+              <span className="text-primary">P. 24</span>
+              <span>{t("toc.about.title")}</span>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom info row */}
-      <div className="px-5 md:px-8 pt-4 md:pt-6 pb-10 md:pb-16 flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-12">
-        <div className="flex flex-col gap-2.5 max-w-[540px] text-ink">
-          <Rule>{t("role1")}</Rule>
-          <Rule>{t("role2")}</Rule>
-          <Rule>{t("location")}</Rule>
-        </div>
-        <div className="flex flex-col gap-2.5 md:max-w-[360px] md:ml-auto">
-          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-            {t("inside")}
-          </span>
-          <p className="font-serif italic text-[17px] leading-[1.5] m-0 text-dark">
-            {t("lede")}
-          </p>
+          {/* Roles — col 2, row 2 */}
+          <div className="col-start-2 row-start-2 mt-6 flex flex-col gap-2.5 max-w-[540px] text-ink">
+            <Rule>{t("role1")}</Rule>
+            <Rule>{t("role2")}</Rule>
+            <Rule>{t("location")}</Rule>
+          </div>
+
+          {/* Lede — col 3, row 2 */}
+          <div className="col-start-3 row-start-2 mt-6 flex flex-col gap-2.5">
+            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+              {t("inside")}
+            </span>
+            <p className="font-serif italic text-[17px] leading-[1.5] m-0 text-dark">
+              {t("lede")}
+            </p>
+          </div>
         </div>
       </div>
     </section>
