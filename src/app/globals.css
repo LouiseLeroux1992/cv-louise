@@ -25,6 +25,11 @@
     color: inherit;
   }
 
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
   button {
     font-family: inherit;
     cursor: pointer;

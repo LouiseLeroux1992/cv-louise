@@ -6,6 +6,7 @@ import {
   JetBrains_Mono,
 } from "next/font/google";
 import "./globals.css";
+import { ImageProtection } from "@/components/providers/ImageProtection";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin", "latin-ext"],
@@ -91,6 +92,7 @@ export default async function RootLayout({ children, params }: Props) {
       <body
         className={`${cormorant.variable} ${anton.variable} ${dmSans.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
+        <ImageProtection />
         {children}
       </body>
     </html>
