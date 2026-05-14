@@ -56,7 +56,7 @@ function AboutHeader() {
           style={{ aspectRatio: "4/5", objectPosition: "center top" }}
         />
         <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute flex flex-col gap-1">
-          <span className="text-ink">Cliché</span>
+          <span className="text-ink">Portrait</span>
           <span>{t("portraitCaption")}</span>
         </div>
       </div>
