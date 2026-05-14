@@ -245,13 +245,13 @@ function AtelierThomas({ onOpen }: { onOpen: () => void }) {
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Illustrations comiques · Dessin numérique
+          Illustrations comiques · Aquarelle · 2024 — 2026
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
           Portraits <em className="italic font-normal">comiques</em>
         </h2>
         <p className="font-serif italic text-base md:text-lg text-mute m-0 max-w-[700px]">
-          Série d&apos;illustrations humoristiques. 8 dessins.
+          Série de 8 illustrations humoristiques à l&apos;aquarelle.
         </p>
       </header>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
@@ -281,7 +281,7 @@ function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          BD pédagogique · Commande · Laboratoire Calédobio
+          BD pédagogique · Commande · Laboratoire Calédobio · 2019
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
           BD <em className="italic font-normal">Calédobio</em>
@@ -319,7 +319,7 @@ function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-fog border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Dessins · Encre · 2015 — 2016
+          Dessins · Encre · 2014
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
           Dessins <em className="italic font-normal">d&apos;animaux</em>
