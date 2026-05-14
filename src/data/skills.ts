@@ -6,23 +6,23 @@ export type SkillCategory = {
 
 export const skillCategories: SkillCategory[] = [
   {
-    id: "frontend",
-    name: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Native"],
-  },
-  {
-    id: "backend",
-    name: "Backend",
-    skills: ["Rust", "GraphQL", "Node.js", "PHP", "PostgreSQL"],
+    id: "langages",
+    name: "Langages",
+    skills: ["Rust", "TypeScript", "Next.js", "React Native", "GraphQL", "PHP"],
   },
   {
     id: "infrastructure",
     name: "Infrastructure",
-    skills: ["Docker", "Kubernetes", "GCP", "RabbitMQ", "Git/GitHub"],
+    skills: ["Docker", "Kubernetes", "GCP", "PostgreSQL", "RabbitMQ"],
+  },
+  {
+    id: "outils",
+    name: "Outils",
+    skills: ["Git / GitHub", "Linear", "Jira", "Figma", "Claude Code"],
   },
   {
     id: "illustration",
     name: "Illustration",
-    skills: ["Aquarelle", "Dessin numérique", "Procreate", "Bande-dessinée"],
+    skills: ["Aquarelle", "Dessin numérique", "Procreate", "Bande-dessinée", "Album jeunesse"],
   },
 ];

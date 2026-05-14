@@ -1,31 +1,123 @@
 {
   "common": {
     "language": "Français",
-    "switchLanguage": "Switch to English",
-    "selectPalette": "Choisir une palette de couleurs"
+    "switchLanguage": "Switch to English"
   },
-  "navigation": {
-    "home": "Accueil",
-    "servicesDev": "Développement",
-    "servicesIllustration": "Illustration",
-    "about": "À propos",
-    "contact": "Contact"
+  "masthead": {
+    "date": "MAI 2026",
+    "frequency": "TRIMESTRIEL",
+    "subtitle": "UN MAGAZINE PERSONNEL"
   },
-  "home": {
-    "title": "Louise Leroux",
-    "subtitle": "Développeuse Fullstack & Illustratrice",
-    "description": "Code : applications web & mobile • sites vitrines • automatisations • Webflow (Rust, TypeScript)\nIllustration : aquarelle • dessin numérique • projets sur sélection",
-    "cta": {
-      "contact": "Me contacter",
-      "services": "Découvrir mes services"
+  "nav": {
+    "magazine": "Le Magazine",
+    "cover": "Couverture",
+    "about": "Édito",
+    "code": "Code",
+    "atelier": "Atelier",
+    "bd": "Ma Vie Passionnante",
+    "contact": "Correspondance"
+  },
+  "pageFooter": {
+    "issue": "NUMÉRO 023 · MAI 2026",
+    "printRun": "Tiré à un exemplaire"
+  },
+  "cover": {
+    "issue": "Numéro",
+    "season": "Printemps 2026",
+    "role1": "Développeuse Fullstack",
+    "role2": "& Illustratrice",
+    "location": "Île-de-France, FR",
+    "inside": "À l'intérieur",
+    "lede": "Du Rust, de l'aquarelle, et un parcours qui ne rentre dans aucune case.",
+    "quoteKicker": "Édito — extrait",
+    "quote": "Le code est mon métier, le dessin mon échappatoire.",
+    "quoteEmphasis": "Ce site met en lumière plusieurs de mes vies créatives.",
+    "quoteSig": "— LOUISE · MARS 2026",
+    "tocTitle": "Sommaire",
+    "tocSub": "5 rubriques · 1 numéro",
+    "featKicker": "À LA UNE · BD · P. 48",
+    "featTitle": "Ma Vie",
+    "featTitle2": "Passionnante",
+    "featCta": "Lire les planches",
+    "toc": {
+      "about": {
+        "kicker": "À PROPOS",
+        "title": "Édito",
+        "page": "24",
+        "tease": "D'infirmière à développeuse, en passant par le carnet de croquis. Mon parcours en quelques lignes."
+      },
+      "code": {
+        "kicker": "DÉVELOPPEMENT",
+        "title": "Code",
+        "page": "36",
+        "tease": "Architecture microservices, Rust, Next.js — trois ans de développement fullstack chez Morning."
+      },
+      "atelier": {
+        "kicker": "ILLUSTRATION",
+        "title": "Atelier",
+        "page": "62",
+        "tease": "Aquarelle, dessin numérique, BD pédagogique — cinq projets à feuilleter."
+      },
+      "bd": {
+        "kicker": "BD",
+        "title": "Ma Vie Passionnante",
+        "page": "48",
+        "tease": "BD autobiographique et humoristique, publiée sur Instagram. Onze strips à lire en ligne."
+      },
+      "contact": {
+        "kicker": "CONTACT",
+        "title": "Correspondance",
+        "page": "80",
+        "tease": "Pour discuter d'un projet, d'une collaboration, ou simplement dire bonjour."
+      }
     },
-    "servicesTitle": "Mes services",
-    "learnMore": "En savoir plus",
-    "featuredTitle": "Réalisations récentes",
-    "featuredDescription": "Découvrez une sélection de mes derniers projets en développement web et illustration.",
-    "viewAllWork": "Voir toutes les réalisations",
-    "ctaTitle": "Un projet en tête ?",
-    "ctaDescription": "Discutons de votre projet et voyons comment je peux vous aider à le concrétiser."
+    "portrait": "Portrait — Louise, par S. Bonnard"
+  },
+  "about": {
+    "title": "À propos",
+    "description": "Développeuse fullstack et illustratrice, je combine rigueur technique et créativité artistique.",
+    "rubricKicker": "Rubrique 02 · Édito",
+    "headerTitle1": "Lettre",
+    "headerTitle2": "de l'éditrice",
+    "byline": "Par",
+    "dateline": "Mars 2026, depuis son bureau",
+    "readTime": "Lecture · 4 minutes",
+    "portraitLabel": "Louise, dans son atelier",
+    "portraitCaption": "Studio, mars 2026 · 35 mm",
+    "letterKicker": "Édito · Mars 2026",
+    "pullQuote1": "Je travaille",
+    "pullQuote2": "entre deux écrans : un terminal et un carnet.",
+    "bodyP1": "Développeuse fullstack depuis 3 ans, spécialisée en architecture microservices (Rust, GraphQL, Next.js). Issue d'une reconversion infirmière → dev en 2022, j'ai développé une approche rigoureuse et collaborative du développement logiciel. Attirée par les problématiques techniques complexes et l'amélioration continue.",
+    "bodyP2": "L'autre moitié de ma vie tient en une feuille A4 et un pinceau. Je dessine depuis l'enfance, principalement à l'aquarelle et en numérique. Je publie des BDs humoristiques sur Instagram sous le pseudo @louise.maviepassionnante, j'ai illustré un livre jeunesse, et réalisé des BDs pédagogiques pour un laboratoire médical.",
+    "bodyP3": "Ce site est un magazine personnel. Six rubriques, une couverture, un sommaire, une page de courrier. C'est plus honnête que le portfolio classique, et ça me ressemble davantage. Deux univers qui se retrouvent ici, côte à côte.",
+    "bodyP4": "Aujourd'hui ouverte à de nouvelles opportunités en Île-de-France, je cherche des projets où la rigueur technique et la créativité peuvent cohabiter.",
+    "asideTitle": "Repères",
+    "aside": {
+      "born": "Née à",
+      "bornVal": "Caen · 1992",
+      "based": "Basée à",
+      "basedVal": "Paris",
+      "status": "Statut",
+      "statusVal": "CDI, ouverte aux opportunités",
+      "languages": "Langues",
+      "languagesVal": "FR · EN · ES · JP",
+      "site": "Site",
+      "siteVal": "lerouxlouise.fr"
+    },
+    "timelineKicker": "Itinéraire · 2014 — 2026",
+    "timelineTitle1": "Dix années,",
+    "timelineTitle2": "en partie chronologiques",
+    "skillsKicker": "Boîte à outils — 2026",
+    "skillsTitle1": "Ce que je sais",
+    "skillsTitle2": "faire",
+    "cvKicker": "Document · PDF",
+    "cvTitle1": "Pour ceux qui",
+    "cvTitle2": "préfèrent",
+    "cvTitle3": "le format A4.",
+    "cvBtn": "Télécharger le CV",
+    "cvMeta": "louise-leroux-cv-2026.pdf · Mis à jour mars 2026",
+    "nextPage": "Suite — P. 36 · Code",
+    "downloadButton": "Télécharger le CV"
   },
   "services": {
     "dev": {
@@ -102,18 +194,6 @@
     "ctaDescription": "Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé.",
     "ctaButton": "Demander un devis"
   },
-  "about": {
-    "title": "À propos",
-    "description": "Développeuse fullstack et illustratrice, je combine rigueur technique et créativité artistique.",
-    "whoAmI": "Qui suis-je ?",
-    "bio": "Développeuse fullstack depuis 3 ans, spécialisée en architecture microservices (Rust, GraphQL, Next.js). Issue d'une reconversion infirmière → dev en 2022, j'ai développé une approche rigoureuse et collaborative du développement logiciel. Attirée par les problématiques techniques complexes et l'amélioration continue. Passionnée également par l'illustration et la bande-dessinée, je pratique l'aquarelle et le dessin numérique depuis plusieurs années.",
-    "experienceTitle": "Expériences",
-    "educationTitle": "Formations",
-    "skillsTitle": "Compétences",
-    "downloadTitle": "Télécharger mon CV",
-    "downloadDescription": "Pour plus de détails sur mon parcours, téléchargez mon CV au format PDF.",
-    "downloadButton": "Télécharger le CV"
-  },
   "contact": {
     "title": "Contact",
     "description": "Un projet en tête ? Contactez-moi pour en discuter.",
@@ -144,9 +224,28 @@
     "rights": "Tous droits réservés",
     "madeWith": "Fait avec"
   },
-  "theme": {
-    "light": "Mode clair",
-    "dark": "Mode sombre",
-    "toggle": "Changer de thème"
+  "bd": {
+    "title": "BD — Ma Vie Passionnante",
+    "description": "Dix planches autobiographiques, dix anecdotes de la vie technique.",
+    "rubricKicker": "Rubrique 05 · Bande dessinée",
+    "deck": "Bande dessinée autobiographique et humoristique. Publiée sur Instagram avec plus ou moins d'assiduité.",
+    "stripsPublished": "Planches publiées",
+    "panelsDrawn": "Cases dessinées",
+    "featuredKicker": "À la une — Planche du jour",
+    "published": "Publiée",
+    "panels": "Cases",
+    "archiveKicker": "Archives · Toutes les planches",
+    "archiveTitle1": "Onze strips,",
+    "archiveTitle2": "une vie passionnante.",
+    "reading": "Lue",
+    "followKicker": "Suivre la suite",
+    "followTitle1": "Retrouvez",
+    "followTitle2": "toutes les planches",
+    "followTitle3": "sur Instagram.",
+    "followCta": "Aller sur Instagram"
+  },
+  "home": {
+    "title": "Louise Leroux",
+    "description": "Développeuse Fullstack & Illustratrice — Un magazine personnel"
   }
 }

@@ -2,8 +2,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/i18n/config";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { Masthead } from "@/components/layout/Masthead";
+import { Nav } from "@/components/layout/Nav";
+import { PageFooter } from "@/components/layout/PageFooter";
 
 type Props = {
   children: React.ReactNode;
@@ -21,10 +22,11 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="flex min-h-screen flex-col">
-        <Header />
+      <div className="min-h-screen flex flex-col">
+        <Masthead />
+        <Nav />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <PageFooter />
       </div>
     </NextIntlClientProvider>
   );

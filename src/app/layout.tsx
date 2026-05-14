@@ -1,23 +1,45 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import {
+  Cormorant_Garamond,
+  Anton,
+  DM_Sans,
+  JetBrains_Mono,
+} from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ImageProtection } from "@/components/providers/ImageProtection";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
 });
 
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-anton",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-jetbrains",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Louise Leroux | Développeuse Freelance & Illustratrice",
+    default: "Louise Leroux | Développeuse Fullstack & Illustratrice",
     template: "%s | Louise Leroux",
   },
   description:
@@ -41,13 +63,13 @@ export const metadata: Metadata = {
     alternateLocale: "en_US",
     url: "https://lerouxlouise.fr",
     siteName: "Louise Leroux",
-    title: "Louise Leroux | Développeuse Freelance & Illustratrice",
+    title: "Louise Leroux | Développeuse Fullstack & Illustratrice",
     description:
       "Développeuse web freelance et illustratrice. Je crée des applications web modernes et des illustrations sur mesure.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Louise Leroux | Développeuse Freelance & Illustratrice",
+    title: "Louise Leroux | Développeuse Fullstack & Illustratrice",
     description:
       "Développeuse web freelance et illustratrice. Je crée des applications web modernes et des illustrations sur mesure.",
   },
@@ -66,18 +88,12 @@ export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${cormorant.variable} ${anton.variable} ${dmSans.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <ImageProtection />
+        {children}
       </body>
     </html>
   );

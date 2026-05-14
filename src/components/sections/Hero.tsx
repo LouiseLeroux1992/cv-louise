@@ -1,161 +1,296 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
+import Image from "next/image";
+import { Rule } from "@/components/ui/Rule";
+import { getSeasonLabel } from "@/lib/season";
+
+const TOC_ITEMS = ["about", "code", "atelier", "bd", "contact"] as const;
+
+const TOC_LINKS: Record<string, string> = {
+  about: "/a-propos",
+  code: "/services/developpement",
+  atelier: "/services/illustration",
+  bd: "/bd",
+  contact: "/contact",
+};
+
+const TOC_NUMBERS: Record<string, string> = {
+  about: "02",
+  code: "03",
+  atelier: "04",
+  bd: "05",
+  contact: "06",
+};
+
+const FEATURED_STRIPS = [
+  { no: "11", slug: "voyage-au-japon", fr: "Voyage au Japon", src: "/bd/voyage-au-japon/1.png" },
+  { no: "10", slug: "mon-nouveau-metier", fr: "Mon nouveau métier", src: "/bd/mon-nouveau-metier/1.jpg" },
+  { no: "09", slug: "la-vie-a-paris", fr: "La vie à Paris", src: "/bd/la-vie-a-paris/1.jpg" },
+  { no: "08", slug: "reconversion", fr: "Reconversion", src: "/bd/reconversion/1.webp" },
+];
 
 export function Hero() {
-  const t = useTranslations();
+  return (
+    <>
+      <CoverHero />
+      <CoverQuote />
+      <CoverTOC />
+      <CoverFeatured />
+    </>
+  );
+}
 
-  const services = [
-    {
-      title: t("services.dev.title"),
-      description: t("services.dev.description"),
-      href: "/services/developpement",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"
-          />
-        </svg>
-      ),
-      color: "primary",
-    },
-    {
-      title: t("services.illustration.title"),
-      description: t("services.illustration.description"),
-      href: "/services/illustration",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"
-          />
-        </svg>
-      ),
-      color: "accent",
-    },
-  ];
+function CoverHero() {
+  const t = useTranslations("cover");
+  const locale = useLocale();
+  const season = getSeasonLabel(locale);
 
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl md:text-7xl font-bold mb-6"
+    <section className="relative overflow-hidden bg-paper">
+      {/* ── Mobile layout ── */}
+      <div className="md:hidden px-5 pt-6 pb-8">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+            {t("issue")}
+          </span>
+          <span className="font-display text-[40px] leading-[0.88] text-dark">023</span>
+        </div>
+        <h1 className="m-0">
+          <span className="font-serif italic font-normal text-[80px] leading-[0.78] tracking-[-0.035em] text-ink block">
+            Louise
+          </span>
+          <span
+            className="font-display text-[58px] leading-[0.85] text-primary uppercase block mt-[-0.06em]"
+            style={{ WebkitTextStroke: "1.2px var(--c-ink)" }}
           >
-            {t("home.title")}
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl md:text-3xl text-primary font-medium mb-12"
-          >
-            {t("home.subtitle")}
-          </motion.p>
-
-          {/* Service Cards */}
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              >
-                <Link
-                  href={service.href}
-                  className={`block p-6 rounded-xl border-2 transition-all hover:scale-[1.02] hover:shadow-lg text-left ${
-                    service.color === "primary"
-                      ? "bg-accent/5 border-accent/20 hover:border-accent/50"
-                      : "bg-accent/20 border-accent/40 hover:border-accent/70"
-                  }`}
-                >
-                  <div className="mb-3 text-accent">{service.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {service.description}
-                  </p>
-                  <div className="mt-3 flex items-center gap-2 text-sm font-medium">
-                    {t("home.learnMore")}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      className="w-4 h-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Link
-              href="/contact"
-              className="px-8 py-4 rounded-lg bg-accent text-accent-foreground hover:opacity-90 transition-all hover:scale-105 font-medium text-lg inline-flex items-center gap-2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                />
-              </svg>
-              {t("home.cta.contact")}
-            </Link>
-          </motion.div>
+            LEROUX
+          </span>
+        </h1>
+        <div className="mt-4">
+          <Image
+            src="/portrait-louise.jpg"
+            alt="Louise Leroux"
+            width={720}
+            height={960}
+            className="w-full h-auto object-cover"
+            style={{ aspectRatio: "3/4", objectPosition: "center top" }}
+            priority
+          />
+        </div>
+        <div className="flex flex-col gap-2.5 mt-6 text-ink">
+          <Rule>{t("role1")}</Rule>
+          <Rule>{t("role2")}</Rule>
+          <Rule>{t("location")}</Rule>
+        </div>
+        <div className="flex flex-col gap-2.5 mt-6">
+          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+            {t("inside")}
+          </span>
+          <p className="font-serif italic text-[17px] leading-[1.5] m-0 text-dark">
+            {t("lede")}
+          </p>
         </div>
       </div>
+
+      {/* ── Desktop layout — CSS Grid ── */}
+      <div className="hidden md:block px-8 pt-10 pb-14">
+        <div className="grid grid-cols-[160px_1fr_28%] grid-rows-[auto_1fr_auto] gap-x-6">
+
+          {/* Issue number — col 1, row 1-2 */}
+          <div className="col-start-1 row-start-1 row-span-2 flex flex-col items-start gap-3.5 pt-1.5 z-[3]">
+            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+              {t("issue")}
+            </span>
+            <div className="font-display text-[clamp(60px,7vw,110px)] leading-[0.88] text-dark">
+              023
+            </div>
+            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+              {season}
+            </span>
+          </div>
+
+          {/* Name — col 2, row 1, overlaps into col 3 */}
+          <h1 className="col-start-2 col-span-2 row-start-1 m-0 pt-4 z-[2] pointer-events-none">
+            <span
+              className="font-serif italic font-normal leading-[0.78] tracking-[-0.035em] text-ink block"
+              style={{ fontSize: "clamp(120px, 18vw, 280px)" }}
+            >
+              Louise
+            </span>
+            <span
+              className="font-display leading-[0.85] tracking-[0.005em] text-primary uppercase block"
+              style={{
+                fontSize: "clamp(80px, 13vw, 200px)",
+                marginTop: "-0.06em",
+                paddingLeft: "18%",
+                WebkitTextStroke: "1.2px var(--c-ink)",
+              }}
+            >
+              LEROUX
+            </span>
+          </h1>
+
+          {/* Portrait — col 3, row 1 */}
+          <div className="col-start-3 row-start-1 mt-[60px] z-[1] relative">
+            <Image
+              src="/portrait-louise.jpg"
+              alt="Louise Leroux"
+              width={720}
+              height={960}
+              className="w-full h-auto object-cover"
+              style={{ aspectRatio: "3/4", objectPosition: "center top" }}
+              priority
+            />
+            {/* P. 24 ÉDITO — overlapping top-right of portrait */}
+            <div className="absolute top-[-12px] right-[-8px] bg-dark text-cream px-3 py-2 font-mono text-[10px] tracking-[0.16em] uppercase flex gap-2.5 items-center z-[3]">
+              <span className="text-primary">P. 24</span>
+              <span>{t("toc.about.title")}</span>
+            </div>
+          </div>
+
+          {/* Roles — col 2, row 2 */}
+          <div className="col-start-2 row-start-2 mt-6 flex flex-col gap-2.5 max-w-[540px] text-ink">
+            <Rule>{t("role1")}</Rule>
+            <Rule>{t("role2")}</Rule>
+            <Rule>{t("location")}</Rule>
+          </div>
+
+          {/* Lede — col 3, row 2 */}
+          <div className="col-start-3 row-start-2 mt-6 flex flex-col gap-2.5">
+            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+              {t("inside")}
+            </span>
+            <p className="font-serif italic text-[17px] leading-[1.5] m-0 text-dark">
+              {t("lede")}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CoverQuote() {
+  const t = useTranslations("cover");
+
+  return (
+    <section className="bg-primary px-5 md:px-16 py-8 md:py-14 flex flex-col md:grid md:grid-cols-[160px_1fr_160px] gap-4 md:gap-6 items-start md:items-center border-t border-b border-ink">
+      <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-dark">
+        {t("quoteKicker")}
+      </span>
+      <blockquote className="m-0 font-serif font-medium text-[clamp(22px,3vw,40px)] leading-[1.22] tracking-[-0.015em] text-ink">
+        «&nbsp;{t("quote")}{" "}
+        <em className="italic font-normal text-dark">
+          {t("quoteEmphasis")}
+        </em>
+        &nbsp;»
+      </blockquote>
+      <div className="font-mono text-[9.5px] tracking-[0.16em] uppercase text-dark md:text-right">
+        {t("quoteSig")}
+      </div>
+    </section>
+  );
+}
+
+function CoverTOC() {
+  const t = useTranslations("cover");
+
+  return (
+    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-8 md:pb-12 bg-paper">
+      <header className="flex items-baseline justify-between mb-6 md:mb-8">
+        <h2 className="font-display text-[clamp(46px,6vw,88px)] leading-[0.88] uppercase m-0">
+          {t("tocTitle")}
+        </h2>
+        <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute hidden md:inline">
+          {t("tocSub")}
+        </span>
+      </header>
+      <ol className="list-none p-0 m-0">
+        {TOC_ITEMS.map((item) => (
+          <li key={item} className="border-t border-ink last:border-b">
+            <Link
+              href={TOC_LINKS[item]}
+              className="flex flex-col md:grid md:grid-cols-[70px_1fr] w-full bg-transparent py-4 md:py-5 px-2 text-left no-underline transition-all hover:bg-fog hover:pl-[18px]"
+            >
+              <div className="flex items-baseline gap-2.5 md:flex-col">
+                <span className="font-mono text-[10px] tracking-[0.16em] text-mute">
+                  {TOC_NUMBERS[item]}
+                </span>
+                <span className="font-mono text-[9.5px] tracking-[0.18em] uppercase text-mute md:hidden">
+                  {t(`toc.${item}.kicker`)}
+                </span>
+              </div>
+              <div className="flex flex-col gap-1.5 mt-1.5 md:mt-0">
+                <div className="font-mono text-[10px] tracking-[0.18em] uppercase text-mute hidden md:block">
+                  {t(`toc.${item}.kicker`)}
+                </div>
+                <div className="flex items-center gap-3.5">
+                  <span className="font-serif italic font-medium text-[clamp(24px,3vw,42px)] leading-[1] text-ink">
+                    {t(`toc.${item}.title`)}
+                  </span>
+                  <span className="hidden md:block flex-1 border-b-[1.5px] border-dotted border-ink opacity-50 h-px" />
+                  <span className="font-mono text-sm tracking-[0.16em] text-ink hidden md:block">
+                    P. {t(`toc.${item}.page`)}
+                  </span>
+                </div>
+                <div className="font-serif italic text-sm md:text-base leading-[1.5] text-mute max-w-[720px] mt-0.5 hidden md:block">
+                  {t(`toc.${item}.tease`)}
+                </div>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function CoverFeatured() {
+  const t = useTranslations("cover");
+
+  return (
+    <section className="px-5 md:px-8 pt-8 md:pt-14 pb-10 md:pb-16 bg-cream border-t border-ink">
+      <header className="mb-6 md:mb-9 flex flex-col gap-2">
+        <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+          {t("featKicker")}
+        </span>
+        <h2 className="font-serif font-medium text-[clamp(44px,7vw,96px)] leading-[0.9] tracking-[-0.015em] m-0">
+          <em className="italic font-normal">{t("featTitle")}</em>{" "}
+          {t("featTitle2")}
+        </h2>
+      </header>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {FEATURED_STRIPS.map((strip) => (
+          <Link
+            key={strip.no}
+            href={`/bd?read=${strip.slug}`}
+            className="flex flex-col gap-2 no-underline text-ink group"
+          >
+            <Image
+              src={strip.src}
+              alt={strip.fr}
+              width={400}
+              height={400}
+              className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
+              style={{ aspectRatio: "1/1", objectFit: "cover" }}
+            />
+            <div className="flex gap-2 items-baseline font-mono text-[9px] md:text-[10px] tracking-[0.16em] uppercase">
+              <span className="text-mute">{strip.no}</span>
+              <span>{strip.fr}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+      <Link
+        href="/bd"
+        className="mt-6 md:mt-8 w-full md:w-auto bg-ink text-cream border-none px-6 py-[14px] md:py-[18px] font-display text-sm md:text-base tracking-[0.12em] uppercase inline-flex items-center justify-between md:justify-start gap-3.5 no-underline transition-all hover:bg-dark hover:gap-[22px]"
+      >
+        <span>{t("featCta")}</span>
+        <span className="font-sans">→</span>
+      </Link>
     </section>
   );
 }
