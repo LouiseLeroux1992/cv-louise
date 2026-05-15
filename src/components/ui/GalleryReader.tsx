@@ -30,10 +30,10 @@ export function GalleryReader({
 }: GalleryReaderProps) {
   const [index, setIndex] = useState(startIndex);
 
-  // Reset index when project changes
+  // Update index when startIndex or project changes
   useEffect(() => {
-    setIndex(0);
-  }, [title]);
+    setIndex(startIndex);
+  }, [title, startIndex]);
 
   const hasPrev = index > 0;
   const hasNext = index < images.length - 1;

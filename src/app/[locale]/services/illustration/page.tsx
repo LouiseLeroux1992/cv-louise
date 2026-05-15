@@ -61,8 +61,8 @@ export default function ServicesIllustration() {
   const t = useTranslations("atelier");
   const rl = useReaderLabels();
 
-  const openViewer = useCallback((project: ProjectKey) => {
-    setViewer({ project, index: 0 });
+  const openViewer = useCallback((project: ProjectKey, index = 0) => {
+    setViewer({ project, index });
   }, []);
 
   const closeViewer = useCallback(() => setViewer(null), []);
@@ -95,15 +95,16 @@ export default function ServicesIllustration() {
     <>
       <AtelierHeader />
       <AtelierServices />
-      <AtelierLivre onOpen={() => openViewer("livre")} />
-      <AtelierTaytay onOpen={() => openViewer("taytay")} />
-      <AtelierThomas onOpen={() => openViewer("thomas")} />
-      <AtelierCaledobio onOpen={() => openViewer("caledobio")} />
-      <AtelierAnimaux onOpen={() => openViewer("animaux")} />
+      <AtelierLivre onOpen={(i) => openViewer("livre", i)} />
+      <AtelierTaytay onOpen={(i) => openViewer("taytay", i)} />
+      <AtelierThomas onOpen={(i) => openViewer("thomas", i)} />
+      <AtelierCaledobio onOpen={(i) => openViewer("caledobio", i)} />
+      <AtelierAnimaux onOpen={(i) => openViewer("animaux", i)} />
       <AtelierCTA />
       {viewer && (
         <GalleryReader
           title={getTitle(viewer.project)}
+          startIndex={viewer.index}
           images={getImages(viewer.project)}
           imageAlts={getAlts(viewer.project)}
           onClose={closeViewer}
@@ -180,7 +181,7 @@ function AtelierServices() {
   );
 }
 
-function AtelierLivre({ onOpen }: { onOpen: () => void }) {
+function AtelierLivre({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
 
   return (
@@ -201,7 +202,7 @@ function AtelierLivre({ onOpen }: { onOpen: () => void }) {
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group relative mb-3 md:mb-4 break-inside-avoid block w-full"
-            onClick={onOpen}
+            onClick={() => onOpen(i)}
           >
             <Image
               src={`/illustrations/livre-jeunesse/${i}.webp`}
@@ -215,7 +216,7 @@ function AtelierLivre({ onOpen }: { onOpen: () => void }) {
       </div>
       <button
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
-        onClick={onOpen}
+        onClick={() => onOpen(0)}
       >
         {t("livreCta")}
       </button>
@@ -223,7 +224,7 @@ function AtelierLivre({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
+function AtelierTaytay({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
 
   return (
@@ -244,7 +245,7 @@ function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group relative flex flex-col gap-2 mb-3 md:mb-4 break-inside-avoid w-full"
-            onClick={onOpen}
+            onClick={() => onOpen(i)}
           >
             <Image
               src={`/illustrations/taytay/${i}.webp`}
@@ -259,7 +260,7 @@ function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
       </div>
       <button
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
-        onClick={onOpen}
+        onClick={() => onOpen(0)}
       >
         {t("taytayCta")}
       </button>
@@ -267,7 +268,7 @@ function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-function AtelierThomas({ onOpen }: { onOpen: () => void }) {
+function AtelierThomas({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
 
   return (
@@ -288,7 +289,7 @@ function AtelierThomas({ onOpen }: { onOpen: () => void }) {
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group mb-3 md:mb-4 break-inside-avoid block w-full"
-            onClick={onOpen}
+            onClick={() => onOpen(i)}
           >
             <Image
               src={`/illustrations/thomas/${i}.webp`}
@@ -302,7 +303,7 @@ function AtelierThomas({ onOpen }: { onOpen: () => void }) {
       </div>
       <button
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
-        onClick={onOpen}
+        onClick={() => onOpen(0)}
       >
         {t("thomasCta")}
       </button>
@@ -310,7 +311,7 @@ function AtelierThomas({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
+function AtelierCaledobio({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
 
   return (
@@ -331,7 +332,7 @@ function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group relative mb-3 md:mb-4 break-inside-avoid block w-full"
-            onClick={onOpen}
+            onClick={() => onOpen(i)}
           >
             <Image
               src={`/illustrations/caledobio/${i}.webp`}
@@ -348,7 +349,7 @@ function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
       </div>
       <button
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
-        onClick={onOpen}
+        onClick={() => onOpen(0)}
       >
         {t("caledobioCta")}
       </button>
@@ -356,7 +357,7 @@ function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
+function AtelierAnimaux({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
 
   return (
@@ -374,7 +375,7 @@ function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group mb-3 md:mb-4 break-inside-avoid block w-full"
-            onClick={onOpen}
+            onClick={() => onOpen(i)}
           >
             <Image
               src={`/illustrations/animaux/${i}.webp`}
@@ -388,7 +389,7 @@ function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
       </div>
       <button
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
-        onClick={onOpen}
+        onClick={() => onOpen(0)}
       >
         {t("animauxCta")}
       </button>
