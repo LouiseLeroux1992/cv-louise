@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { WebtoonReader } from "@/components/ui/WebtoonReader";
+import { GalleryReader } from "@/components/ui/GalleryReader";
 
 const PROJECTS = [
   { no: "01", key: "bd" },
@@ -80,15 +80,15 @@ export default function ServicesIllustration() {
       <AtelierAnimaux onOpen={() => openViewer("animaux")} />
       <AtelierCTA />
       {viewer && (
-        <WebtoonReader
+        <GalleryReader
           title={PROJECT_CONFIG[viewer.project].title}
           images={getImages(viewer.project)}
           imageAlts={getAlts(viewer.project)}
           onClose={closeViewer}
-          onPrev={prevProject ? () => setViewer({ project: prevProject, index: 0 }) : null}
-          onNext={nextProject ? () => setViewer({ project: nextProject, index: 0 }) : null}
-          prevLabel={prevProject ? PROJECT_CONFIG[prevProject].title : undefined}
-          nextLabel={nextProject ? PROJECT_CONFIG[nextProject].title : undefined}
+          onPrevProject={prevProject ? () => setViewer({ project: prevProject, index: 0 }) : null}
+          onNextProject={nextProject ? () => setViewer({ project: nextProject, index: 0 }) : null}
+          prevProjectLabel={prevProject ? PROJECT_CONFIG[prevProject].title : undefined}
+          nextProjectLabel={nextProject ? PROJECT_CONFIG[nextProject].title : undefined}
         />
       )}
     </>
