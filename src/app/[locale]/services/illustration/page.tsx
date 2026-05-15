@@ -169,11 +169,11 @@ function AtelierLivre({ onOpen }: { onOpen: () => void }) {
           Illustrations réalisées à l&apos;aquarelle pour un album jeunesse. Cliquez pour feuilleter.
         </p>
       </header>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+      <div className="columns-2 md:columns-3 lg:columns-6 gap-3 md:gap-4">
         {Array.from({ length: LIVRE_PAGES }).map((_, i) => (
           <button
             key={i}
-            className="bg-transparent border-none p-0 cursor-pointer group relative"
+            className="bg-transparent border-none p-0 cursor-pointer group relative mb-3 md:mb-4 break-inside-avoid block w-full"
             onClick={onOpen}
           >
             <Image
@@ -182,7 +182,6 @@ function AtelierLivre({ onOpen }: { onOpen: () => void }) {
               width={400}
               height={400}
               className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
-              style={{ aspectRatio: "1/1", objectFit: "cover" }}
             />
           </button>
         ))}
@@ -211,11 +210,11 @@ function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
           Série de 11 illustrations numériques. Cliquez pour agrandir.
         </p>
       </header>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+      <div className="columns-2 md:columns-3 lg:columns-5 gap-3 md:gap-4">
         {Array.from({ length: TAYTAY_PAGES }).map((_, i) => (
           <button
             key={i}
-            className="bg-transparent border-none p-0 cursor-pointer group relative flex flex-col gap-2"
+            className="bg-transparent border-none p-0 cursor-pointer group relative flex flex-col gap-2 mb-3 md:mb-4 break-inside-avoid w-full"
             onClick={onOpen}
           >
             <Image
@@ -224,7 +223,6 @@ function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
               width={400}
               height={400}
               className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
-              style={{ aspectRatio: "1/1", objectFit: "cover" }}
             />
             <span className="font-serif italic text-sm text-ink text-left">{TAYTAY_NAMES[i]}</span>
           </button>
@@ -254,11 +252,11 @@ function AtelierThomas({ onOpen }: { onOpen: () => void }) {
           Série de 8 illustrations humoristiques à l&apos;aquarelle.
         </p>
       </header>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
         {Array.from({ length: THOMAS_PAGES }).map((_, i) => (
           <button
             key={i}
-            className="bg-transparent border-none p-0 cursor-pointer group"
+            className="bg-transparent border-none p-0 cursor-pointer group mb-3 md:mb-4 break-inside-avoid block w-full"
             onClick={onOpen}
           >
             <Image
@@ -267,7 +265,6 @@ function AtelierThomas({ onOpen }: { onOpen: () => void }) {
               width={400}
               height={400}
               className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
-              style={{ aspectRatio: "1/1", objectFit: "cover" }}
             />
           </button>
         ))}
@@ -296,11 +293,11 @@ function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
           Bande dessinée pédagogique à destination des enfants et de leurs parents, réalisée pour le laboratoire d&apos;analyses médicales Calédobio. 4 planches.
         </p>
       </header>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <div className="columns-2 md:columns-4 gap-3 md:gap-4">
         {Array.from({ length: CALEDOBIO_PAGES }).map((_, i) => (
           <button
             key={i}
-            className="bg-transparent border-none p-0 cursor-pointer group relative"
+            className="bg-transparent border-none p-0 cursor-pointer group relative mb-3 md:mb-4 break-inside-avoid block w-full"
             onClick={onOpen}
           >
             <Image
@@ -337,11 +334,11 @@ function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
           Dessins <em className="italic font-normal">d&apos;animaux</em>
         </h2>
       </header>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+      <div className="columns-2 md:columns-3 lg:columns-5 gap-3 md:gap-4">
         {Array.from({ length: ANIMAUX_PAGES }).map((_, i) => (
           <button
             key={i}
-            className="bg-transparent border-none p-0 cursor-pointer group"
+            className="bg-transparent border-none p-0 cursor-pointer group mb-3 md:mb-4 break-inside-avoid block w-full"
             onClick={onOpen}
           >
             <Image
@@ -350,7 +347,6 @@ function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
               width={400}
               height={400}
               className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
-              style={{ aspectRatio: "1/1", objectFit: "cover" }}
             />
           </button>
         ))}
