@@ -8,7 +8,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "langages",
     name: "Langages",
-    skills: ["Rust", "TypeScript", "Next.js", "React Native", "GraphQL", "PHP"],
+    skills: ["Rust", "TypeScript", "Next.js", "React Native", "GraphQL", "PHP", "Symfony"],
   },
   {
     id: "infrastructure",
@@ -18,7 +18,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "outils",
     name: "Outils",
-    skills: ["Git / GitHub", "Linear", "Jira", "Figma", "Claude Code"],
+    skills: ["Git / GitHub", "Linear", "Jira", "Figma", "Claude Code", "Webflow"],
   },
   {
     id: "illustration",

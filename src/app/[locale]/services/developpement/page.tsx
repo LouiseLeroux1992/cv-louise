@@ -8,13 +8,13 @@ const TECHNOLOGIES = [
   { name: "TypeScript / Next.js", category: "lang" },
   { name: "React Native", category: "lang" },
   { name: "GraphQL", category: "lang" },
-  { name: "PHP", category: "lang" },
+  { name: "PHP / Symfony", category: "lang" },
 ];
 
 const TOOLS = [
   "Docker", "Kubernetes", "GCP", "PostgreSQL", "RabbitMQ",
-  "Tailwind", "shadcn", "Git / GitHub", "Linear", "Jira",
-  "Figma", "Claude Code",
+  "Tailwind", "shadcn", "Webflow", "Git / GitHub", "Linear",
+  "Jira", "Figma", "Claude Code",
 ];
 
 const PROCESS = [

@@ -14,8 +14,8 @@ export const experiences: Experience[] = [
     role: "Développeuse Fullstack",
     period: "Mars 2023 - Présent",
     description:
-      "Conception et maintenance de multiples outils (SaaS, app mobile, outils internes, automatisations, web) au sein d'une équipe de 6 développeurs et 3 produits.\nProjet phare : Pilote, refonte d'un logiciel legacy de 10 ans — logiciel d'administration d'espaces de travail (contrats, facturation, utilisateurs, opérations).\n• Architecture micro-services : APIs Rust, gateway GraphQL, messaging RabbitMQ\n• Frontends : back-office (Next.js + Tailwind), client (Next.js + shadcn)\n• Migration des fonctionnalités existantes et développement de nouvelles features sur stack moderne",
-    technologies: ["Rust", "TypeScript", "Next.js", "React Native", "GraphQL", "Docker", "Kubernetes", "GCP", "PostgreSQL", "RabbitMQ"],
+      "Au sein d'une équipe technique de 10 personnes, développement et maintenance de plusieurs outils (logiciel SaaS, application mobile, outils de gestion interne, automatisations, site web) au service des équipes et des clients.\nProjet phare : Pilote, refonte d'un logiciel legacy de 10 ans — logiciel d'administration d'espaces de travail (contrats, facturation, utilisateurs, opérations).\n• Architecture micro-services : APIs Rust, gateway GraphQL, messaging RabbitMQ\n• Frontends : back-office (Next.js + Tailwind), client (Next.js + shadcn)\n• Migration des fonctionnalités existantes et développement de nouvelles features sur stack moderne",
+    technologies: ["Rust", "TypeScript", "Next.js", "React Native", "GraphQL", "PHP", "Symfony", "Docker", "Kubernetes", "GCP", "PostgreSQL", "Webflow"],
   },
   {
     id: "2",
