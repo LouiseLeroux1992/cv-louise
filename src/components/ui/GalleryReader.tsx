@@ -123,7 +123,7 @@ export function GalleryReader({
       </div>
 
       {/* Image area with side arrows */}
-      <div className="flex-1 flex items-center justify-center p-4 md:p-12 bg-fog relative">
+      <div className="flex-1 min-h-0 flex items-center justify-center p-4 md:p-12 bg-fog relative">
         {/* Prev image */}
         {hasPrev && (
           <button
@@ -149,7 +149,8 @@ export function GalleryReader({
           alt={imageAlts?.[index] || `${title} — ${index + 1}`}
           width={1200}
           height={1200}
-          className="max-w-[75vw] md:max-w-[60vw] max-h-[80vh] w-auto h-auto object-contain"
+          className="max-w-[75vw] md:max-w-[60vw] w-auto h-auto object-contain"
+          style={{ maxHeight: "calc(100vh - 10rem)" }}
         />
       </div>
 
