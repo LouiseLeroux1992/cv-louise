@@ -41,11 +41,11 @@ type ProjectKey = "livre" | "taytay" | "animaux" | "caledobio" | "thomas";
 type GalleryState = { project: ProjectKey; index: number } | null;
 
 const PROJECT_TITLE_KEYS: Record<ProjectKey, string> = {
-  livre: "livreTitle1",
-  taytay: "taytayTitle1",
-  thomas: "thomasTitle1",
-  caledobio: "caledobioTitle1",
-  animaux: "animauxTitle1",
+  livre: "livreFullTitle",
+  taytay: "taytayFullTitle",
+  thomas: "thomasFullTitle",
+  caledobio: "caledobioFullTitle",
+  animaux: "animauxFullTitle",
 };
 
 const PROJECT_CONFIG: Record<ProjectKey, { path: string; count: number }> = {
