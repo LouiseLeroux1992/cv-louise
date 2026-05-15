@@ -3,6 +3,15 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 
+type ReaderLabels = {
+  end?: string;
+  back?: string;
+  previous?: string;
+  next?: string;
+  imagesLabel?: string;
+  imageLabel?: string;
+};
+
 type WebtoonReaderProps = {
   title: string;
   subtitle?: string;
@@ -13,6 +22,7 @@ type WebtoonReaderProps = {
   onNext: (() => void) | null;
   prevLabel?: string;
   nextLabel?: string;
+  labels?: ReaderLabels;
 };
 
 export function WebtoonReader({
@@ -25,7 +35,16 @@ export function WebtoonReader({
   onNext,
   prevLabel,
   nextLabel,
+  labels = {},
 }: WebtoonReaderProps) {
+  const l = {
+    end: labels.end || "FIN",
+    back: labels.back || "Retour",
+    previous: labels.previous || "Précédent",
+    next: labels.next || "Suivant",
+    imagesLabel: labels.imagesLabel || "images",
+    imageLabel: labels.imageLabel || "image",
+  };
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
   const prevTitleRef = React.useRef(title);
@@ -96,7 +115,7 @@ export function WebtoonReader({
               </span>
             )}
             <span className="hidden md:inline font-mono text-[10px] tracking-[0.14em] uppercase text-mute">
-              {images.length} {images.length > 1 ? "images" : "image"}
+              {images.length} {images.length > 1 ? l.imagesLabel : l.imageLabel}
             </span>
           </div>
           {onNext ? (
@@ -158,7 +177,7 @@ export function WebtoonReader({
           <div className="max-w-[600px] mx-auto px-4 md:px-0 pb-10 flex flex-col items-center gap-6">
             <div className="w-full border-t border-ink pt-6 flex flex-col items-center gap-2">
               <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-                FIN
+                {l.end}
               </span>
               <span className="font-serif italic text-lg text-dark">
                 {title}
@@ -172,7 +191,7 @@ export function WebtoonReader({
                 >
                   <span className="font-sans text-lg">←</span>
                   <span className="hidden md:inline">
-                    {prevLabel || "Précédent"}
+                    {prevLabel || l.previous}
                   </span>
                 </button>
               ) : (
@@ -182,7 +201,7 @@ export function WebtoonReader({
                 className="bg-ink text-cream border-none px-5 py-2.5 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
                 onClick={onClose}
               >
-                Retour
+                {l.back}
               </button>
               {onNext ? (
                 <button
@@ -190,7 +209,7 @@ export function WebtoonReader({
                   onClick={handleNext}
                 >
                   <span className="hidden md:inline">
-                    {nextLabel || "Suivant"}
+                    {nextLabel || l.next}
                   </span>
                   <span className="font-sans text-lg">→</span>
                 </button>

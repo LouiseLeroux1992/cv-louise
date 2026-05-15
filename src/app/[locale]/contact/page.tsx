@@ -14,15 +14,16 @@ export default function Contact() {
 
 function ContactHeader() {
   const t = useTranslations("contact");
+  const tc = useTranslations("correspondance");
 
   return (
     <header className="px-5 md:px-8 pt-8 md:pt-12 pb-7 md:pb-9 border-b border-ink bg-paper">
       <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-        Rubrique 06 · Correspondance
+        {tc("rubricKicker")}
       </span>
       <h1 className="font-display text-[clamp(64px,12vw,170px)] leading-[0.88] tracking-[-0.005em] m-0 mt-4 uppercase text-ink">
         <em className="font-serif italic font-normal normal-case tracking-[-0.03em] text-dark">
-          Écrire
+          {tc("headerTitle1")}
         </em>
         <br />
         {t("title")}
@@ -36,6 +37,7 @@ function ContactHeader() {
 
 function ContactBody() {
   const t = useTranslations("contact");
+  const tc = useTranslations("correspondance");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,13 +61,13 @@ function ContactBody() {
       });
 
       if (!response.ok) {
-        throw new Error("Erreur lors de l'envoi");
+        throw new Error(tc("sendError"));
       }
 
       setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "dev", message: "" });
     } catch {
-      setError("Une erreur est survenue. Veuillez réessayer.");
+      setError(tc("genericError"));
     } finally {
       setIsSubmitting(false);
     }

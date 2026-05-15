@@ -6,6 +6,13 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { GalleryReader } from "@/components/ui/GalleryReader";
 
+function useReaderLabels() {
+  const t = useTranslations("reader");
+  return {
+    back: `← ${t("back")}`,
+  };
+}
+
 const PROJECTS = [
   { no: "01", key: "bd" },
   { no: "02", key: "livre" },
@@ -33,16 +40,26 @@ const TAYTAY_NAMES = [
 type ProjectKey = "livre" | "taytay" | "animaux" | "caledobio" | "thomas";
 type GalleryState = { project: ProjectKey; index: number } | null;
 
-const PROJECT_CONFIG: Record<ProjectKey, { path: string; title: string; count: number }> = {
-  livre: { path: "livre-jeunesse", title: "Livre jeunesse", count: LIVRE_PAGES },
-  taytay: { path: "taytay", title: "Illustrations Taytay", count: TAYTAY_PAGES },
-  animaux: { path: "animaux", title: "Dessins d'animaux", count: ANIMAUX_PAGES },
-  caledobio: { path: "caledobio", title: "BD Calédobio", count: CALEDOBIO_PAGES },
-  thomas: { path: "thomas", title: "Illustrations comiques", count: THOMAS_PAGES },
+const PROJECT_TITLE_KEYS: Record<ProjectKey, string> = {
+  livre: "livreTitle1",
+  taytay: "taytayTitle1",
+  thomas: "thomasTitle1",
+  caledobio: "caledobioTitle1",
+  animaux: "animauxTitle1",
+};
+
+const PROJECT_CONFIG: Record<ProjectKey, { path: string; count: number }> = {
+  livre: { path: "livre-jeunesse", count: LIVRE_PAGES },
+  taytay: { path: "taytay", count: TAYTAY_PAGES },
+  animaux: { path: "animaux", count: ANIMAUX_PAGES },
+  caledobio: { path: "caledobio", count: CALEDOBIO_PAGES },
+  thomas: { path: "thomas", count: THOMAS_PAGES },
 };
 
 export default function ServicesIllustration() {
   const [viewer, setViewer] = useState<GalleryState>(null);
+  const t = useTranslations("atelier");
+  const rl = useReaderLabels();
 
   const openViewer = useCallback((project: ProjectKey) => {
     setViewer({ project, index: 0 });
@@ -56,6 +73,10 @@ export default function ServicesIllustration() {
   const prevProject = currentProjectIndex > 0 ? projectKeys[currentProjectIndex - 1] : null;
   const nextProject = currentProjectIndex < projectKeys.length - 1 ? projectKeys[currentProjectIndex + 1] : null;
 
+  function getTitle(project: ProjectKey): string {
+    return t(PROJECT_TITLE_KEYS[project]);
+  }
+
   function getImages(project: ProjectKey): string[] {
     const config = PROJECT_CONFIG[project];
     return Array.from({ length: config.count }, (_, i) => `/illustrations/${config.path}/${i}.webp`);
@@ -65,8 +86,9 @@ export default function ServicesIllustration() {
     if (project === "taytay") {
       return TAYTAY_NAMES;
     }
+    const title = getTitle(project);
     const config = PROJECT_CONFIG[project];
-    return Array.from({ length: config.count }, (_, i) => `${config.title} — ${i + 1}`);
+    return Array.from({ length: config.count }, (_, i) => `${title} — ${i + 1}`);
   }
 
   return (
@@ -81,14 +103,15 @@ export default function ServicesIllustration() {
       <AtelierCTA />
       {viewer && (
         <GalleryReader
-          title={PROJECT_CONFIG[viewer.project].title}
+          title={getTitle(viewer.project)}
           images={getImages(viewer.project)}
           imageAlts={getAlts(viewer.project)}
           onClose={closeViewer}
           onPrevProject={prevProject ? () => setViewer({ project: prevProject, index: 0 }) : null}
           onNextProject={nextProject ? () => setViewer({ project: nextProject, index: 0 }) : null}
-          prevProjectLabel={prevProject ? PROJECT_CONFIG[prevProject].title : undefined}
-          nextProjectLabel={nextProject ? PROJECT_CONFIG[nextProject].title : undefined}
+          prevProjectLabel={prevProject ? getTitle(prevProject) : undefined}
+          nextProjectLabel={nextProject ? getTitle(nextProject) : undefined}
+          backLabel={rl.back}
         />
       )}
     </>
@@ -96,38 +119,40 @@ export default function ServicesIllustration() {
 }
 
 function AtelierHeader() {
-  const t = useTranslations("servicesIllustration");
+  const t = useTranslations("atelier");
+  const ts = useTranslations("servicesIllustration");
 
   return (
     <header className="px-5 md:px-8 pt-8 md:pt-12 pb-7 md:pb-9 border-b border-ink bg-paper">
       <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-        Rubrique 04 · Atelier
+        {t("rubricKicker")}
       </span>
       <h1 className="font-display text-[clamp(64px,12vw,170px)] leading-[0.88] tracking-[-0.005em] m-0 mt-4 uppercase text-ink">
         <em className="font-serif italic font-normal normal-case tracking-[-0.03em] text-dark">
-          L&apos;atelier
+          {t("headerTitle1")}
         </em>
         <br />
-        Illustration
+        {t("headerTitle2")}
       </h1>
       <p className="font-serif italic text-lg md:text-xl leading-[1.4] mt-6 max-w-[800px] text-dark m-0">
-        {t("description")}
+        {ts("description")}
       </p>
     </header>
   );
 }
 
 function AtelierServices() {
-  const t = useTranslations("servicesIllustration");
+  const t = useTranslations("atelier");
+  const ts = useTranslations("servicesIllustration");
 
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-fog border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Projets · P. 62
+          {t("projectsKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
-          {t("servicesTitle")}
+          {ts("servicesTitle")}
         </h2>
       </header>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-ink">
@@ -143,10 +168,10 @@ function AtelierServices() {
               {p.no}
             </span>
             <h3 className="font-serif italic font-medium text-2xl md:text-3xl leading-[1.05] text-ink m-0">
-              {t(`services.${p.key}.title`)}
+              {ts(`services.${p.key}.title`)}
             </h3>
             <p className="font-serif text-[15px] md:text-base leading-[1.5] text-mute m-0">
-              {t(`services.${p.key}.description`)}
+              {ts(`services.${p.key}.description`)}
             </p>
           </div>
         ))}
@@ -156,17 +181,19 @@ function AtelierServices() {
 }
 
 function AtelierLivre({ onOpen }: { onOpen: () => void }) {
+  const t = useTranslations("atelier");
+
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Livre jeunesse · Aquarelle · 2025
+          {t("livreKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
-          18 illustrations, <em className="italic font-normal">un livre.</em>
+          {t("livreTitle1")} <em className="italic font-normal">{t("livreTitle2")}</em>
         </h2>
         <p className="font-serif italic text-base md:text-lg text-mute m-0 max-w-[700px]">
-          Illustrations réalisées à l&apos;aquarelle pour un album jeunesse. Cliquez pour feuilleter.
+          {t("livreDesc")}
         </p>
       </header>
       <div className="columns-2 md:columns-3 lg:columns-6 gap-3 md:gap-4">
@@ -190,24 +217,26 @@ function AtelierLivre({ onOpen }: { onOpen: () => void }) {
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
         onClick={onOpen}
       >
-        Feuilleter →
+        {t("livreCta")}
       </button>
     </section>
   );
 }
 
 function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
+  const t = useTranslations("atelier");
+
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-cream border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Illustrations · Dessin numérique · 2024
+          {t("taytayKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
-          Illustrations <em className="italic font-normal">Taytay</em>
+          {t("taytayTitle1")} <em className="italic font-normal">{t("taytayTitle2")}</em>
         </h2>
         <p className="font-serif italic text-base md:text-lg text-mute m-0 max-w-[700px]">
-          Série de 11 illustrations numériques. Cliquez pour agrandir.
+          {t("taytayDesc")}
         </p>
       </header>
       <div className="columns-2 md:columns-3 lg:columns-5 gap-3 md:gap-4">
@@ -232,24 +261,26 @@ function AtelierTaytay({ onOpen }: { onOpen: () => void }) {
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
         onClick={onOpen}
       >
-        Voir tout →
+        {t("taytayCta")}
       </button>
     </section>
   );
 }
 
 function AtelierThomas({ onOpen }: { onOpen: () => void }) {
+  const t = useTranslations("atelier");
+
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Illustrations comiques · Aquarelle · 2024 — 2026
+          {t("thomasKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
-          Portraits <em className="italic font-normal">comiques</em>
+          {t("thomasTitle1")} <em className="italic font-normal">{t("thomasTitle2")}</em>
         </h2>
         <p className="font-serif italic text-base md:text-lg text-mute m-0 max-w-[700px]">
-          Série de 8 illustrations humoristiques à l&apos;aquarelle.
+          {t("thomasDesc")}
         </p>
       </header>
       <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
@@ -273,24 +304,26 @@ function AtelierThomas({ onOpen }: { onOpen: () => void }) {
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
         onClick={onOpen}
       >
-        Voir tout →
+        {t("thomasCta")}
       </button>
     </section>
   );
 }
 
 function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
+  const t = useTranslations("atelier");
+
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          BD pédagogique · Commande · Laboratoire Calédobio · 2019
+          {t("caledobioKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
-          BD <em className="italic font-normal">Calédobio</em>
+          {t("caledobioTitle1")} <em className="italic font-normal">{t("caledobioTitle2")}</em>
         </h2>
         <p className="font-serif italic text-base md:text-lg text-mute m-0 max-w-[700px]">
-          Bande dessinée pédagogique à destination des enfants et de leurs parents, réalisée pour le laboratoire d&apos;analyses médicales Calédobio. 4 planches.
+          {t("caledobioDesc")}
         </p>
       </header>
       <div className="columns-2 md:columns-4 gap-3 md:gap-4">
@@ -302,13 +335,13 @@ function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
           >
             <Image
               src={`/illustrations/caledobio/${i}.webp`}
-              alt={`Planche ${i + 1}`}
+              alt={`${t("caledobioPlanche")} ${i + 1}`}
               width={400}
               height={560}
               className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
             />
             <span className="absolute bottom-0 left-0 right-0 bg-ink/70 text-cream font-mono text-[10px] tracking-[0.12em] uppercase px-2 py-1.5 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-              Planche {i + 1}
+              {t("caledobioPlanche")} {i + 1}
             </span>
           </button>
         ))}
@@ -317,21 +350,23 @@ function AtelierCaledobio({ onOpen }: { onOpen: () => void }) {
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
         onClick={onOpen}
       >
-        Lire les planches →
+        {t("caledobioCta")}
       </button>
     </section>
   );
 }
 
 function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
+  const t = useTranslations("atelier");
+
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-fog border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Dessins · Encre · 2014
+          {t("animauxKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
-          Dessins <em className="italic font-normal">d&apos;animaux</em>
+          {t("animauxTitle1")} <em className="italic font-normal">{t("animauxTitle2")}</em>
         </h2>
       </header>
       <div className="columns-2 md:columns-3 lg:columns-5 gap-3 md:gap-4">
@@ -343,7 +378,7 @@ function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
           >
             <Image
               src={`/illustrations/animaux/${i}.webp`}
-              alt={`Dessin d'animal ${i + 1}`}
+              alt={`${t("animauxTitle1")} ${i + 1}`}
               width={400}
               height={400}
               className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
@@ -355,33 +390,34 @@ function AtelierAnimaux({ onOpen }: { onOpen: () => void }) {
         className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
         onClick={onOpen}
       >
-        Voir tout →
+        {t("animauxCta")}
       </button>
     </section>
   );
 }
 
 function AtelierCTA() {
-  const t = useTranslations("servicesIllustration");
+  const t = useTranslations("atelier");
+  const ts = useTranslations("servicesIllustration");
 
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-sage border-b border-ink flex flex-col md:grid md:grid-cols-[1fr_auto] gap-6 md:gap-12 md:items-center">
       <div className="flex flex-col gap-3">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-dark">
-          Contact · P. 80
+          {t("ctaKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(32px,4vw,56px)] leading-[1] m-0 text-ink">
-          {t("ctaTitle")}
+          {ts("ctaTitle")}
         </h2>
         <p className="font-serif italic text-base md:text-lg text-dark m-0 max-w-[600px] whitespace-pre-line">
-          {t("ctaDescription")}
+          {ts("ctaDescription")}
         </p>
       </div>
       <Link
         href="/contact"
         className="bg-ink text-cream border-none px-6 py-4 font-display text-base tracking-[0.12em] uppercase inline-flex items-center gap-3.5 no-underline transition-all hover:bg-dark hover:gap-[22px] self-start"
       >
-        <span>{t("ctaButton")}</span>
+        <span>{ts("ctaButton")}</span>
         <span className="font-sans">→</span>
       </Link>
     </section>

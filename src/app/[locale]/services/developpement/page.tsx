@@ -38,23 +38,24 @@ export default function ServicesDev() {
 
 function CodeHeader() {
   const t = useTranslations("servicesDev");
+  const tc = useTranslations("code");
 
   return (
     <header className="px-5 md:px-8 pt-8 md:pt-12 pb-7 md:pb-9 border-b border-ink bg-paper">
       <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-        Rubrique 03 · Code
+        {tc("rubricKicker")}
       </span>
       <h1 className="font-display text-[clamp(64px,12vw,170px)] leading-[0.88] tracking-[-0.005em] m-0 mt-4 uppercase text-ink">
         <em className="font-serif italic font-normal normal-case tracking-[-0.03em] text-dark">
-          Développement
+          {tc("headerTitle1")}
         </em>
         <br />
-        Web
+        {tc("headerTitle2")}
       </h1>
       <div className="flex flex-wrap items-center gap-2 md:gap-3 mt-5 md:mt-7 font-mono text-[10px] md:text-[11px] tracking-[0.14em] uppercase text-mute">
-        <span>Rust · TypeScript · Next.js · GraphQL</span>
+        <span>{tc("tags")}</span>
         <span className="opacity-40">·</span>
-        <span>Architecture microservices · Reconversion</span>
+        <span>{tc("tags2")}</span>
       </div>
       <p className="font-serif italic text-lg md:text-xl leading-[1.4] mt-6 max-w-[800px] text-dark m-0 mt-6">
         {t("description")}
@@ -65,6 +66,7 @@ function CodeHeader() {
 
 function CodeServices() {
   const t = useTranslations("servicesDev");
+  const tc = useTranslations("code");
 
   const services = [
     { key: "webapp", no: "01" },
@@ -76,7 +78,7 @@ function CodeServices() {
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Services · P. 36
+          {tc("servicesKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
           {t("servicesTitle")}
@@ -109,12 +111,13 @@ function CodeServices() {
 
 function CodeTech() {
   const t = useTranslations("servicesDev");
+  const tc = useTranslations("code");
 
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-cream border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Stack technique — 2026
+          {tc("techKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
           {t("techTitle")}
@@ -124,7 +127,7 @@ function CodeTech() {
         {/* Languages */}
         <div className="flex flex-col gap-3">
           <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-            Langages
+            {tc("langLabel")}
           </span>
           <ul className="list-none p-0 m-0 flex flex-col gap-1.5 font-serif italic text-xl md:text-2xl leading-[1.2] text-ink">
             {TECHNOLOGIES.map((tech) => (
@@ -135,7 +138,7 @@ function CodeTech() {
         {/* Tools & Frameworks */}
         <div className="flex flex-col gap-3">
           <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-            Frameworks & outils
+            {tc("toolsLabel")}
           </span>
           <div className="flex flex-wrap gap-2 md:gap-3">
             {TOOLS.map((tool) => (
@@ -155,12 +158,13 @@ function CodeTech() {
 
 function CodeProcess() {
   const t = useTranslations("servicesDev");
+  const tc = useTranslations("code");
 
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-paper border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
-          Méthode · 4 étapes
+          {tc("processKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
           {t("processTitle")}
@@ -192,12 +196,13 @@ function CodeProcess() {
 
 function CodeCTA() {
   const t = useTranslations("servicesDev");
+  const tc = useTranslations("code");
 
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-primary border-b border-ink flex flex-col md:grid md:grid-cols-[1fr_auto] gap-6 md:gap-12 md:items-center">
       <div className="flex flex-col gap-3">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-dark">
-          Contact · P. 80
+          {tc("ctaKicker")}
         </span>
         <h2 className="font-serif font-medium text-[clamp(32px,4vw,56px)] leading-[1] m-0 text-ink">
           {t("ctaTitle")}

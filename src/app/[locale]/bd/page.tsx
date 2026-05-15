@@ -7,6 +7,21 @@ import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
 import { WebtoonReader } from "@/components/ui/WebtoonReader";
 
+function useReaderLabels() {
+  const t = useTranslations("reader");
+  return {
+    end: t("end"),
+    back: t("back"),
+    previous: t("previous"),
+    next: t("next"),
+    imagesLabel: t("images"),
+    imageLabel: t("image"),
+    prevStrip: t("prevStrip"),
+    nextStrip: t("nextStrip"),
+    read: t("read"),
+  };
+}
+
 type Strip = {
   no: string;
   slug: string;
@@ -51,6 +66,7 @@ function panelSrc(strip: Strip, panel: number): string {
 export default function BDPage() {
   const [reading, setReading] = useState<number | null>(null);
   const searchParams = useSearchParams();
+  const rl = useReaderLabels();
 
   const closeReader = useCallback(() => {
     setReading(null);
@@ -80,7 +96,7 @@ export default function BDPage() {
   return (
     <>
       <BDHero />
-      <BDArchive onSelect={openStrip} />
+      <BDArchive onSelect={openStrip} readLabel={rl.read} />
       <BDInsta />
       {reading !== null && (
         <WebtoonReader
@@ -90,8 +106,9 @@ export default function BDPage() {
           onClose={closeReader}
           onPrev={reading > 0 ? () => openStrip(reading - 1) : null}
           onNext={reading < STRIPS.length - 1 ? () => openStrip(reading + 1) : null}
-          prevLabel="Strip précédent"
-          nextLabel="Strip suivant"
+          prevLabel={rl.prevStrip}
+          nextLabel={rl.nextStrip}
+          labels={rl}
         />
       )}
     </>
@@ -156,7 +173,7 @@ function BDHero() {
   );
 }
 
-function BDArchive({ onSelect }: { onSelect: (i: number) => void }) {
+function BDArchive({ onSelect, readLabel }: { onSelect: (i: number) => void; readLabel: string }) {
   const t = useTranslations("bd");
 
   return (
@@ -187,7 +204,7 @@ function BDArchive({ onSelect }: { onSelect: (i: number) => void }) {
                   style={{ aspectRatio: "1/1", objectFit: "cover" }}
                 />
                 <span className="absolute bottom-0 left-0 right-0 bg-ink/70 text-cream font-mono text-[10px] tracking-[0.12em] uppercase px-2 py-1.5 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  Lire →
+                  {readLabel}
                 </span>
               </div>
               <div className="flex gap-2.5 items-baseline font-mono text-[10px] tracking-[0.16em] uppercase mt-1">

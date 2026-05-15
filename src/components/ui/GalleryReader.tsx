@@ -13,6 +13,7 @@ type GalleryReaderProps = {
   onNextProject: (() => void) | null;
   prevProjectLabel?: string;
   nextProjectLabel?: string;
+  backLabel?: string;
 };
 
 export function GalleryReader({
@@ -25,6 +26,7 @@ export function GalleryReader({
   onNextProject,
   prevProjectLabel,
   nextProjectLabel,
+  backLabel = "← Retour",
 }: GalleryReaderProps) {
   const [index, setIndex] = useState(startIndex);
 
@@ -163,7 +165,7 @@ export function GalleryReader({
           className="bg-transparent border border-ink text-ink px-4 py-2 font-mono text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:bg-fog transition-colors"
           onClick={onClose}
         >
-          ← Retour
+          {backLabel}
         </button>
       </div>
     </div>
