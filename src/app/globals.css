@@ -46,6 +46,14 @@
   }
 }
 
+/* Large screens: add progressive side padding to keep content readable */
+@media (min-width: 1440px) {
+  .px-5, .px-8 {
+    padding-left: calc((100vw - 1400px) / 2 + 2rem) !important;
+    padding-right: calc((100vw - 1400px) / 2 + 2rem) !important;
+  }
+}
+
 /* Font family overrides — ensure next/font/google variables resolve correctly */
 .font-display {
   font-family: var(--font-anton), "Anton", Impact, sans-serif !important;

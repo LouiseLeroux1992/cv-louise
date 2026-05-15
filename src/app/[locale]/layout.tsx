@@ -22,7 +22,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="min-h-screen flex flex-col max-w-[1440px] mx-auto">
+      <div className="min-h-screen flex flex-col">
         <Masthead />
         <Nav />
         <main className="flex-1">{children}</main>
