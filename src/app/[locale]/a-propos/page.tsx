@@ -87,7 +87,7 @@ function AboutLetter() {
         </p>
         <p className="mt-4 m-0">{t("bodyP2")}</p>
         <p className="mt-4 m-0">{t("bodyP3")}</p>
-        <p className="mt-4 m-0">{t("bodyP4")}</p>
+        {t("bodyP4") && <p className="mt-4 m-0">{t("bodyP4")}</p>}
       </div>
 
       <aside className="bg-fog p-5 md:p-6 self-start text-ink">
