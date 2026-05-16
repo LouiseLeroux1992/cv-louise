@@ -213,9 +213,6 @@ function BDArchive({ onSelect, readLabel }: { onSelect: (i: number) => void; rea
               <div className="font-serif italic text-lg md:text-[22px] leading-[1.1] text-ink">
                 {s.fr}
               </div>
-              <div className="font-serif text-sm leading-[1.4] text-mute">
-                {s.desc_fr}
-              </div>
             </button>
           </li>
         ))}
