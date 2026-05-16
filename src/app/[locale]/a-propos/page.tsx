@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { experiences } from "@/data/experiences";
 import { education } from "@/data/education";
 import { skillCategories } from "@/data/skills";
@@ -109,6 +109,7 @@ function AboutLetter() {
 
 function AboutTimeline() {
   const t = useTranslations("about");
+  const locale = useLocale();
 
   return (
     <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-cream border-b border-ink">
@@ -128,17 +129,17 @@ function AboutTimeline() {
             className="flex flex-col md:grid md:grid-cols-[200px_1fr_80px] md:items-start gap-1 md:gap-8 py-5 md:py-7 border-b border-ink"
           >
             <div className="font-mono text-[10px] md:text-xs tracking-[0.16em] uppercase text-dark font-semibold md:pt-2">
-              {exp.period}
+              {exp.period[locale]}
             </div>
             <div className="flex flex-col gap-1">
               <div className="font-serif italic text-2xl md:text-4xl leading-[1.05] text-ink font-medium">
-                {exp.role}
+                {exp.role[locale]}
               </div>
               <div className="font-display text-[11px] md:text-sm tracking-[0.16em] uppercase text-mute mb-1 md:mb-2">
                 {exp.company}
               </div>
               <p className="m-0 font-serif text-sm md:text-[17px] leading-[1.45] md:leading-[1.5] max-w-[720px] text-ink whitespace-pre-line">
-                {exp.description}
+                {exp.description[locale]}
               </p>
               {exp.technologies && (
                 <div className="flex flex-wrap gap-1.5 md:gap-2 mt-2 font-mono text-[9px] md:text-[10px] tracking-[0.12em] uppercase text-mute">
@@ -169,14 +170,14 @@ function AboutTimeline() {
             </div>
             <div className="flex flex-col gap-1">
               <div className="font-serif italic text-2xl md:text-4xl leading-[1.05] text-ink font-medium">
-                {edu.degree}
+                {edu.degree[locale]}
               </div>
               <div className="font-display text-[11px] md:text-sm tracking-[0.16em] uppercase text-mute mb-1 md:mb-2">
                 {edu.school}
               </div>
               {edu.description && (
                 <p className="m-0 font-serif text-sm md:text-[17px] leading-[1.45] md:leading-[1.5] max-w-[720px] text-ink whitespace-pre-line">
-                  {edu.description}
+                  {edu.description[locale]}
                 </p>
               )}
             </div>
