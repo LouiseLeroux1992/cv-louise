@@ -42,6 +42,10 @@ export const metadata: Metadata = {
     default: "Louise Leroux | Développeuse Fullstack & Illustratrice",
     template: "%s | Louise Leroux",
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   description:
     "Développeuse web freelance et illustratrice. Je crée des applications web modernes et des illustrations sur mesure pour donner vie à vos projets.",
   keywords: [
