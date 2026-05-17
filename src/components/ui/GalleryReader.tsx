@@ -79,10 +79,13 @@ export function GalleryReader({
     };
   }, [onClose, hasPrev, hasNext]);
 
+  const arrowBase = "border-none flex items-center justify-center cursor-pointer transition-colors font-sans";
+  const arrowColors = isDark ? "bg-cream text-ink hover:bg-paper" : "bg-ink text-cream hover:bg-dark";
+
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-paper">
+    <div className="fixed inset-0 z-50 flex flex-col bg-paper h-[100dvh]">
       {/* Sticky header — project navigation */}
-      <div className="sticky top-0 z-[52] flex items-center justify-between px-5 md:px-8 py-3 md:py-4 border-b border-ink bg-paper">
+      <div className="sticky top-0 z-[52] flex items-center justify-between px-3 md:px-8 py-2 md:py-4 border-b border-ink bg-paper">
         <div className="flex items-center gap-2 md:gap-4">
           {onPrevProject ? (
             <button
@@ -99,7 +102,7 @@ export function GalleryReader({
             <div className="h-9 md:h-10" />
           )}
           <div className="flex items-center gap-2 md:gap-4">
-            <span className="font-display text-ink text-base md:text-xl tracking-[0.04em] uppercase">
+            <span className="font-display text-ink text-sm md:text-xl tracking-[0.04em] uppercase">
               {title}
             </span>
             <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute">
@@ -129,45 +132,66 @@ export function GalleryReader({
         </button>
       </div>
 
-      {/* Image area with side arrows */}
-      <div className={`flex-1 min-h-0 flex items-center justify-center p-4 md:p-12 ${imageBgClass} relative`}>
-        {/* Prev image */}
-        {hasPrev && (
+      {/* Image area — arrows on sides (desktop) or below (mobile) */}
+      <div className={`flex-1 min-h-0 flex flex-col md:relative ${imageBgClass}`}>
+        <div className="flex-1 min-h-0 flex items-center justify-center p-3 md:p-12 relative">
+          {/* Desktop arrows — positioned over image */}
+          {hasPrev && (
+            <button
+              className={`hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 w-14 h-14 ${arrowBase} text-3xl z-10 ${arrowColors}`}
+              onClick={goPrev}
+            >
+              ←
+            </button>
+          )}
+          {hasNext && (
+            <button
+              className={`hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 w-14 h-14 ${arrowBase} text-3xl z-10 ${arrowColors}`}
+              onClick={goNext}
+            >
+              →
+            </button>
+          )}
+
+          <Image
+            src={images[index]}
+            alt={imageAlts?.[index] || `${title} — ${index + 1}`}
+            width={1200}
+            height={1200}
+            className={`max-w-[90vw] md:max-w-[60vw] w-auto h-auto object-contain ${imageFrame ? "border-[5mm] border-white" : ""}`}
+            style={{ maxHeight: "calc(100dvh - 11rem)" }}
+          />
+        </div>
+
+        {/* Mobile arrows — below image */}
+        <div className="flex md:hidden items-center justify-center gap-6 py-2">
           <button
-            className={`absolute left-3 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 border-none flex items-center justify-center cursor-pointer transition-colors text-2xl md:text-3xl font-sans z-10 ${isDark ? "bg-cream text-ink hover:bg-paper" : "bg-ink text-cream hover:bg-dark"}`}
+            className={`w-11 h-11 ${arrowBase} text-xl ${hasPrev ? arrowColors : "bg-transparent text-mute cursor-default"}`}
             onClick={goPrev}
+            disabled={!hasPrev}
           >
             ←
           </button>
-        )}
-
-        {/* Next image */}
-        {hasNext && (
+          <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute">
+            {String(index + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
+          </span>
           <button
-            className={`absolute right-3 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 border-none flex items-center justify-center cursor-pointer transition-colors text-2xl md:text-3xl font-sans z-10 ${isDark ? "bg-cream text-ink hover:bg-paper" : "bg-ink text-cream hover:bg-dark"}`}
+            className={`w-11 h-11 ${arrowBase} text-xl ${hasNext ? arrowColors : "bg-transparent text-mute cursor-default"}`}
             onClick={goNext}
+            disabled={!hasNext}
           >
             →
           </button>
-        )}
-
-        <Image
-          src={images[index]}
-          alt={imageAlts?.[index] || `${title} — ${index + 1}`}
-          width={1200}
-          height={1200}
-          className={`max-w-[75vw] md:max-w-[60vw] w-auto h-auto object-contain ${imageFrame ? "border-[5mm] border-white" : ""}`}
-          style={{ maxHeight: "calc(100vh - 10rem)" }}
-        />
+        </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-ink px-5 md:px-8 py-3 md:py-4 bg-paper flex items-center justify-between">
-        <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute">
+      <div className="border-t border-ink px-3 md:px-8 py-2 md:py-4 bg-paper flex items-center justify-between">
+        <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute truncate mr-2">
           {imageAlts?.[index] || `${title} · ${String(index + 1).padStart(2, "0")}`}
         </div>
         <button
-          className="bg-transparent border border-ink text-ink px-4 py-2 font-mono text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:bg-fog transition-colors"
+          className="bg-transparent border border-ink text-ink px-3 md:px-4 py-1.5 md:py-2 font-mono text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:bg-fog transition-colors whitespace-nowrap"
           onClick={onClose}
         >
           {backLabel}
