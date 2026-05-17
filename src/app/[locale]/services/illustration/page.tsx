@@ -150,6 +150,7 @@ export default function ServicesIllustration() {
       <AtelierCartes onOpen={(i) => openViewer("cartes", i)} />
       <AtelierVrac onOpen={(i) => openViewer("vrac", i)} />
       <AtelierCaledobio onOpen={(i) => openViewer("caledobio", i)} />
+      <AtelierMVP />
       <AtelierLowesight onOpen={(i) => openViewer("lowesight", i)} />
       <AtelierAnimaux onOpen={(i) => openViewer("animaux", i)} />
       <AtelierCTA />
@@ -436,6 +437,73 @@ function AtelierAnimaux({ onOpen }: { onOpen: (i: number) => void }) {
       images={makeImages("animaux", ANIMAUX_COUNT)}
       onOpen={onOpen}
     />
+  );
+}
+
+const MVP_STRIPS = [
+  { src: "/bd/voyage-au-japon/1.png", title: "Voyage au Japon" },
+  { src: "/bd/mon-nouveau-metier/1.jpg", title: "Mon nouveau métier" },
+  { src: "/bd/la-vie-a-paris/1.jpg", title: "La vie à Paris" },
+  { src: "/bd/reconversion/1.webp", title: "Reconversion" },
+];
+
+function AtelierMVP() {
+  const t = useTranslations("atelier");
+  return (
+    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-cream border-b border-ink">
+      <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
+        <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+          {t("mvpKicker")}
+        </span>
+        <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
+          {t("mvpTitle1")} <em className="italic font-normal">{t("mvpTitle2")}</em>
+        </h2>
+        <p className="font-serif italic text-base md:text-lg text-mute m-0 max-w-[700px]">
+          {t("mvpDesc")}
+        </p>
+      </header>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        {MVP_STRIPS.map((strip) => (
+          <a
+            key={strip.title}
+            href="https://maviepassionnante.fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block no-underline"
+          >
+            <Image
+              src={strip.src}
+              alt={strip.title}
+              width={400}
+              height={600}
+              className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-dark)] transition-shadow"
+            />
+            <span className="font-serif italic text-sm text-ink block mt-1">
+              {strip.title}
+            </span>
+          </a>
+        ))}
+      </div>
+      <div className="flex flex-col gap-3 mt-6">
+        <a
+          href="https://maviepassionnante.fr"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase no-underline hover:bg-dark transition-colors inline-block self-start"
+        >
+          {t("mvpCta")}
+        </a>
+        <a
+          href="https://www.instagram.com/louise.maviepassionnante"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] uppercase text-mute hover:text-ink transition-colors no-underline self-start"
+        >
+          <span>📷</span>
+          <span>{t("mvpInstagram")}</span>
+        </a>
+      </div>
+    </section>
   );
 }
 

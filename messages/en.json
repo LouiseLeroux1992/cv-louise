@@ -34,11 +34,11 @@
     "quoteEmphasis": "a sketchbook always in my pocket.",
     "quoteSig": "— LOUISE · MARCH 2026",
     "tocTitle": "Contents",
-    "tocSub": "5 rubrics · 1 issue",
-    "featKicker": "FEATURED · COMICS · P. 48",
-    "featTitle": "My",
-    "featTitle2": "Riveting Life",
-    "featCta": "Read the strips",
+    "tocSub": "4 rubrics · 1 issue",
+    "featKicker": "FEATURED · STUDIO · P. 62",
+    "featTitle": "The Artist's",
+    "featTitle2": "Studio",
+    "featCta": "Discover the studio",
     "toc": {
       "about": {
         "kicker": "ABOUT",
@@ -57,12 +57,6 @@
         "title": "Studio",
         "page": "62",
         "tease": "Watercolor, digital drawing, educational comics, black & white photography — the creative studio."
-      },
-      "bd": {
-        "kicker": "COMICS",
-        "title": "My Riveting Life",
-        "page": "48",
-        "tease": "Autobiographical and humorous comic strip, published on Instagram. Eleven strips to read online."
       },
       "contact": {
         "kicker": "CONTACT",
@@ -198,6 +192,12 @@
     "animauxTitle1": "Animal",
     "animauxTitle2": "drawings",
     "animauxCta": "See all →",
+    "mvpKicker": "Autobiographical comic · Instagram · 2023 — 2026",
+    "mvpTitle1": "My",
+    "mvpTitle2": "Riveting Life",
+    "mvpDesc": "Autobiographical and humorous comic strip published on Instagram. Eleven strips, slices of life between career change, moving and Parisian daily life.",
+    "mvpCta": "Read on maviepassionnante.fr →",
+    "mvpInstagram": "Follow @louise.maviepassionnante",
     "lowesightFullTitle": "Lowesight",
     "lowesightKicker": "Photography · iPhone · Black & white · 2023 — 2026",
     "lowesightTitle1": "Lowesight,",

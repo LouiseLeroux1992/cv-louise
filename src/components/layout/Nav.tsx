@@ -10,8 +10,7 @@ const NAV_ITEMS = [
   { href: "/a-propos", id: "about", no: "02" },
   { href: "/services/developpement", id: "code", no: "03" },
   { href: "/services/illustration", id: "atelier", no: "04" },
-  { href: "/bd", id: "bd", no: "05" },
-  { href: "/contact", id: "contact", no: "06" },
+  { href: "/contact", id: "contact", no: "05" },
 ] as const;
 
 export function Nav() {

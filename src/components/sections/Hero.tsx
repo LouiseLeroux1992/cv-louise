@@ -7,13 +7,12 @@ import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
 import { getSeasonLabel } from "@/lib/season";
 
-const TOC_ITEMS = ["about", "code", "atelier", "bd", "contact"] as const;
+const TOC_ITEMS = ["about", "code", "atelier", "contact"] as const;
 
 const TOC_LINKS: Record<string, string> = {
   about: "/a-propos",
   code: "/services/developpement",
   atelier: "/services/illustration",
-  bd: "/bd",
   contact: "/contact",
 };
 
@@ -21,15 +20,14 @@ const TOC_NUMBERS: Record<string, string> = {
   about: "02",
   code: "03",
   atelier: "04",
-  bd: "05",
-  contact: "06",
+  contact: "05",
 };
 
-const FEATURED_STRIPS = [
-  { no: "11", slug: "voyage-au-japon", fr: "Voyage au Japon", src: "/bd/voyage-au-japon/1.png" },
-  { no: "10", slug: "mon-nouveau-metier", fr: "Mon nouveau métier", src: "/bd/mon-nouveau-metier/1.jpg" },
-  { no: "09", slug: "la-vie-a-paris", fr: "La vie à Paris", src: "/bd/la-vie-a-paris/1.jpg" },
-  { no: "08", slug: "reconversion", fr: "Reconversion", src: "/bd/reconversion/1.webp" },
+const FEATURED_WORKS = [
+  { no: "01", fr: "Livre jeunesse", src: "/illustrations/livre-jeunesse/0.webp" },
+  { no: "02", fr: "Ma Vie Passionnante", src: "/bd/voyage-au-japon/1.png" },
+  { no: "03", fr: "Portraits comiques", src: "/illustrations/portraits-comiques/0.webp" },
+  { no: "04", fr: "Lowesight", src: "/illustrations/lowesight/10.webp" },
 ];
 
 export function Hero() {
@@ -263,29 +261,29 @@ function CoverFeatured() {
         </h2>
       </header>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-        {FEATURED_STRIPS.map((strip) => (
+        {FEATURED_WORKS.map((work) => (
           <Link
-            key={strip.no}
-            href={`/bd?read=${strip.slug}`}
+            key={work.no}
+            href="/services/illustration"
             className="flex flex-col gap-2 no-underline text-ink group"
           >
             <Image
-              src={strip.src}
-              alt={strip.fr}
+              src={work.src}
+              alt={work.fr}
               width={400}
               height={400}
-              className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
+              className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-dark)] transition-shadow"
               style={{ aspectRatio: "1/1", objectFit: "cover" }}
             />
             <div className="flex gap-2 items-baseline font-mono text-[9px] md:text-[10px] tracking-[0.16em] uppercase">
-              <span className="text-mute">{strip.no}</span>
-              <span>{strip.fr}</span>
+              <span className="text-mute">{work.no}</span>
+              <span>{work.fr}</span>
             </div>
           </Link>
         ))}
       </div>
       <Link
-        href="/bd"
+        href="/services/illustration"
         className="mt-6 md:mt-8 w-full md:w-auto bg-ink text-cream border-none px-6 py-[14px] md:py-[18px] font-display text-sm md:text-base tracking-[0.12em] uppercase inline-flex items-center justify-between md:justify-start gap-3.5 no-underline transition-all hover:bg-dark hover:gap-[22px]"
       >
         <span>{t("featCta")}</span>

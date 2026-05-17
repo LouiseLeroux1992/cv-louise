@@ -34,11 +34,11 @@
     "quoteEmphasis": "un carnet de croquis toujours dans la poche.",
     "quoteSig": "— LOUISE · MARS 2026",
     "tocTitle": "Sommaire",
-    "tocSub": "5 rubriques · 1 numéro",
-    "featKicker": "À LA UNE · BD · P. 48",
-    "featTitle": "Ma Vie",
-    "featTitle2": "Passionnante",
-    "featCta": "Lire les planches",
+    "tocSub": "4 rubriques · 1 numéro",
+    "featKicker": "À LA UNE · ATELIER · P. 62",
+    "featTitle": "L'atelier",
+    "featTitle2": "d'Artiste",
+    "featCta": "Découvrir l'atelier",
     "toc": {
       "about": {
         "kicker": "À PROPOS",
@@ -57,12 +57,6 @@
         "title": "Atelier",
         "page": "62",
         "tease": "Aquarelle, dessin numérique, BD pédagogique, photographie noir & blanc — l'atelier créatif."
-      },
-      "bd": {
-        "kicker": "BD",
-        "title": "Ma Vie Passionnante",
-        "page": "48",
-        "tease": "BD autobiographique et humoristique, publiée sur Instagram. Onze strips à lire en ligne."
       },
       "contact": {
         "kicker": "CONTACT",
@@ -198,6 +192,12 @@
     "animauxTitle1": "Dessins",
     "animauxTitle2": "d'animaux",
     "animauxCta": "Voir tout →",
+    "mvpKicker": "BD autobiographique · Instagram · 2023 — 2026",
+    "mvpTitle1": "Ma Vie",
+    "mvpTitle2": "Passionnante",
+    "mvpDesc": "BD autobiographique et humoristique publiée sur Instagram. Onze strips, des tranches de vie entre reconversion, déménagements et quotidien parisien.",
+    "mvpCta": "Lire sur maviepassionnante.fr →",
+    "mvpInstagram": "Suivre @louise.maviepassionnante",
     "lowesightFullTitle": "Lowesight",
     "lowesightKicker": "Photographie · iPhone · Noir & blanc · 2023 — 2026",
     "lowesightTitle1": "Lowesight,",
