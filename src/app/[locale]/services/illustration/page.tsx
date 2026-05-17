@@ -116,7 +116,7 @@ export default function ServicesIllustration() {
 
   const closeViewer = useCallback(() => setViewer(null), []);
 
-  const projectKeys: ProjectKey[] = ["livre", "taytay", "portraits", "cartes", "vrac", "caledobio", "lowesight", "animaux"];
+  const projectKeys: ProjectKey[] = ["livre", "portraits", "taytay", "cartes", "vrac", "lowesight", "caledobio", "animaux"];
 
   const currentProjectIndex = viewer ? projectKeys.indexOf(viewer.project) : -1;
   const prevProject = currentProjectIndex > 0 ? projectKeys[currentProjectIndex - 1] : null;
@@ -145,13 +145,13 @@ export default function ServicesIllustration() {
       <AtelierHeader />
       <AtelierServices />
       <AtelierLivre onOpen={(i) => openViewer("livre", i)} />
-      <AtelierTaytay onOpen={(i) => openViewer("taytay", i)} />
+      <AtelierMVP />
       <AtelierPortraits onOpen={(i) => openViewer("portraits", i)} />
+      <AtelierTaytay onOpen={(i) => openViewer("taytay", i)} />
       <AtelierCartes onOpen={(i) => openViewer("cartes", i)} />
       <AtelierVrac onOpen={(i) => openViewer("vrac", i)} />
-      <AtelierCaledobio onOpen={(i) => openViewer("caledobio", i)} />
-      <AtelierMVP />
       <AtelierLowesight onOpen={(i) => openViewer("lowesight", i)} />
+      <AtelierCaledobio onOpen={(i) => openViewer("caledobio", i)} />
       <AtelierAnimaux onOpen={(i) => openViewer("animaux", i)} />
       <AtelierCTA />
       {viewer && (
@@ -278,13 +278,31 @@ function AtelierHeader() {
   const t = useTranslations("atelier");
   const ts = useTranslations("servicesIllustration");
   return (
-    <header className="px-5 md:px-8 pt-8 md:pt-12 pb-7 md:pb-9 border-b border-ink bg-paper">
-      <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">{t("rubricKicker")}</span>
-      <h1 className="font-display text-[clamp(64px,12vw,170px)] leading-[0.88] tracking-[-0.005em] m-0 mt-4 uppercase text-ink">
-        <em className="font-serif italic font-normal normal-case tracking-[-0.03em] text-dark">{t("headerTitle1")}</em>
-        <br />{t("headerTitle2")}
-      </h1>
-      <p className="font-serif italic text-lg md:text-xl leading-[1.4] mt-6 max-w-[800px] text-dark m-0">{ts("description")}</p>
+    <header className="px-5 md:px-8 pt-8 md:pt-12 pb-7 md:pb-9 flex flex-col md:grid md:grid-cols-[1fr_360px] gap-6 md:gap-12 border-b border-ink bg-paper">
+      <div className="flex flex-col gap-4 md:gap-7">
+        <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">{t("rubricKicker")}</span>
+        <h1 className="font-display text-[clamp(64px,12vw,170px)] leading-[0.88] tracking-[-0.005em] m-0 uppercase text-ink">
+          <em className="font-serif italic font-normal normal-case tracking-[-0.03em] text-dark">{t("headerTitle1")}</em>
+          <br />{t("headerTitle2")}
+        </h1>
+        <div className="flex flex-wrap items-center gap-2 md:gap-3 font-mono text-[10px] md:text-[11px] tracking-[0.14em] uppercase text-mute">
+          <span>{t("tags")}</span>
+        </div>
+        <p className="font-serif italic text-lg md:text-xl leading-[1.4] max-w-[800px] text-dark m-0">{ts("description")}</p>
+      </div>
+      <div className="flex flex-col gap-3 self-end">
+        <Image
+          src="/illustrations/vrac/2.webp"
+          alt={t("heroImageAlt")}
+          width={720}
+          height={900}
+          className="w-full h-auto"
+        />
+        <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute flex flex-col gap-1">
+          <span className="text-ink">{t("heroImageTitle")}</span>
+          <span>{t("heroImageCaption")}</span>
+        </div>
+      </div>
     </header>
   );
 }
@@ -334,7 +352,7 @@ function AtelierTaytay({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-primary"
+      bg="bg-fog"
       kicker={t("taytayKicker")}
       title1={t("taytayTitle1")}
       title2={t("taytayTitle2")}
@@ -374,7 +392,7 @@ function AtelierCartes({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-fog"
+      bg="bg-cream"
       kicker={t("cartesKicker")}
       title1={t("cartesTitle1")}
       title2={t("cartesTitle2")}
@@ -394,7 +412,7 @@ function AtelierVrac({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-cream"
+      bg="bg-fog"
       kicker={t("vracKicker")}
       title1={t("vracTitle1")}
       title2={t("vracTitle2")}
@@ -450,7 +468,7 @@ const MVP_STRIPS = [
 function AtelierMVP() {
   const t = useTranslations("atelier");
   return (
-    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-cream border-b border-ink">
+    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-primary border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
           {t("mvpKicker")}
@@ -511,7 +529,7 @@ function AtelierLowesight({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-fog"
+      bg="bg-cream"
       kicker={t("lowesightKicker")}
       title1={t("lowesightTitle1")}
       title2={t("lowesightTitle2")}
