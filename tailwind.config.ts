@@ -17,6 +17,7 @@ const config: Config = {
         ink: "var(--c-ink)",
         paper: "var(--c-paper)",
         mute: "var(--c-mute)",
+        darkroom: "var(--c-darkroom)",
         background: "var(--c-paper)",
         foreground: "var(--c-ink)",
         border: "var(--c-ink)",

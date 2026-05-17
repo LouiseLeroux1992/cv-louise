@@ -14,9 +14,9 @@ function useReaderLabels() {
 }
 
 const PROJECTS = [
-  { no: "01", key: "bd" },
-  { no: "02", key: "livre" },
-  { no: "03", key: "ponctuelles" },
+  { no: "01", key: "illustration" },
+  { no: "02", key: "bd" },
+  { no: "03", key: "photo" },
 ] as const;
 
 // ── Image counts ──
@@ -27,6 +27,7 @@ const CARTES_COUNT = 9;
 const VRAC_COUNT = 11;
 const CALEDOBIO_COUNT = 4;
 const ANIMAUX_COUNT = 5;
+const LOWESIGHT_COUNT = 82;
 
 // ── Named labels per image ──
 const TAYTAY_NAMES = [
@@ -79,7 +80,7 @@ const VRAC_NAMES = [
 ];
 
 // ── Project config ──
-type ProjectKey = "livre" | "taytay" | "portraits" | "cartes" | "vrac" | "caledobio" | "animaux";
+type ProjectKey = "livre" | "taytay" | "portraits" | "cartes" | "vrac" | "caledobio" | "animaux" | "lowesight";
 type GalleryState = { project: ProjectKey; index: number } | null;
 
 const PROJECT_CONFIG: Record<ProjectKey, { path: string; count: number; names?: string[] }> = {
@@ -90,6 +91,7 @@ const PROJECT_CONFIG: Record<ProjectKey, { path: string; count: number; names?: 
   vrac: { path: "vrac", count: VRAC_COUNT, names: VRAC_NAMES },
   caledobio: { path: "caledobio", count: CALEDOBIO_COUNT },
   animaux: { path: "animaux", count: ANIMAUX_COUNT },
+  lowesight: { path: "lowesight", count: LOWESIGHT_COUNT },
 };
 
 const PROJECT_TITLE_KEYS: Record<ProjectKey, string> = {
@@ -100,6 +102,7 @@ const PROJECT_TITLE_KEYS: Record<ProjectKey, string> = {
   vrac: "vracFullTitle",
   caledobio: "caledobioFullTitle",
   animaux: "animauxFullTitle",
+  lowesight: "lowesightFullTitle",
 };
 
 export default function ServicesIllustration() {
@@ -113,7 +116,7 @@ export default function ServicesIllustration() {
 
   const closeViewer = useCallback(() => setViewer(null), []);
 
-  const projectKeys: ProjectKey[] = ["livre", "taytay", "portraits", "cartes", "vrac", "caledobio", "animaux"];
+  const projectKeys: ProjectKey[] = ["livre", "taytay", "portraits", "cartes", "vrac", "caledobio", "lowesight", "animaux"];
 
   const currentProjectIndex = viewer ? projectKeys.indexOf(viewer.project) : -1;
   const prevProject = currentProjectIndex > 0 ? projectKeys[currentProjectIndex - 1] : null;
@@ -147,6 +150,7 @@ export default function ServicesIllustration() {
       <AtelierCartes onOpen={(i) => openViewer("cartes", i)} />
       <AtelierVrac onOpen={(i) => openViewer("vrac", i)} />
       <AtelierCaledobio onOpen={(i) => openViewer("caledobio", i)} />
+      <AtelierLowesight onOpen={(i) => openViewer("lowesight", i)} />
       <AtelierAnimaux onOpen={(i) => openViewer("animaux", i)} />
       <AtelierCTA />
       {viewer && (
@@ -161,6 +165,8 @@ export default function ServicesIllustration() {
           prevProjectLabel={prevProject ? getTitle(prevProject) : undefined}
           nextProjectLabel={nextProject ? getTitle(nextProject) : undefined}
           backLabel={rl.back}
+          imageBgClass={viewer.project === "lowesight" ? "bg-darkroom" : undefined}
+          imageFrame={viewer.project === "lowesight"}
         />
       )}
     </>
@@ -178,6 +184,10 @@ function GallerySection({
   images,
   names,
   onOpen,
+  previewCount,
+  showAllLabel,
+  collapseLabel,
+  footer,
 }: {
   bg: string;
   kicker: string;
@@ -188,7 +198,14 @@ function GallerySection({
   images: { src: string; alt: string }[];
   names?: string[];
   onOpen: (i: number) => void;
+  previewCount?: number;
+  showAllLabel?: string;
+  collapseLabel?: string;
+  footer?: React.ReactNode;
 }) {
+  const [expanded, setExpanded] = useState(false);
+  const visibleImages = previewCount && !expanded ? images.slice(0, previewCount) : images;
+
   return (
     <section className={`px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 ${bg} border-b border-ink`}>
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
@@ -205,7 +222,7 @@ function GallerySection({
         )}
       </header>
       <div className="columns-2 md:columns-3 lg:columns-6 gap-3 md:gap-4">
-        {images.map((img, i) => (
+        {visibleImages.map((img, i) => (
           <button
             key={i}
             className="bg-transparent border-none p-0 cursor-pointer group relative mb-3 md:mb-4 break-inside-avoid block w-full"
@@ -216,7 +233,8 @@ function GallerySection({
               alt={img.alt}
               width={400}
               height={400}
-              className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-primary)] transition-shadow"
+              loading={i < 6 ? "eager" : "lazy"}
+              className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-dark)] transition-shadow"
             />
             {names && names[i] && (
               <span className="font-serif italic text-sm text-ink text-left block mt-1">
@@ -226,12 +244,23 @@ function GallerySection({
           </button>
         ))}
       </div>
-      <button
-        className="mt-6 bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
-        onClick={() => onOpen(0)}
-      >
-        {cta}
-      </button>
+      <div className="flex items-center gap-4 mt-6">
+        <button
+          className="bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase cursor-pointer hover:bg-dark transition-colors"
+          onClick={() => onOpen(0)}
+        >
+          {cta}
+        </button>
+        {previewCount && images.length > previewCount && (
+          <button
+            className="bg-transparent border-none p-0 font-serif italic text-base text-mute cursor-pointer hover:text-ink transition-colors underline underline-offset-2"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? collapseLabel : showAllLabel}
+          </button>
+        )}
+      </div>
+      {footer}
     </section>
   );
 }
@@ -285,7 +314,7 @@ function AtelierLivre({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-paper"
+      bg="bg-cream"
       kicker={t("livreKicker")}
       title1={t("livreTitle1")}
       title2={t("livreTitle2")}
@@ -293,6 +322,9 @@ function AtelierLivre({ onOpen }: { onOpen: (i: number) => void }) {
       cta={t("livreCta")}
       images={makeImages("livre-jeunesse", LIVRE_COUNT)}
       onOpen={onOpen}
+      previewCount={6}
+      showAllLabel={t("showAll", { count: LIVRE_COUNT })}
+      collapseLabel={t("collapse")}
     />
   );
 }
@@ -301,7 +333,7 @@ function AtelierTaytay({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-cream"
+      bg="bg-primary"
       kicker={t("taytayKicker")}
       title1={t("taytayTitle1")}
       title2={t("taytayTitle2")}
@@ -310,6 +342,9 @@ function AtelierTaytay({ onOpen }: { onOpen: (i: number) => void }) {
       images={makeImages("taytay", TAYTAY_COUNT, TAYTAY_NAMES)}
       names={TAYTAY_NAMES}
       onOpen={onOpen}
+      previewCount={6}
+      showAllLabel={t("showAll", { count: TAYTAY_COUNT })}
+      collapseLabel={t("collapse")}
     />
   );
 }
@@ -318,7 +353,7 @@ function AtelierPortraits({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-paper"
+      bg="bg-cream"
       kicker={t("portraitsKicker")}
       title1={t("portraitsTitle1")}
       title2={t("portraitsTitle2")}
@@ -327,6 +362,9 @@ function AtelierPortraits({ onOpen }: { onOpen: (i: number) => void }) {
       images={makeImages("portraits-comiques", PORTRAITS_COUNT, PORTRAITS_NAMES)}
       names={PORTRAITS_NAMES}
       onOpen={onOpen}
+      previewCount={6}
+      showAllLabel={t("showAll", { count: PORTRAITS_COUNT })}
+      collapseLabel={t("collapse")}
     />
   );
 }
@@ -335,7 +373,7 @@ function AtelierCartes({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-cream"
+      bg="bg-fog"
       kicker={t("cartesKicker")}
       title1={t("cartesTitle1")}
       title2={t("cartesTitle2")}
@@ -344,6 +382,9 @@ function AtelierCartes({ onOpen }: { onOpen: (i: number) => void }) {
       images={makeImages("cartes", CARTES_COUNT, CARTES_NAMES)}
       names={CARTES_NAMES}
       onOpen={onOpen}
+      previewCount={6}
+      showAllLabel={t("showAll", { count: CARTES_COUNT })}
+      collapseLabel={t("collapse")}
     />
   );
 }
@@ -352,7 +393,7 @@ function AtelierVrac({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-fog"
+      bg="bg-cream"
       kicker={t("vracKicker")}
       title1={t("vracTitle1")}
       title2={t("vracTitle2")}
@@ -360,6 +401,9 @@ function AtelierVrac({ onOpen }: { onOpen: (i: number) => void }) {
       images={makeImages("vrac", VRAC_COUNT, VRAC_NAMES)}
       names={VRAC_NAMES}
       onOpen={onOpen}
+      previewCount={6}
+      showAllLabel={t("showAll", { count: VRAC_COUNT })}
+      collapseLabel={t("collapse")}
     />
   );
 }
@@ -368,7 +412,7 @@ function AtelierCaledobio({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-paper"
+      bg="bg-primary"
       kicker={t("caledobioKicker")}
       title1={t("caledobioTitle1")}
       title2={t("caledobioTitle2")}
@@ -384,13 +428,43 @@ function AtelierAnimaux({ onOpen }: { onOpen: (i: number) => void }) {
   const t = useTranslations("atelier");
   return (
     <GallerySection
-      bg="bg-fog"
+      bg="bg-cream"
       kicker={t("animauxKicker")}
       title1={t("animauxTitle1")}
       title2={t("animauxTitle2")}
       cta={t("animauxCta")}
       images={makeImages("animaux", ANIMAUX_COUNT)}
       onOpen={onOpen}
+    />
+  );
+}
+
+function AtelierLowesight({ onOpen }: { onOpen: (i: number) => void }) {
+  const t = useTranslations("atelier");
+  return (
+    <GallerySection
+      bg="bg-fog"
+      kicker={t("lowesightKicker")}
+      title1={t("lowesightTitle1")}
+      title2={t("lowesightTitle2")}
+      desc={t("lowesightDesc")}
+      cta={t("lowesightCta")}
+      images={makeImages("lowesight", LOWESIGHT_COUNT)}
+      onOpen={onOpen}
+      previewCount={6}
+      showAllLabel={t("showAllPhotos", { count: LOWESIGHT_COUNT })}
+      collapseLabel={t("collapse")}
+      footer={
+        <a
+          href="https://www.instagram.com/lowesight"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 mt-4 font-mono text-[11px] tracking-[0.12em] uppercase text-mute hover:text-ink transition-colors no-underline"
+        >
+          <span>📷</span>
+          <span>{t("lowesightInstagram")}</span>
+        </a>
+      }
     />
   );
 }

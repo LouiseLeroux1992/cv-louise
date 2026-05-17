@@ -53,10 +53,10 @@
         "tease": "Microservices architecture, Rust, Next.js — three years of fullstack development at Morning."
       },
       "atelier": {
-        "kicker": "ILLUSTRATION",
+        "kicker": "ARTIST'S STUDIO",
         "title": "Studio",
         "page": "62",
-        "tease": "Watercolor, digital drawing, educational comics — five projects to browse."
+        "tease": "Watercolor, digital drawing, educational comics, black & white photography — the creative studio."
       },
       "bd": {
         "kicker": "COMICS",
@@ -134,17 +134,17 @@
     "description": "Illustration is first and foremost a passion. I mainly draw in watercolor and digital. I select projects that inspire me (comics, illustrated books, personalized cards) so I can fully invest myself in their creation.",
     "servicesTitle": "Types of projects",
     "services": {
+      "illustration": {
+        "title": "Illustration",
+        "description": "Watercolor, digital drawing, portraits"
+      },
       "bd": {
         "title": "Comics",
-        "description": "Humorous, educational comics"
+        "description": "Humorous strips, educational comics"
       },
-      "livre": {
-        "title": "Illustrated books",
-        "description": "Children's illustrations, covers"
-      },
-      "ponctuelles": {
-        "title": "One-off commissions",
-        "description": "Cards, personalized illustrations"
+      "photo": {
+        "title": "Photography",
+        "description": "Black & white, portraits"
       }
     },
     "galleryTitle": "Portfolio",
@@ -154,8 +154,8 @@
   },
   "atelier": {
     "rubricKicker": "Rubric 04 · Studio",
-    "headerTitle1": "The studio",
-    "headerTitle2": "Illustration",
+    "headerTitle1": "The Artist's",
+    "headerTitle2": "Studio",
     "projectsKicker": "Projects · P. 62",
     "livreFullTitle": "Children's book",
     "livreKicker": "Children's book · Watercolor · 2025",
@@ -198,6 +198,16 @@
     "animauxTitle1": "Animal",
     "animauxTitle2": "drawings",
     "animauxCta": "See all →",
+    "lowesightFullTitle": "Lowesight",
+    "lowesightKicker": "Photography · iPhone · Black & white · 2023 — 2026",
+    "lowesightTitle1": "Lowesight,",
+    "lowesightTitle2": "photography",
+    "lowesightDesc": "Black and white photography project, shot on iPhone 13. Street scenes, architecture, everyday moments.",
+    "lowesightCta": "See all →",
+    "showAll": "Show all {count} illustrations",
+    "showAllPhotos": "Show all {count} photos",
+    "collapse": "Collapse",
+    "lowesightInstagram": "Follow @Lowesight",
     "ctaKicker": "Contact · P. 80"
   },
   "code": {

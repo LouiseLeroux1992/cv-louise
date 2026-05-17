@@ -53,10 +53,10 @@
         "tease": "Architecture microservices, Rust, Next.js — trois ans de développement fullstack chez Morning."
       },
       "atelier": {
-        "kicker": "ILLUSTRATION",
+        "kicker": "ATELIER D'ARTISTE",
         "title": "Atelier",
         "page": "62",
-        "tease": "Aquarelle, dessin numérique, BD pédagogique — cinq projets à feuilleter."
+        "tease": "Aquarelle, dessin numérique, BD pédagogique, photographie noir & blanc — l'atelier créatif."
       },
       "bd": {
         "kicker": "BD",
@@ -134,17 +134,17 @@
     "description": "L'illustration est avant tout une passion. Je dessine principalement à l'aquarelle et en numérique. Je sélectionne les projets qui m'inspirent (bandes dessinées, livres illustrés, cartes personnalisées) afin de m'investir pleinement dans leur réalisation.",
     "servicesTitle": "Types de projets",
     "services": {
+      "illustration": {
+        "title": "Illustration",
+        "description": "Aquarelle, dessin numérique, portraits"
+      },
       "bd": {
         "title": "Bande dessinée",
-        "description": "BDs humoristiques, pédagogiques"
+        "description": "Strips humoristiques, BD pédagogique"
       },
-      "livre": {
-        "title": "Livre illustré",
-        "description": "Illustrations jeunesse, couvertures"
-      },
-      "ponctuelles": {
-        "title": "Commandes ponctuelles",
-        "description": "Cartes, illustrations personnalisées"
+      "photo": {
+        "title": "Photographie",
+        "description": "Noir & blanc, portraits"
       }
     },
     "galleryTitle": "Portfolio",
@@ -155,7 +155,7 @@
   "atelier": {
     "rubricKicker": "Rubrique 04 · Atelier",
     "headerTitle1": "L'atelier",
-    "headerTitle2": "Illustration",
+    "headerTitle2": "d'Artiste",
     "projectsKicker": "Projets · P. 62",
     "livreFullTitle": "Livre jeunesse",
     "livreKicker": "Livre jeunesse · Aquarelle · 2025",
@@ -198,6 +198,16 @@
     "animauxTitle1": "Dessins",
     "animauxTitle2": "d'animaux",
     "animauxCta": "Voir tout →",
+    "lowesightFullTitle": "Lowesight",
+    "lowesightKicker": "Photographie · iPhone · Noir & blanc · 2023 — 2026",
+    "lowesightTitle1": "Lowesight,",
+    "lowesightTitle2": "photographie",
+    "lowesightDesc": "Projet photographique en noir et blanc, capturé avec un iPhone 13. Scènes de rue, architecture, instants du quotidien.",
+    "lowesightCta": "Voir tout →",
+    "showAll": "Afficher les {count} illustrations",
+    "showAllPhotos": "Afficher les {count} photos",
+    "collapse": "Réduire",
+    "lowesightInstagram": "Suivre @Lowesight",
     "ctaKicker": "Contact · P. 80"
   },
   "code": {

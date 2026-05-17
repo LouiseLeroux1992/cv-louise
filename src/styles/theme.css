@@ -18,6 +18,7 @@
     --c-paper: #fbfaf6;      /* warm paper white */
     --c-paper-2: #ffffff;
     --c-mute: #6f6c7d;       /* muted text */
+    --c-darkroom: #1a1a1a;   /* dark neutral for B&W photos */
 
     /* Semantic tokens (Tailwind compat) */
     --background: var(--c-paper);

@@ -14,6 +14,8 @@ type GalleryReaderProps = {
   prevProjectLabel?: string;
   nextProjectLabel?: string;
   backLabel?: string;
+  imageBgClass?: string;
+  imageFrame?: boolean;
 };
 
 export function GalleryReader({
@@ -27,6 +29,8 @@ export function GalleryReader({
   prevProjectLabel,
   nextProjectLabel,
   backLabel = "← Retour",
+  imageBgClass = "bg-fog",
+  imageFrame = false,
 }: GalleryReaderProps) {
   const [index, setIndex] = useState(startIndex);
 
@@ -35,6 +39,7 @@ export function GalleryReader({
     setIndex(startIndex);
   }, [title, startIndex]);
 
+  const isDark = imageBgClass?.includes("darkroom");
   const hasPrev = index > 0;
   const hasNext = index < images.length - 1;
 
@@ -125,11 +130,11 @@ export function GalleryReader({
       </div>
 
       {/* Image area with side arrows */}
-      <div className="flex-1 min-h-0 flex items-center justify-center p-4 md:p-12 bg-fog relative">
+      <div className={`flex-1 min-h-0 flex items-center justify-center p-4 md:p-12 ${imageBgClass} relative`}>
         {/* Prev image */}
         {hasPrev && (
           <button
-            className="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-ink text-cream border-none flex items-center justify-center cursor-pointer hover:bg-dark transition-colors text-2xl md:text-3xl font-sans z-10"
+            className={`absolute left-3 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 border-none flex items-center justify-center cursor-pointer transition-colors text-2xl md:text-3xl font-sans z-10 ${isDark ? "bg-cream text-ink hover:bg-paper" : "bg-ink text-cream hover:bg-dark"}`}
             onClick={goPrev}
           >
             ←
@@ -139,7 +144,7 @@ export function GalleryReader({
         {/* Next image */}
         {hasNext && (
           <button
-            className="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-ink text-cream border-none flex items-center justify-center cursor-pointer hover:bg-dark transition-colors text-2xl md:text-3xl font-sans z-10"
+            className={`absolute right-3 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 border-none flex items-center justify-center cursor-pointer transition-colors text-2xl md:text-3xl font-sans z-10 ${isDark ? "bg-cream text-ink hover:bg-paper" : "bg-ink text-cream hover:bg-dark"}`}
             onClick={goNext}
           >
             →
@@ -151,7 +156,7 @@ export function GalleryReader({
           alt={imageAlts?.[index] || `${title} — ${index + 1}`}
           width={1200}
           height={1200}
-          className="max-w-[75vw] md:max-w-[60vw] w-auto h-auto object-contain"
+          className={`max-w-[75vw] md:max-w-[60vw] w-auto h-auto object-contain ${imageFrame ? "border-[5mm] border-white" : ""}`}
           style={{ maxHeight: "calc(100vh - 10rem)" }}
         />
       </div>
