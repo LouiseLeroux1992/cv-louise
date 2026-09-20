@@ -22,12 +22,16 @@ const PROJECTS = [
 // ── Image counts ──
 const LIVRE_COUNT = 18;
 const TAYTAY_COUNT = 10;
-const PORTRAITS_COUNT = 21; // 8 thomas + 13 comics
-const CARTES_COUNT = 9;
+const PORTRAITS_COUNT = 23; // 9 thomas + 14 comics
+const CARTES_COUNT = 10;
 const VRAC_COUNT = 11;
 const CALEDOBIO_COUNT = 4;
 const ANIMAUX_COUNT = 5;
 const LOWESIGHT_COUNT = 82;
+const ARGENTIQUE_COUNT = 27;
+
+// Section livre jeunesse masquée temporairement
+const SHOW_LIVRE = false;
 
 // ── Named labels per image ──
 const TAYTAY_NAMES = [
@@ -37,19 +41,22 @@ const TAYTAY_NAMES = [
 ];
 
 const PORTRAITS_NAMES = [
-  // 0-7: Série Thomas
+  // 0-8: Série Thomas
   "Série Thomas", "Série Thomas", "Série Thomas", "Série Thomas",
   "Série Thomas", "Série Thomas", "Série Thomas", "Série Thomas",
-  // 8-11: Série Thomas et Louise à la montagne
+  "Série Thomas",
+  // 9-12: Série Thomas et Louise à la montagne
   "Série Thomas et Louise à la montagne", "Série Thomas et Louise à la montagne",
   "Série Thomas et Louise à la montagne", "Série Thomas et Louise à la montagne",
-  // 12: Martin
+  // 13: Série Thomas et Louise en vacances
+  "Série Thomas et Louise en vacances",
+  // 14: Martin
   "Martin, designer passionné",
-  // 13-15: Série Momo
+  // 15-17: Série Momo
   "Série Momo", "Série Momo", "Série Momo",
-  // 16-18: Série Aurélien
+  // 18-20: Série Aurélien
   "Série Aurélien", "Série Aurélien", "Série Aurélien",
-  // 19-20: Série Sterenn
+  // 21-22: Série Sterenn
   "Série Sterenn", "Série Sterenn",
 ];
 
@@ -63,6 +70,7 @@ const CARTES_NAMES = [
   "Carte de départ de Max",
   "Mariage d'Albane et Martin",
   "Portrait de famille Viloux",
+  "Affiche vide-maison",
 ];
 
 const VRAC_NAMES = [
@@ -80,7 +88,7 @@ const VRAC_NAMES = [
 ];
 
 // ── Project config ──
-type ProjectKey = "livre" | "taytay" | "portraits" | "cartes" | "vrac" | "caledobio" | "animaux" | "lowesight";
+type ProjectKey = "livre" | "taytay" | "portraits" | "cartes" | "vrac" | "caledobio" | "animaux" | "lowesight" | "argentique";
 type GalleryState = { project: ProjectKey; index: number } | null;
 
 const PROJECT_CONFIG: Record<ProjectKey, { path: string; count: number; names?: string[] }> = {
@@ -92,7 +100,11 @@ const PROJECT_CONFIG: Record<ProjectKey, { path: string; count: number; names?: 
   caledobio: { path: "caledobio", count: CALEDOBIO_COUNT },
   animaux: { path: "animaux", count: ANIMAUX_COUNT },
   lowesight: { path: "lowesight", count: LOWESIGHT_COUNT },
+  argentique: { path: "argentique-turquie", count: ARGENTIQUE_COUNT },
 };
+
+// Projets photo : fond sombre et cadre dans la visionneuse
+const PHOTO_PROJECTS: ProjectKey[] = ["lowesight", "argentique"];
 
 const PROJECT_TITLE_KEYS: Record<ProjectKey, string> = {
   livre: "livreFullTitle",
@@ -103,6 +115,7 @@ const PROJECT_TITLE_KEYS: Record<ProjectKey, string> = {
   caledobio: "caledobioFullTitle",
   animaux: "animauxFullTitle",
   lowesight: "lowesightFullTitle",
+  argentique: "argentiqueFullTitle",
 };
 
 export default function ServicesIllustration() {
@@ -116,7 +129,17 @@ export default function ServicesIllustration() {
 
   const closeViewer = useCallback(() => setViewer(null), []);
 
-  const projectKeys: ProjectKey[] = ["livre", "portraits", "taytay", "cartes", "vrac", "lowesight", "caledobio", "animaux"];
+  const projectKeys: ProjectKey[] = [
+    ...(SHOW_LIVRE ? (["livre"] as ProjectKey[]) : []),
+    "argentique",
+    "portraits",
+    "taytay",
+    "cartes",
+    "vrac",
+    "lowesight",
+    "caledobio",
+    "animaux",
+  ];
 
   const currentProjectIndex = viewer ? projectKeys.indexOf(viewer.project) : -1;
   const prevProject = currentProjectIndex > 0 ? projectKeys[currentProjectIndex - 1] : null;
@@ -144,7 +167,8 @@ export default function ServicesIllustration() {
     <>
       <AtelierHeader />
       <AtelierServices />
-      <AtelierLivre onOpen={(i) => openViewer("livre", i)} />
+      {SHOW_LIVRE && <AtelierLivre onOpen={(i) => openViewer("livre", i)} />}
+      <AtelierArgentique onOpen={(i) => openViewer("argentique", i)} />
       <AtelierMVP />
       <AtelierPortraits onOpen={(i) => openViewer("portraits", i)} />
       <AtelierTaytay onOpen={(i) => openViewer("taytay", i)} />
@@ -166,8 +190,8 @@ export default function ServicesIllustration() {
           prevProjectLabel={prevProject ? getTitle(prevProject) : undefined}
           nextProjectLabel={nextProject ? getTitle(nextProject) : undefined}
           backLabel={rl.back}
-          imageBgClass={viewer.project === "lowesight" ? "bg-darkroom" : undefined}
-          imageFrame={viewer.project === "lowesight"}
+          imageBgClass={PHOTO_PROJECTS.includes(viewer.project) ? "bg-darkroom" : undefined}
+          imageFrame={PHOTO_PROJECTS.includes(viewer.project)}
         />
       )}
     </>
@@ -343,6 +367,25 @@ function AtelierLivre({ onOpen }: { onOpen: (i: number) => void }) {
       onOpen={onOpen}
       previewCount={6}
       showAllLabel={t("showAll", { count: LIVRE_COUNT })}
+      collapseLabel={t("collapse")}
+    />
+  );
+}
+
+function AtelierArgentique({ onOpen }: { onOpen: (i: number) => void }) {
+  const t = useTranslations("atelier");
+  return (
+    <GallerySection
+      bg="bg-cream"
+      kicker={t("argentiqueKicker")}
+      title1={t("argentiqueTitle1")}
+      title2={t("argentiqueTitle2")}
+      desc={t("argentiqueDesc")}
+      cta={t("argentiqueCta")}
+      images={makeImages("argentique-turquie", ARGENTIQUE_COUNT)}
+      onOpen={onOpen}
+      previewCount={6}
+      showAllLabel={t("showAllPhotos", { count: ARGENTIQUE_COUNT })}
       collapseLabel={t("collapse")}
     />
   );

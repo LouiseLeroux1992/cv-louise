@@ -24,9 +24,9 @@ const TOC_NUMBERS: Record<string, string> = {
 };
 
 const FEATURED_WORKS = [
-  { no: "01", fr: "Livre jeunesse", src: "/illustrations/livre-jeunesse/0.webp" },
+  { no: "01", fr: "Photo argentique", src: "/illustrations/argentique-turquie/25.webp" },
   { no: "02", fr: "Ma Vie Passionnante", src: "/bd/voyage-au-japon/1.png" },
-  { no: "03", fr: "Portraits comiques", src: "/illustrations/portraits-comiques/0.webp" },
+  { no: "03", fr: "Portraits comiques", src: "/illustrations/portraits-comiques/13.webp" },
   { no: "04", fr: "Lowesight", src: "/illustrations/lowesight/10.webp" },
 ];
 
