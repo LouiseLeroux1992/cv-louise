@@ -7,6 +7,7 @@ const TECHNOLOGIES = [
   { name: "Rust", category: "lang" },
   { name: "TypeScript / Next.js", category: "lang" },
   { name: "React Native", category: "lang" },
+  { name: "Swift", category: "lang" },
   { name: "GraphQL", category: "lang" },
   { name: "PHP / Symfony", category: "lang" },
 ];
@@ -70,8 +71,9 @@ function CodeServices() {
 
   const services = [
     { key: "webapp", no: "01" },
-    { key: "showcase", no: "02" },
-    { key: "api", no: "03" },
+    { key: "mobile", no: "02" },
+    { key: "showcase", no: "03" },
+    { key: "api", no: "04" },
   ] as const;
 
   return (
@@ -84,11 +86,11 @@ function CodeServices() {
           {t("servicesTitle")}
         </h2>
       </header>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-ink">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-ink">
         {services.map((s) => (
           <div
             key={s.key}
-            className="border-b md:border-b-0 md:border-r last:border-r-0 border-ink p-6 md:p-8 flex flex-col gap-4"
+            className="border-b border-ink md:odd:border-r md:[&:nth-child(n+3)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0 p-6 md:p-8 flex flex-col gap-4"
           >
             <span
               className="font-display text-[48px] md:text-[64px] text-primary leading-[0.9]"

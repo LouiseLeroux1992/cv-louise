@@ -115,7 +115,7 @@
   },
   "services": {
     "dev": {
-      "title": "Développement Web",
+      "title": "Développement Web & Mobile",
       "description": "Apps web & mobile • sites vitrines • automatisations"
     },
     "illustration": {
@@ -223,8 +223,8 @@
   "code": {
     "rubricKicker": "Rubrique 03 · Code",
     "headerTitle1": "Développement",
-    "headerTitle2": "Web",
-    "tags": "Rust · TypeScript · Next.js · GraphQL",
+    "headerTitle2": "Web & Mobile",
+    "tags": "Rust · TypeScript · Next.js · Swift",
     "tags2": "Architecture microservices · Reconversion",
     "servicesKicker": "Services · P. 36",
     "techKicker": "Stack technique — 2026",
@@ -251,13 +251,17 @@
     "nextStrip": "Strip suivant"
   },
   "servicesDev": {
-    "title": "Développement Web",
-    "description": "Je crée des applications web modernes, performantes et sur mesure. Du site vitrine à l'application complexe, je vous accompagne dans la réalisation de vos projets numériques.",
+    "title": "Développement Web & Mobile",
+    "description": "Je crée des applications web et mobiles modernes, performantes et sur mesure. Du site vitrine à l'application complexe, je vous accompagne dans la réalisation de vos projets numériques.",
     "servicesTitle": "Ce que je propose",
     "services": {
       "webapp": {
         "title": "Applications Web",
         "description": "Applications web complètes avec React/Next.js, interfaces utilisateur modernes et expériences interactives."
+      },
+      "mobile": {
+        "title": "Applications Mobiles",
+        "description": "Développement d'applications mobiles iOS et Android sur mesure, du prototype à la publication sur les stores."
       },
       "showcase": {
         "title": "Sites Vitrines",

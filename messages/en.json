@@ -115,7 +115,7 @@
   },
   "services": {
     "dev": {
-      "title": "Web Development",
+      "title": "Web & Mobile Development",
       "description": "Web & mobile apps • showcase websites • automations"
     },
     "illustration": {
@@ -222,9 +222,9 @@
   },
   "code": {
     "rubricKicker": "Rubric 03 · Code",
-    "headerTitle1": "Web",
+    "headerTitle1": "Web & Mobile",
     "headerTitle2": "Development",
-    "tags": "Rust · TypeScript · Next.js · GraphQL",
+    "tags": "Rust · TypeScript · Next.js · Swift",
     "tags2": "Microservices architecture · Career change",
     "servicesKicker": "Services · P. 36",
     "techKicker": "Tech stack — 2026",
@@ -251,13 +251,17 @@
     "nextStrip": "Next strip"
   },
   "servicesDev": {
-    "title": "Web Development",
-    "description": "I create modern, high-performance, custom web applications. From showcase sites to complex applications, I support you in achieving your digital projects.",
+    "title": "Web & Mobile Development",
+    "description": "I create modern, high-performance, custom web and mobile applications. From showcase sites to complex applications, I support you in achieving your digital projects.",
     "servicesTitle": "What I offer",
     "services": {
       "webapp": {
         "title": "Web Applications",
         "description": "Complete web applications with React/Next.js, modern user interfaces and interactive experiences."
+      },
+      "mobile": {
+        "title": "Mobile Applications",
+        "description": "Custom iOS and Android mobile app development, from prototype to store release."
       },
       "showcase": {
         "title": "Showcase Websites",
