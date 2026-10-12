@@ -213,6 +213,8 @@ function GallerySection({
   showAllLabel,
   collapseLabel,
   footer,
+  columnsClass = "columns-2 md:columns-3 lg:columns-6",
+  id,
 }: {
   bg: string;
   kicker: string;
@@ -227,12 +229,14 @@ function GallerySection({
   showAllLabel?: string;
   collapseLabel?: string;
   footer?: React.ReactNode;
+  columnsClass?: string;
+  id?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const visibleImages = previewCount && !expanded ? images.slice(0, previewCount) : images;
 
   return (
-    <section className={`px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 ${bg} border-b border-ink`}>
+    <section id={id} className={`px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 ${bg} border-b border-ink`}>
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
           {kicker}
@@ -246,7 +250,7 @@ function GallerySection({
           </p>
         )}
       </header>
-      <div className="columns-2 md:columns-3 lg:columns-6 gap-3 md:gap-4">
+      <div className={`${columnsClass} gap-3 md:gap-4`}>
         {visibleImages.map((img, i) => (
           <button
             key={i}
@@ -258,7 +262,7 @@ function GallerySection({
               alt={img.alt}
               width={400}
               height={400}
-              loading={i < 6 ? "eager" : "lazy"}
+              loading={i < 8 ? "eager" : "lazy"}
               className="w-full h-auto border-[1.5px] border-ink group-hover:shadow-[4px_4px_0_var(--c-dark)] transition-shadow"
             />
             {names && names[i] && (
@@ -377,6 +381,7 @@ function AtelierArgentique({ onOpen }: { onOpen: (i: number) => void }) {
   return (
     <GallerySection
       bg="bg-cream"
+      id="argentique"
       kicker={t("argentiqueKicker")}
       title1={t("argentiqueTitle1")}
       title2={t("argentiqueTitle2")}
@@ -384,7 +389,8 @@ function AtelierArgentique({ onOpen }: { onOpen: (i: number) => void }) {
       cta={t("argentiqueCta")}
       images={makeImages("argentique-turquie", ARGENTIQUE_COUNT)}
       onOpen={onOpen}
-      previewCount={6}
+      previewCount={8}
+      columnsClass="columns-2 md:columns-3 lg:columns-4"
       showAllLabel={t("showAllPhotos", { count: ARGENTIQUE_COUNT })}
       collapseLabel={t("collapse")}
     />
@@ -416,6 +422,7 @@ function AtelierPortraits({ onOpen }: { onOpen: (i: number) => void }) {
   return (
     <GallerySection
       bg="bg-cream"
+      id="portraits"
       kicker={t("portraitsKicker")}
       title1={t("portraitsTitle1")}
       title2={t("portraitsTitle2")}
@@ -502,16 +509,16 @@ function AtelierAnimaux({ onOpen }: { onOpen: (i: number) => void }) {
 }
 
 const MVP_STRIPS = [
-  { src: "/bd/voyage-au-japon/1.png", title: "Voyage au Japon" },
-  { src: "/bd/mon-nouveau-metier/1.jpg", title: "Mon nouveau métier" },
-  { src: "/bd/la-vie-a-paris/1.jpg", title: "La vie à Paris" },
-  { src: "/bd/reconversion/1.webp", title: "Reconversion" },
+  { slug: "les-petits-trucs-qui-m-agacent", title: "Les petits trucs qui m'agacent" },
+  { slug: "les-petits-trucs-que-j-aime", title: "Les petits trucs que j'aime" },
+  { slug: "carrot-cake", title: "Carrot Cake" },
+  { slug: "ma-niece", title: "Ma nièce" },
 ];
 
 function AtelierMVP() {
   const t = useTranslations("atelier");
   return (
-    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-primary border-b border-ink">
+    <section id="mvp" className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-primary border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
           {t("mvpKicker")}
@@ -526,14 +533,14 @@ function AtelierMVP() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         {MVP_STRIPS.map((strip) => (
           <a
-            key={strip.title}
-            href="https://maviepassionnante.fr"
+            key={strip.slug}
+            href={`https://maviepassionnante.fr/?read=${strip.slug}`}
             target="_blank"
             rel="noopener noreferrer"
             className="group block no-underline"
           >
             <Image
-              src={strip.src}
+              src={`/bd/${strip.slug}/1.webp`}
               alt={strip.title}
               width={400}
               height={600}
@@ -573,6 +580,7 @@ function AtelierLowesight({ onOpen }: { onOpen: (i: number) => void }) {
   return (
     <GallerySection
       bg="bg-cream"
+      id="lowesight"
       kicker={t("lowesightKicker")}
       title1={t("lowesightTitle1")}
       title2={t("lowesightTitle2")}
@@ -580,7 +588,8 @@ function AtelierLowesight({ onOpen }: { onOpen: (i: number) => void }) {
       cta={t("lowesightCta")}
       images={makeImages("lowesight", LOWESIGHT_COUNT)}
       onOpen={onOpen}
-      previewCount={6}
+      previewCount={8}
+      columnsClass="columns-2 md:columns-3 lg:columns-4"
       showAllLabel={t("showAllPhotos", { count: LOWESIGHT_COUNT })}
       collapseLabel={t("collapse")}
       footer={

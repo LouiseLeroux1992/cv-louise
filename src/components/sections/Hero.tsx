@@ -24,10 +24,10 @@ const TOC_NUMBERS: Record<string, string> = {
 };
 
 const FEATURED_WORKS = [
-  { no: "01", fr: "Photo argentique", src: "/illustrations/argentique-turquie/25.webp" },
-  { no: "02", fr: "Ma Vie Passionnante", src: "/bd/voyage-au-japon/1.png" },
-  { no: "03", fr: "Portraits comiques", src: "/illustrations/portraits-comiques/13.webp" },
-  { no: "04", fr: "Lowesight", src: "/illustrations/lowesight/10.webp" },
+  { no: "01", fr: "Photo argentique", src: "/illustrations/argentique-turquie/25.webp", anchor: "argentique" },
+  { no: "02", fr: "Ma Vie Passionnante", src: "/bd/ma-niece/1.webp", anchor: "mvp" },
+  { no: "03", fr: "Portraits comiques", src: "/illustrations/portraits-comiques/13.webp", anchor: "portraits" },
+  { no: "04", fr: "Lowesight", src: "/illustrations/lowesight/10.webp", anchor: "lowesight" },
 ];
 
 export function Hero() {
@@ -264,7 +264,7 @@ function CoverFeatured() {
         {FEATURED_WORKS.map((work) => (
           <Link
             key={work.no}
-            href="/services/illustration"
+            href={`/services/illustration#${work.anchor}`}
             className="flex flex-col gap-2 no-underline text-ink group"
           >
             <Image
