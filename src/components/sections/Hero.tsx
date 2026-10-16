@@ -6,6 +6,8 @@ import { useLocale } from "next-intl";
 import Image from "next/image";
 import { Rule } from "@/components/ui/Rule";
 import { getSeasonLabel } from "@/lib/season";
+import { Placeholder } from "@/components/ui/Placeholder";
+import { BOOK } from "@/data/book";
 
 const TOC_ITEMS = ["about", "code", "atelier", "contact"] as const;
 
@@ -35,6 +37,7 @@ export function Hero() {
     <>
       <CoverHero />
       <CoverQuote />
+      <CoverBook />
       <CoverTOC />
       <CoverFeatured />
     </>
@@ -189,6 +192,52 @@ function CoverQuote() {
       <div className="font-mono text-[9.5px] tracking-[0.16em] uppercase text-dark md:text-right">
         {t("quoteSig")}
       </div>
+    </section>
+  );
+}
+
+function CoverBook() {
+  const t = useTranslations("cover");
+
+  return (
+    <section className="bg-cream border-b border-ink px-5 md:px-16 py-10 md:py-16 flex flex-col md:grid md:grid-cols-[240px_1fr_auto] gap-6 md:gap-12 items-start">
+      <Link href="/services/illustration#livre" className="block w-[160px] md:w-full no-underline">
+        {BOOK.cover ? (
+          <Image
+            src={BOOK.cover}
+            alt={t("bookCoverAlt")}
+            width={480}
+            height={480}
+            className="w-full h-auto border-[1.5px] border-ink"
+          />
+        ) : (
+          <Placeholder
+            label={t("bookCoverPending")}
+            kicker={t("bookKicker")}
+            ratio="1/1"
+            tone="fog"
+            className="border-[1.5px] border-ink"
+          />
+        )}
+      </Link>
+      <div className="flex flex-col gap-2">
+        <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+          {t("bookKicker")}
+        </span>
+        <h2 className="font-serif font-medium italic text-[clamp(30px,4vw,54px)] leading-[0.98] m-0 text-ink">
+          {BOOK.title}
+        </h2>
+        <p className="font-serif italic text-[15px] md:text-base leading-[1.5] text-mute m-0 max-w-[520px]">
+          {t("bookDesc")}
+        </p>
+      </div>
+      <Link
+        href="/services/illustration#livre"
+        className="w-full md:w-auto md:self-end bg-ink text-cream border-none px-6 py-[14px] font-display text-sm tracking-[0.12em] uppercase inline-flex items-center justify-between md:justify-start gap-3.5 no-underline transition-all hover:bg-dark hover:gap-[22px]"
+      >
+        <span>{t("bookCta")}</span>
+        <span className="font-sans">→</span>
+      </Link>
     </section>
   );
 }

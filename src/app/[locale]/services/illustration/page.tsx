@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { GalleryReader } from "@/components/ui/GalleryReader";
+import { Placeholder } from "@/components/ui/Placeholder";
+import { BOOK } from "@/data/book";
 
 function useReaderLabels() {
   const t = useTranslations("reader");
@@ -20,7 +22,6 @@ const PROJECTS = [
 ] as const;
 
 // ── Image counts ──
-const LIVRE_COUNT = 18;
 const TAYTAY_COUNT = 10;
 const PORTRAITS_COUNT = 23; // 9 thomas + 14 comics
 const CARTES_COUNT = 10;
@@ -29,9 +30,6 @@ const CALEDOBIO_COUNT = 4;
 const ANIMAUX_COUNT = 5;
 const LOWESIGHT_COUNT = 82;
 const ARGENTIQUE_COUNT = 27;
-
-// Section livre jeunesse masquée temporairement
-const SHOW_LIVRE = false;
 
 // ── Named labels per image ──
 const TAYTAY_NAMES = [
@@ -88,11 +86,10 @@ const VRAC_NAMES = [
 ];
 
 // ── Project config ──
-type ProjectKey = "livre" | "taytay" | "portraits" | "cartes" | "vrac" | "caledobio" | "animaux" | "lowesight" | "argentique";
+type ProjectKey = "taytay" | "portraits" | "cartes" | "vrac" | "caledobio" | "animaux" | "lowesight" | "argentique";
 type GalleryState = { project: ProjectKey; index: number } | null;
 
 const PROJECT_CONFIG: Record<ProjectKey, { path: string; count: number; names?: string[] }> = {
-  livre: { path: "livre-jeunesse", count: LIVRE_COUNT },
   taytay: { path: "taytay", count: TAYTAY_COUNT, names: TAYTAY_NAMES },
   portraits: { path: "portraits-comiques", count: PORTRAITS_COUNT, names: PORTRAITS_NAMES },
   cartes: { path: "cartes", count: CARTES_COUNT, names: CARTES_NAMES },
@@ -107,7 +104,6 @@ const PROJECT_CONFIG: Record<ProjectKey, { path: string; count: number; names?: 
 const PHOTO_PROJECTS: ProjectKey[] = ["lowesight", "argentique"];
 
 const PROJECT_TITLE_KEYS: Record<ProjectKey, string> = {
-  livre: "livreFullTitle",
   taytay: "taytayFullTitle",
   portraits: "portraitsFullTitle",
   cartes: "cartesFullTitle",
@@ -130,7 +126,6 @@ export default function ServicesIllustration() {
   const closeViewer = useCallback(() => setViewer(null), []);
 
   const projectKeys: ProjectKey[] = [
-    ...(SHOW_LIVRE ? (["livre"] as ProjectKey[]) : []),
     "argentique",
     "portraits",
     "taytay",
@@ -167,7 +162,7 @@ export default function ServicesIllustration() {
     <>
       <AtelierHeader />
       <AtelierServices />
-      {SHOW_LIVRE && <AtelierLivre onOpen={(i) => openViewer("livre", i)} />}
+      <AtelierLivre />
       <AtelierArgentique onOpen={(i) => openViewer("argentique", i)} />
       <AtelierMVP />
       <AtelierPortraits onOpen={(i) => openViewer("portraits", i)} />
@@ -339,7 +334,7 @@ function AtelierServices() {
   const t = useTranslations("atelier");
   const ts = useTranslations("servicesIllustration");
   return (
-    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-fog border-b border-ink">
+    <section className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-cream border-b border-ink">
       <header className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-9">
         <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">{t("projectsKicker")}</span>
         <h2 className="font-serif font-medium text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">{ts("servicesTitle")}</h2>
@@ -357,22 +352,68 @@ function AtelierServices() {
   );
 }
 
-function AtelierLivre({ onOpen }: { onOpen: (i: number) => void }) {
+function AtelierLivre() {
   const t = useTranslations("atelier");
   return (
-    <GallerySection
-      bg="bg-cream"
-      kicker={t("livreKicker")}
-      title1={t("livreTitle1")}
-      title2={t("livreTitle2")}
-      desc={t("livreDesc")}
-      cta={t("livreCta")}
-      images={makeImages("livre-jeunesse", LIVRE_COUNT)}
-      onOpen={onOpen}
-      previewCount={6}
-      showAllLabel={t("showAll", { count: LIVRE_COUNT })}
-      collapseLabel={t("collapse")}
-    />
+    <section
+      id="livre"
+      className="px-5 md:px-8 pt-10 md:pt-16 pb-10 md:pb-16 bg-fog border-b border-ink"
+    >
+      <div className="flex flex-col md:grid md:grid-cols-[340px_1fr] gap-6 md:gap-12 md:items-start">
+        <div className="w-full max-w-[340px]">
+          {BOOK.cover ? (
+            <Image
+              src={BOOK.cover}
+              alt={t("livreCoverAlt")}
+              width={680}
+              height={680}
+              className="w-full h-auto border-[1.5px] border-ink"
+            />
+          ) : (
+            <Placeholder
+              label={t("livreCoverPending")}
+              kicker={t("livreKicker")}
+              ratio="1/1"
+              tone="fog"
+              className="border-[1.5px] border-ink"
+            />
+          )}
+        </div>
+        <div className="flex flex-col gap-4 md:gap-5">
+          <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-mute">
+            {t("livreKicker")}
+          </span>
+          <h2 className="font-serif font-medium italic text-[clamp(38px,5vw,72px)] leading-[0.95] m-0 text-ink">
+            {BOOK.title}
+          </h2>
+          <p className="font-mono text-[10px] md:text-[11px] tracking-[0.14em] uppercase text-mute m-0">
+            {t("livreCredits")}
+          </p>
+          <p className="font-serif italic text-base md:text-lg leading-[1.5] text-dark m-0 max-w-[620px]">
+            {t("livreDesc")}
+          </p>
+          <div className="flex flex-wrap gap-3 mt-1">
+            {BOOK.links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-ink text-cream border-none px-6 py-3 font-display text-sm tracking-[0.12em] uppercase no-underline hover:bg-dark transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <p className="font-serif italic text-sm text-mute m-0">
+            {t("livreBookshop")}
+          </p>
+          <p className="font-mono text-[10px] tracking-[0.14em] uppercase text-mute m-0">
+            {t("livreMeta")}
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
 
