@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 import {
   Cormorant_Garamond,
   Anton,
@@ -60,12 +61,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Louise Leroux" }],
   creator: "Louise Leroux",
-  metadataBase: new URL("https://lerouxlouise.fr"),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "fr_FR",
     alternateLocale: "en_US",
-    url: "https://lerouxlouise.fr",
+    url: SITE_URL,
     siteName: "Louise Leroux",
     title: "Louise Leroux | Développeuse Fullstack & Illustratrice",
     description:

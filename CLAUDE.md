@@ -2,10 +2,15 @@
 
 ## Résumé du projet
 Portfolio personnel de Louise Leroux - Développeuse Fullstack & Illustratrice
-- **URL production** : https://lerouxlouise.fr (+ https://cv-louise.vercel.app)
+- **URL production** : https://louiseleroux.fr (domaine canonique)
+  - https://lerouxlouise.fr redirige en 301 vers le domaine canonique
+  - https://cv-louise.vercel.app (domaine Vercel par défaut)
 - **Stack** : Next.js 14, TypeScript, Tailwind CSS, next-intl (i18n FR/EN)
 - **Hébergement** : Vercel
-- **Domaine** : Gandi (DNS gérés par Vercel)
+- **Domaines** : les deux chez Gandi
+  - `lerouxlouise.fr` : DNS gérés par Vercel (nameservers Vercel)
+  - `louiseleroux.fr` : DNS gérés par Gandi LiveDNS, acheté le 21/10/2026
+- **Domaine dans le code** : défini une seule fois dans `src/lib/site.ts` (`SITE_DOMAIN`). `layout.tsx`, `sitemap.ts` et `robots.ts` l'importent — ne jamais réécrire l'URL en dur.
 
 ## Ce qui a été fait
 
@@ -44,15 +49,27 @@ Portfolio personnel de Louise Leroux - Développeuse Fullstack & Illustratrice
 ## En cours / À faire
 
 ### Formulaire de contact - Domaine personnalisé
-- [ ] **Configurer le domaine `lerouxlouise.fr` dans Resend** pour envoyer depuis `contact@lerouxlouise.fr`
-  - Ajouter le domaine dans Resend (https://resend.com/domains)
-  - Ajouter les enregistrements DNS (SPF, DKIM) dans **Vercel** (pas Gandi, car DNS gérés par Vercel)
-  - Vérifier le domaine dans Resend
-  - Modifier `src/app/api/contact/route.ts` ligne `from:` :
+L'expéditeur est encore `contact@lerouxlouise.fr` dans `src/app/api/contact/route.ts`.
+Il n'a **volontairement pas** été basculé sur le nouveau domaine : Resend refuse
+d'envoyer depuis un domaine non vérifié, changer le `from:` avant la vérification
+casserait le formulaire.
+- [ ] **Vérifier `louiseleroux.fr` dans Resend** (https://resend.com/domains)
+  - Ajouter les enregistrements SPF et DKIM dans **Gandi LiveDNS** (et non Vercel :
+    ce domaine-ci n'est pas délégué à Vercel, contrairement à `lerouxlouise.fr`)
+  - Une fois le domaine vérifié, et seulement à ce moment, modifier le `from:` :
     ```typescript
-    from: "Louise Leroux <contact@lerouxlouise.fr>"
+    from: "Louise Leroux <contact@louiseleroux.fr>"
     ```
 - [ ] **Ajouter `RESEND_API_KEY` sur Vercel** : Settings → Environment Variables
+
+### Domaine louiseleroux.fr - à finir côté Vercel
+- [ ] Ajouter `louiseleroux.fr` et `www.louiseleroux.fr` dans Vercel (Settings → Domains)
+- [ ] Créer les enregistrements DNS **avec les valeurs affichées par Vercel** dans Gandi LiveDNS
+- [ ] Définir `louiseleroux.fr` comme domaine de production (primaire)
+- [ ] Passer `lerouxlouise.fr` en « Redirect to » vers `louiseleroux.fr` (301)
+- [ ] Déclarer la nouvelle propriété dans Google Search Console et soumettre le sitemap
+- [ ] **Réactiver le renouvellement automatique** chez Gandi : il est désactivé, le
+      domaine expire le 21/10/2027
 
 ### Portfolio Illustration
 - [ ] Créer des pages dédiées par projet :
