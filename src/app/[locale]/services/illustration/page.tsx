@@ -550,10 +550,10 @@ function AtelierAnimaux({ onOpen }: { onOpen: (i: number) => void }) {
 }
 
 const MVP_STRIPS = [
+  { slug: "le-tunnel", title: "Le tunnel" },
   { slug: "les-petits-trucs-qui-m-agacent", title: "Les petits trucs qui m'agacent" },
   { slug: "les-petits-trucs-que-j-aime", title: "Les petits trucs que j'aime" },
   { slug: "carrot-cake", title: "Carrot Cake" },
-  { slug: "ma-niece", title: "Ma nièce" },
 ];
 
 function AtelierMVP() {
