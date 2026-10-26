@@ -49,10 +49,20 @@ Portfolio personnel de Louise Leroux - Développeuse Fullstack & Illustratrice
 ## En cours / À faire
 
 ### Formulaire de contact - Domaine personnalisé
-L'expéditeur est encore `contact@lerouxlouise.fr` dans `src/app/api/contact/route.ts`.
+Le formulaire **fonctionne en production** (vérifié le 26/10/2026, les mails
+arrivent bien sur louiseleroux1992@gmail.com), donc `RESEND_API_KEY` est bien
+configurée sur Vercel.
+
+L'expéditeur reste `contact@lerouxlouise.fr` dans `src/app/api/contact/route.ts`.
 Il n'a **volontairement pas** été basculé sur le nouveau domaine : Resend refuse
 d'envoyer depuis un domaine non vérifié, changer le `from:` avant la vérification
 casserait le formulaire.
+
+Ce n'est pas urgent : le `from:` n'est jamais vu par le visiteur (le mail part vers
+la boîte Gmail de Louise, et le `replyTo` porte l'adresse du visiteur). **Seule
+condition : garder `lerouxlouise.fr` actif et vérifié chez Resend.** Le jour où ce
+domaine ne serait pas renouvelé, le formulaire casserait sans prévenir — basculer
+le `from:` AVANT de laisser expirer le domaine.
 - [ ] **Vérifier `louiseleroux.fr` dans Resend** (https://resend.com/domains)
   - Ajouter les enregistrements SPF et DKIM dans **Gandi LiveDNS** (et non Vercel :
     ce domaine-ci n'est pas délégué à Vercel, contrairement à `lerouxlouise.fr`)
@@ -60,7 +70,6 @@ casserait le formulaire.
     ```typescript
     from: "Louise Leroux <contact@louiseleroux.fr>"
     ```
-- [ ] **Ajouter `RESEND_API_KEY` sur Vercel** : Settings → Environment Variables
 
 ### Domaine louiseleroux.fr - à finir côté Vercel
 - [ ] Ajouter `louiseleroux.fr` et `www.louiseleroux.fr` dans Vercel (Settings → Domains)
